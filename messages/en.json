@@ -156,6 +156,12 @@
     "servicesTitle": "Services",
     "companyTitle": "Company",
     "legalTitle": "Legal",
+    "socialTitle": "Social",
+    "newsletterTitle": "Newsletter",
+    "newsletterDescription": "Get AI automation insights",
+    "newsletterPlaceholder": "Enter your email",
+    "newsletterButton": "Subscribe",
+    "newsletterSuccess": "Subscribed!",
     "services": {
       "aiConsulting": "AI Automation Consulting",
       "processOptimization": "Process Optimization",

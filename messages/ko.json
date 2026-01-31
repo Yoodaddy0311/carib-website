@@ -156,6 +156,12 @@
     "servicesTitle": "서비스",
     "companyTitle": "회사",
     "legalTitle": "법적 고지",
+    "socialTitle": "소셜",
+    "newsletterTitle": "뉴스레터",
+    "newsletterDescription": "AI 자동화 인사이트를 받아보세요",
+    "newsletterPlaceholder": "이메일 주소 입력",
+    "newsletterButton": "구독하기",
+    "newsletterSuccess": "구독 완료!",
     "services": {
       "aiConsulting": "AI 자동화 컨설팅",
       "processOptimization": "업무 프로세스 최적화",

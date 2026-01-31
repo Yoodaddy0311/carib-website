@@ -156,6 +156,12 @@
     "servicesTitle": "サービス",
     "companyTitle": "会社",
     "legalTitle": "法的事項",
+    "socialTitle": "ソーシャル",
+    "newsletterTitle": "ニュースレター",
+    "newsletterDescription": "AI自動化の最新情報をお届け",
+    "newsletterPlaceholder": "メールアドレスを入力",
+    "newsletterButton": "購読する",
+    "newsletterSuccess": "購読完了！",
     "services": {
       "aiConsulting": "AI自動化コンサルティング",
       "processOptimization": "業務プロセス最適化",

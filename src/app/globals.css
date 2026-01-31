@@ -799,3 +799,735 @@ button, a[role="button"] {
 .group:hover .service-card-accent {
   transform: scaleX(1);
 }
+
+/* ==========================================================================
+   BRANDAZINE STYLE - Editorial Typography & Animation System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Editorial Typography Scale
+   -------------------------------------------------------------------------- */
+:root {
+  /* Display Typography - Extra Large for Hero Sections */
+  --text-display-xl: clamp(3.5rem, 8vw, 6rem);      /* 56px - 96px */
+  --text-display-2xl: clamp(4rem, 10vw, 8rem);      /* 64px - 128px */
+  --text-display-3xl: clamp(5rem, 12vw, 10rem);     /* 80px - 160px */
+
+  /* Editorial Line Heights */
+  --leading-display: 0.9;
+  --leading-editorial: 1.1;
+  --leading-tight: 1.2;
+
+  /* Editorial Letter Spacing */
+  --tracking-editorial: -0.04em;
+  --tracking-tight: -0.02em;
+  --tracking-wide: 0.1em;
+
+  /* Brandazine Animation Easing */
+  --ease-editorial: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-reveal: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Animation Durations */
+  --duration-reveal: 1.2s;
+  --duration-stagger: 0.1s;
+  --duration-parallax: 0.8s;
+}
+
+/* Display XL Typography */
+.text-display-xl {
+  font-size: var(--text-display-xl);
+  line-height: var(--leading-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-editorial);
+}
+
+.text-display-2xl {
+  font-size: var(--text-display-2xl);
+  line-height: var(--leading-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-editorial);
+}
+
+.text-display-3xl {
+  font-size: var(--text-display-3xl);
+  line-height: var(--leading-display);
+  font-weight: 800;
+  letter-spacing: var(--tracking-editorial);
+}
+
+/* Editorial Text Styles */
+.text-editorial {
+  line-height: var(--leading-editorial);
+  letter-spacing: var(--tracking-tight);
+}
+
+.text-editorial-caps {
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   Asymmetric Grid Utilities
+   -------------------------------------------------------------------------- */
+
+/* Asymmetric Grid Container */
+.grid-asymmetric {
+  display: grid;
+  gap: 2rem;
+}
+
+/* 60/40 Split */
+.grid-asymmetric-60-40 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .grid-asymmetric-60-40 {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+/* 70/30 Split */
+.grid-asymmetric-70-30 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .grid-asymmetric-70-30 {
+    grid-template-columns: 7fr 3fr;
+  }
+}
+
+/* 40/60 Split (Reversed) */
+.grid-asymmetric-40-60 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .grid-asymmetric-40-60 {
+    grid-template-columns: 2fr 3fr;
+  }
+}
+
+/* 30/70 Split (Reversed) */
+.grid-asymmetric-30-70 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .grid-asymmetric-30-70 {
+    grid-template-columns: 3fr 7fr;
+  }
+}
+
+/* Magazine Layout - Complex Asymmetric */
+.grid-magazine {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .grid-magazine {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .grid-magazine > *:first-child {
+    grid-row: span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-magazine {
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+}
+
+/* Offset Grid - Staggered Layout */
+.grid-offset {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+.grid-offset-item-left {
+  grid-column: 1 / -1;
+}
+
+.grid-offset-item-right {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 768px) {
+  .grid-offset-item-left {
+    grid-column: 1 / 8;
+  }
+
+  .grid-offset-item-right {
+    grid-column: 5 / -1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Brandazine Animation Keyframes
+   -------------------------------------------------------------------------- */
+
+/* Text Reveal Animation */
+@keyframes text-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+    clip-path: inset(0 0 100% 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Text Reveal from Left */
+@keyframes text-reveal-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Text Reveal with Mask */
+@keyframes text-reveal-mask {
+  0% {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Parallax Up Animation */
+@keyframes parallax-up {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Parallax Down Animation */
+@keyframes parallax-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Parallax Horizontal */
+@keyframes parallax-left {
+  0% {
+    opacity: 0;
+    transform: translateX(80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes parallax-right {
+  0% {
+    opacity: 0;
+    transform: translateX(-80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Image Zoom Animation */
+@keyframes image-zoom {
+  0% {
+    opacity: 0;
+    transform: scale(1.2);
+    filter: blur(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Image Zoom with Clip Path */
+@keyframes image-zoom-reveal {
+  0% {
+    clip-path: inset(10% 10% 10% 10%);
+    transform: scale(1.1);
+    filter: blur(8px);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Image Ken Burns Effect */
+@keyframes ken-burns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+/* Fade Up Stagger Animation */
+@keyframes fade-up-stagger {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade Up Stagger with Rotation */
+@keyframes fade-up-rotate {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) rotate(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* Stagger Scale Animation */
+@keyframes stagger-scale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Line Draw Animation */
+@keyframes line-draw {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Reveal Line Horizontal */
+@keyframes reveal-line-h {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  100% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+/* Reveal Line Vertical */
+@keyframes reveal-line-v {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  100% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+/* Counter Animation */
+@keyframes counter-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Loading Progress Animation */
+@keyframes loading-progress {
+  0% {
+    width: 0%;
+    background-position: 0% 50%;
+  }
+  50% {
+    width: 70%;
+    background-position: 100% 50%;
+  }
+  100% {
+    width: 100%;
+    background-position: 0% 50%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Animation Utility Classes
+   -------------------------------------------------------------------------- */
+
+/* Text Reveal */
+.animate-text-reveal {
+  animation: text-reveal var(--duration-reveal) var(--ease-editorial) forwards;
+  opacity: 0;
+}
+
+.animate-text-reveal-left {
+  animation: text-reveal-left var(--duration-reveal) var(--ease-editorial) forwards;
+  opacity: 0;
+}
+
+.animate-text-reveal-mask {
+  animation: text-reveal-mask var(--duration-reveal) var(--ease-reveal) forwards;
+}
+
+/* Parallax */
+.animate-parallax-up {
+  animation: parallax-up var(--duration-parallax) var(--ease-editorial) forwards;
+  opacity: 0;
+}
+
+.animate-parallax-down {
+  animation: parallax-down var(--duration-parallax) var(--ease-editorial) forwards;
+  opacity: 0;
+}
+
+.animate-parallax-left {
+  animation: parallax-left var(--duration-parallax) var(--ease-editorial) forwards;
+  opacity: 0;
+}
+
+.animate-parallax-right {
+  animation: parallax-right var(--duration-parallax) var(--ease-editorial) forwards;
+  opacity: 0;
+}
+
+/* Image Zoom */
+.animate-image-zoom {
+  animation: image-zoom var(--duration-reveal) var(--ease-editorial) forwards;
+  opacity: 0;
+}
+
+.animate-image-zoom-reveal {
+  animation: image-zoom-reveal var(--duration-reveal) var(--ease-editorial) forwards;
+}
+
+.animate-ken-burns {
+  animation: ken-burns 20s ease-in-out infinite alternate;
+}
+
+/* Stagger */
+.animate-fade-up-stagger {
+  animation: fade-up-stagger 0.8s var(--ease-editorial) forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-rotate {
+  animation: fade-up-rotate 0.8s var(--ease-editorial) forwards;
+  opacity: 0;
+}
+
+.animate-stagger-scale {
+  animation: stagger-scale 0.6s var(--ease-bounce) forwards;
+  opacity: 0;
+}
+
+/* Line Animations */
+.animate-line-draw {
+  animation: line-draw 1.5s var(--ease-editorial) forwards;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+.animate-reveal-line-h {
+  animation: reveal-line-h 0.8s var(--ease-editorial) forwards;
+  transform: scaleX(0);
+}
+
+.animate-reveal-line-v {
+  animation: reveal-line-v 0.8s var(--ease-editorial) forwards;
+  transform: scaleY(0);
+}
+
+/* Animation Delay Utilities */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+.delay-900 { animation-delay: 0.9s; }
+.delay-1000 { animation-delay: 1s; }
+
+/* Stagger Children - Apply to parent */
+.stagger-children > *:nth-child(1) { animation-delay: calc(var(--duration-stagger) * 1); }
+.stagger-children > *:nth-child(2) { animation-delay: calc(var(--duration-stagger) * 2); }
+.stagger-children > *:nth-child(3) { animation-delay: calc(var(--duration-stagger) * 3); }
+.stagger-children > *:nth-child(4) { animation-delay: calc(var(--duration-stagger) * 4); }
+.stagger-children > *:nth-child(5) { animation-delay: calc(var(--duration-stagger) * 5); }
+.stagger-children > *:nth-child(6) { animation-delay: calc(var(--duration-stagger) * 6); }
+.stagger-children > *:nth-child(7) { animation-delay: calc(var(--duration-stagger) * 7); }
+.stagger-children > *:nth-child(8) { animation-delay: calc(var(--duration-stagger) * 8); }
+.stagger-children > *:nth-child(9) { animation-delay: calc(var(--duration-stagger) * 9); }
+.stagger-children > *:nth-child(10) { animation-delay: calc(var(--duration-stagger) * 10); }
+
+/* --------------------------------------------------------------------------
+   Clip Path Utilities
+   -------------------------------------------------------------------------- */
+
+/* Basic Clip Paths */
+.clip-inset-0 { clip-path: inset(0); }
+.clip-inset-full { clip-path: inset(100%); }
+.clip-inset-top { clip-path: inset(100% 0 0 0); }
+.clip-inset-bottom { clip-path: inset(0 0 100% 0); }
+.clip-inset-left { clip-path: inset(0 100% 0 0); }
+.clip-inset-right { clip-path: inset(0 0 0 100%); }
+
+/* Circle Clip Paths */
+.clip-circle-0 { clip-path: circle(0% at 50% 50%); }
+.clip-circle-full { clip-path: circle(100% at 50% 50%); }
+.clip-circle-center { clip-path: circle(50% at 50% 50%); }
+
+/* Polygon Clip Paths */
+.clip-polygon-left { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
+.clip-polygon-right { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
+.clip-polygon-top { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); }
+.clip-polygon-bottom { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); }
+.clip-polygon-full { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+
+/* Diagonal Clip Paths */
+.clip-diagonal-tl { clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); }
+.clip-diagonal-tr { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%); }
+.clip-diagonal-bl { clip-path: polygon(0 0, 100% 15%, 100% 100%, 0 100%); }
+.clip-diagonal-br { clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%); }
+
+/* Reveal Clip Paths for Animation */
+.clip-reveal-ready {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 1.2s var(--ease-editorial);
+}
+
+.clip-reveal-hidden {
+  clip-path: inset(0 100% 0 0);
+}
+
+.clip-reveal-hidden-v {
+  clip-path: inset(100% 0 0 0);
+}
+
+/* --------------------------------------------------------------------------
+   Blur Effect Utilities
+   -------------------------------------------------------------------------- */
+
+/* Static Blur */
+.blur-none { filter: blur(0); }
+.blur-sm { filter: blur(4px); }
+.blur-md { filter: blur(8px); }
+.blur-lg { filter: blur(16px); }
+.blur-xl { filter: blur(24px); }
+.blur-2xl { filter: blur(40px); }
+.blur-3xl { filter: blur(64px); }
+
+/* Backdrop Blur */
+.backdrop-blur-none { backdrop-filter: blur(0); }
+.backdrop-blur-sm { backdrop-filter: blur(4px); }
+.backdrop-blur-md { backdrop-filter: blur(8px); }
+.backdrop-blur-lg { backdrop-filter: blur(16px); }
+.backdrop-blur-xl { backdrop-filter: blur(24px); }
+.backdrop-blur-2xl { backdrop-filter: blur(40px); }
+
+/* Blur with Transition */
+.blur-transition {
+  transition: filter 0.8s var(--ease-editorial);
+}
+
+.blur-reveal {
+  filter: blur(20px);
+}
+
+.blur-reveal.is-visible {
+  filter: blur(0);
+}
+
+/* Blur Gradient Overlay */
+.blur-gradient-bottom {
+  position: relative;
+}
+
+.blur-gradient-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+}
+
+/* Blur Vignette Effect */
+.blur-vignette {
+  position: relative;
+}
+
+.blur-vignette::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Scroll-Triggered Animation States
+   -------------------------------------------------------------------------- */
+
+/* Elements waiting to be animated */
+[data-scroll-animate] {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+[data-scroll-animate="fade-up"] {
+  transform: translateY(40px);
+}
+
+[data-scroll-animate="fade-down"] {
+  transform: translateY(-40px);
+}
+
+[data-scroll-animate="fade-left"] {
+  transform: translateX(40px);
+}
+
+[data-scroll-animate="fade-right"] {
+  transform: translateX(-40px);
+}
+
+[data-scroll-animate="scale"] {
+  transform: scale(0.9);
+}
+
+[data-scroll-animate="blur"] {
+  filter: blur(20px);
+}
+
+/* Visible state */
+[data-scroll-animate].is-visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+  filter: blur(0);
+  transition:
+    opacity 0.8s var(--ease-editorial),
+    transform 0.8s var(--ease-editorial),
+    filter 0.8s var(--ease-editorial);
+}
+
+/* --------------------------------------------------------------------------
+   Editorial Specific Components
+   -------------------------------------------------------------------------- */
+
+/* Pull Quote */
+.pull-quote {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  line-height: 1.3;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.pull-quote::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--color-google-blue);
+}
+
+/* Drop Cap */
+.drop-cap::first-letter {
+  float: left;
+  font-size: 4em;
+  line-height: 0.8;
+  font-weight: 700;
+  margin-right: 0.1em;
+  margin-top: 0.1em;
+}
+
+/* Editorial Divider */
+.editorial-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-gray-300) 20%,
+    var(--color-gray-300) 80%,
+    transparent
+  );
+  margin: 3rem 0;
+}
+
+/* Section Number */
+.section-number {
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-gray-200);
+  letter-spacing: -0.05em;
+}

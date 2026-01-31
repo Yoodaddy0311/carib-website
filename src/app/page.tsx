@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import dynamic from 'next/dynamic';
-import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
+import Image from 'next/image';
+import { motion, useMotionValue, useSpring, useTransform, useScroll } from 'motion/react';
 import { ArrowRight, Sparkles, Zap, Users, TrendingUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui';
@@ -58,7 +59,7 @@ const ChatWidget = dynamic(() => import('@/components/sections/ChatWidget').then
 // Typing effect keywords - will be replaced with translated versions at runtime
 const typingKeywordKeys = ['ai', 'automation', 'efficiency', 'innovation', 'growth'] as const;
 
-// Enhanced Typing Effect Component with character-by-character animation
+// Enhanced Typing Effect Component with character-by-character animation - Brandazine Style (Larger)
 function TypewriterText() {
   const t = useTranslations('hero.keywords');
   const typingKeywords = useMemo(() => typingKeywordKeys.map((key) => t(key)), [t]);
@@ -101,9 +102,9 @@ function TypewriterText() {
         {displayText.split('').map((char, idx) => (
           <motion.span
             key={`${currentIndex}-${idx}`}
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.12, delay: idx * 0.02 }}
+            transition={{ duration: 0.15, delay: idx * 0.03 }}
             className="inline-block"
           >
             {char}
@@ -111,7 +112,7 @@ function TypewriterText() {
         ))}
       </span>
       <span
-        className="ml-0.5 w-[2px] h-[0.9em] inline-block align-baseline bg-[#1a73e8] animate-pulse"
+        className="ml-1 w-[3px] h-[0.85em] inline-block align-baseline bg-[#1a73e8] animate-pulse"
         aria-hidden="true"
       />
     </span>
@@ -324,7 +325,7 @@ const trustMetricsData = [
   { value: '24/7', labelKey: 'operation', countTo: null, suffix: '', isStatic: true },
 ];
 
-// Animated Trust Metric Component - Enhanced with better interactions
+// Brandazine Editorial Style: Bold Trust Metric Component
 function AnimatedTrustMetric({
   metric,
   index,
@@ -340,47 +341,48 @@ function AnimatedTrustMetric({
     easing: 'ease-out-expo',
   });
 
-  // Google colors for each metric
-  const accentColors = ['#1a73e8', '#34a853', '#fbbc04', '#ea4335'];
+  // Brandazine editorial colors - more bold and editorial
+  const accentColors = ['#1a73e8', '#0d9488', '#7c3aed', '#f59e0b'];
   const accentColor = accentColors[index % accentColors.length];
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30, scale: 0.9 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.5, delay: 0.5 + index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+      initial={{ opacity: 0, y: 40, scale: 0.85 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.2 + index * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
       whileHover={{
-        y: -6,
-        scale: 1.02,
-        transition: { duration: 0.2 }
+        y: -8,
+        scale: 1.05,
+        transition: { duration: 0.25 }
       }}
-      className="group relative text-center p-6 rounded-3xl bg-white border border-[#e8eaed] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(60,64,67,0.15)] hover:border-transparent cursor-pointer overflow-hidden"
+      className="group relative text-center p-8 rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-[#e8eaed] transition-all duration-300 hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] hover:border-transparent cursor-pointer overflow-hidden"
     >
-      {/* Colored top accent on hover */}
+      {/* Bold left accent bar */}
       <motion.div
-        className="absolute top-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        className="absolute top-0 left-0 bottom-0 w-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{ background: accentColor }}
       />
 
-      {/* Background glow on hover */}
+      {/* Editorial gradient overlay on hover */}
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{
-          background: `radial-gradient(circle at 50% 0%, ${accentColor}08 0%, transparent 70%)`
+          background: `linear-gradient(135deg, ${accentColor}08 0%, transparent 50%)`
         }}
       />
 
       <p
         ref={ref as React.RefObject<HTMLParagraphElement>}
-        className="relative text-3xl md:text-4xl font-medium tabular-nums transition-colors duration-300"
+        className="relative text-4xl md:text-5xl lg:text-6xl font-bold tabular-nums transition-colors duration-300 tracking-tight"
         style={{ color: hasStarted ? accentColor : '#202124' }}
         aria-live="polite"
       >
         {metric.isStatic ? (
           <motion.span
             className="tracking-tight"
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            animate={{ scale: [1, 1.03, 1] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
           >
             {metric.value}
           </motion.span>
@@ -398,7 +400,7 @@ function AnimatedTrustMetric({
           </motion.span>
         )}
       </p>
-      <p className="relative text-sm text-[#5f6368] font-normal mt-2 transition-colors duration-300 group-hover:text-[#202124]">
+      <p className="relative text-sm md:text-base text-[#5f6368] font-medium uppercase tracking-wider mt-3 transition-colors duration-300 group-hover:text-[#202124]">
         {label}
       </p>
     </motion.div>
@@ -413,11 +415,85 @@ const servicesData = [
   { icon: TrendingUp, key: 'education' },
 ];
 
+// Brandazine Hero Image Component with Parallax and Reveal Animation
+function HeroImage({ scrollYProgress }: { scrollYProgress: any }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Parallax: Image moves slower than scroll
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
+  const imageScale = useTransform(scrollYProgress, [0, 0.5], [1.05, 1]);
+  const imageBlur = useTransform(scrollYProgress, [0, 0.2], [8, 0]);
+
+  return (
+    <motion.div
+      className="relative w-full h-full"
+      style={{ y: imageY }}
+    >
+      {/* Diagonal clip-path container */}
+      <motion.div
+        className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden"
+        style={{
+          clipPath: 'polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%)',
+          scale: imageScale,
+        }}
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
+        {/* Blur overlay that fades out */}
+        <motion.div
+          className="absolute inset-0 z-10 bg-white/30 backdrop-blur-md"
+          initial={{ opacity: 1 }}
+          animate={{ opacity: imageLoaded ? 0 : 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        />
+
+        <Image
+          src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80"
+          alt="Team collaboration"
+          fill
+          className="object-cover"
+          priority
+          onLoad={() => setImageLoaded(true)}
+          sizes="(max-width: 768px) 100vw, 40vw"
+        />
+
+        {/* Gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-transparent to-transparent" />
+      </motion.div>
+
+      {/* Floating accent shapes */}
+      <motion.div
+        className="absolute -bottom-4 -left-4 w-24 h-24 md:w-32 md:h-32 rounded-full bg-[#1a73e8]/10 backdrop-blur-sm"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.8 }}
+      />
+      <motion.div
+        className="absolute top-1/4 -left-8 w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-[#34a853]/30"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 1 }}
+      />
+    </motion.div>
+  );
+}
+
 export default function Home() {
   const { trackCoffeeChatClick, trackServiceClick } = useAnalytics();
   const tHero = useTranslations('hero');
   const tServices = useTranslations('services');
   const tCta = useTranslations('cta');
+
+  // Scroll progress for parallax effects
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+
+  // Text parallax: moves faster than image
+  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '40%']);
 
   // Generate services with translations
   const services = servicesData.map((service) => ({
@@ -432,11 +508,18 @@ export default function Home() {
     label: tHero(`trustMetrics.${metric.labelKey}`),
   }));
 
+  // Headline lines for stagger animation
+  const headlineLines = [
+    { content: <><TypewriterText />{tHero('headlineSuffix')}</>, delay: 0.2 },
+    { content: tHero('headlineLine2'), delay: 0.35 },
+  ];
+
   return (
     <div className="relative">
-      {/* Hero Section */}
+      {/* Hero Section - Brandazine Editorial Style */}
       <section
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        ref={heroRef}
+        className="relative min-h-screen overflow-hidden"
         aria-labelledby="hero-heading"
       >
         {/* Enhanced Background with subtle animations */}
@@ -445,77 +528,103 @@ export default function Home() {
         {/* Mouse-following glow effect */}
         <MouseGlow />
 
-        <div className="container-custom relative z-10 pt-20">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Badge - Google Labs Style */}
+        <div className="container-custom relative z-10 pt-24 md:pt-32 lg:pt-40">
+          {/* Asymmetric 2-Column Layout: 60% Text + 40% Image */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[80vh]">
+
+            {/* Left Column - Text Content (60%) */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-[#f1f3f4] text-[#5f6368] rounded-full text-sm font-medium mb-10"
+              className="lg:col-span-7 relative z-20"
+              style={{ y: textY }}
             >
-              <Sparkles className="w-4 h-4" />
-              {tHero('badge')}
+              {/* Badge - Brandazine Editorial Style */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#202124] text-white rounded-full text-sm font-semibold mb-8 tracking-wide uppercase"
+              >
+                <Sparkles className="w-4 h-4" />
+                {tHero('badge')}
+              </motion.div>
+
+              {/* Headline - Brandazine Style: Bold, Stagger Animation */}
+              <h1
+                id="hero-heading"
+                className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-[#202124] mb-8 leading-[1.05] tracking-tight"
+              >
+                {headlineLines.map((line, index) => (
+                  <motion.span
+                    key={index}
+                    className="block"
+                    initial={{ opacity: 0, y: 60, skewY: 3 }}
+                    animate={{ opacity: 1, y: 0, skewY: 0 }}
+                    transition={{
+                      duration: 0.7,
+                      delay: line.delay,
+                      ease: [0.25, 0.46, 0.45, 0.94]
+                    }}
+                  >
+                    {line.content}
+                  </motion.span>
+                ))}
+              </h1>
+
+              {/* Subheadline - Brandazine Editorial */}
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="text-lg md:text-xl lg:text-2xl text-[#5f6368] mb-10 max-w-xl leading-relaxed"
+              >
+                {tHero('subheadline')}
+                <br className="hidden md:block" />
+                {tHero('subheadlineLine2')}
+              </motion.p>
+
+              {/* CTA Buttons - Editorial Style */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="flex flex-col sm:flex-row gap-4"
+              >
+                <HeroButton
+                  variant="primary"
+                  rightIcon={<ArrowRight className="w-5 h-5" />}
+                  onClick={() => {
+                    trackCoffeeChatClick('hero');
+                    window.location.href = '/coffee-chat';
+                  }}
+                >
+                  {tHero('ctaPrimary')}
+                </HeroButton>
+                <HeroButton
+                  variant="outline"
+                  onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  {tHero('ctaSecondary')}
+                </HeroButton>
+              </motion.div>
+
+              {/* Editorial accent line */}
+              <motion.div
+                className="mt-12 w-24 h-1 bg-gradient-to-r from-[#1a73e8] to-[#34a853]"
+                initial={{ width: 0, opacity: 0 }}
+                animate={{ width: 96, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+              />
             </motion.div>
 
-            {/* Headline - Google Labs Style: Large, Medium weight, Dark */}
-            <motion.h1
-              id="hero-heading"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-              className="text-[2.5rem] md:text-[3.5rem] lg:text-[4.5rem] font-medium text-[#202124] mb-6 leading-[1.1] tracking-tight"
-            >
-              <TypewriterText />
-              {tHero('headlineSuffix')}
-              <br />
-              {tHero('headlineLine2')}
-            </motion.h1>
-
-            {/* Subheadline - Google Labs Style */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-              className="text-lg md:text-xl text-[#5f6368] mb-12 max-w-2xl mx-auto leading-relaxed"
-            >
-              {tHero('subheadline')}
-              <br className="hidden md:block" />
-              {tHero('subheadlineLine2')}
-            </motion.p>
-
-            {/* CTA Buttons with Enhanced Effects */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-            >
-              <HeroButton
-                variant="primary"
-                rightIcon={<ArrowRight className="w-5 h-5" />}
-                onClick={() => {
-                  trackCoffeeChatClick('hero');
-                  window.location.href = '/coffee-chat';
-                }}
-              >
-                {tHero('ctaPrimary')}
-              </HeroButton>
-              <HeroButton
-                variant="outline"
-                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                {tHero('ctaSecondary')}
-              </HeroButton>
-            </motion.div>
+            {/* Right Column - Hero Image (40%) */}
+            <div className="lg:col-span-5 relative">
+              <HeroImage scrollYProgress={scrollYProgress} />
+            </div>
           </div>
 
-          {/* Trust Metrics */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto"
+          {/* Trust Metrics - Brandazine Bold Style */}
+          <div
+            className="mt-16 lg:mt-24 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto"
             role="list"
             aria-label="Trust Metrics"
           >
@@ -527,88 +636,155 @@ export default function Home() {
                 label={metric.label}
               />
             ))}
-          </motion.div>
+          </div>
         </div>
 
-        {/* Minimal Scroll Indicator - Google Labs Style */}
+        {/* Editorial Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          transition={{ delay: 1.2 }}
+          className="absolute bottom-8 left-8 lg:left-12"
           aria-hidden="true"
         >
           <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-2"
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            className="flex items-center gap-3"
           >
-            <div className="w-5 h-8 rounded-full border-2 border-[#dadce0] flex items-start justify-center p-1.5">
-              <motion.div
-                className="w-1 h-1.5 rounded-full bg-[#5f6368]"
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              />
-            </div>
-            <p className="text-xs text-[#9aa0a6]">{tHero('scrollIndicator')}</p>
+            <div className="w-[1px] h-16 bg-gradient-to-b from-[#202124] to-transparent" />
+            <p className="text-xs text-[#5f6368] uppercase tracking-widest font-medium writing-vertical-lr rotate-180" style={{ writingMode: 'vertical-lr' }}>
+              {tHero('scrollIndicator')}
+            </p>
           </motion.div>
         </motion.div>
       </section>
 
-      {/* Services Section - Google Labs Style */}
-      <section id="services" className="section-padding bg-white" aria-labelledby="services-heading">
+      {/* Services Section - Brandazine Magazine Style */}
+      <section id="services" className="section-padding bg-[#fafbfc]" aria-labelledby="services-heading">
         <div className="container-custom">
-          {/* Section Header */}
+          {/* Section Header - Enhanced Brandazine Style */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="text-center mb-16"
+            transition={{ duration: 0.5 }}
+            className="mb-16"
           >
-            <h2 id="services-heading" className="text-3xl md:text-4xl font-medium text-[#202124] mb-4">
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              className="inline-block text-sm font-medium text-[#1a73e8] uppercase tracking-wider mb-4"
+            >
+              What We Do
+            </motion.span>
+            <h2 id="services-heading" className="text-4xl md:text-5xl lg:text-6xl font-medium text-[#202124] mb-6 leading-tight">
               {tServices('sectionTitle')}
             </h2>
-            <p className="text-lg text-[#5f6368] max-w-2xl mx-auto">
+            <p className="text-xl text-[#5f6368] max-w-3xl leading-relaxed">
               {tServices('sectionSubtitle')}
             </p>
           </motion.div>
 
-          {/* Services Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6" role="list">
-            {services.map((service, index) => (
+          {/* Bento Grid Layout - Asymmetric */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" role="list">
+            {/* Featured Card - 2x2 Large */}
+            <motion.article
+              role="listitem"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0 }}
+              whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
+              className="group cursor-pointer md:col-span-2 md:row-span-2 min-h-[400px] lg:min-h-[500px]"
+            >
+              <div className="relative h-full rounded-3xl overflow-hidden">
+                {/* Background Image with Zoom Effect */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+                  style={{
+                    backgroundImage: 'url(https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600)',
+                  }}
+                />
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#202124]/90 via-[#202124]/50 to-transparent" />
+
+                {/* Content */}
+                <div className="relative h-full flex flex-col justify-end p-8 lg:p-10">
+                  {/* Icon */}
+                  <div
+                    className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center mb-6 border border-white/20 transition-transform duration-300 group-hover:rotate-3 group-hover:scale-110"
+                    aria-hidden="true"
+                  >
+                    {services[0] && (() => {
+                      const IconComponent = services[0].icon;
+                      return <IconComponent className="w-8 h-8 text-white" />;
+                    })()}
+                  </div>
+
+                  <span className="text-[#1a73e8] text-sm font-medium uppercase tracking-wider mb-2">Featured</span>
+                  <h3 className="text-2xl lg:text-3xl font-medium text-white mb-4">
+                    {services[0]?.title}
+                  </h3>
+                  <p className="text-base lg:text-lg text-white/80 leading-relaxed max-w-lg">
+                    {services[0]?.description}
+                  </p>
+
+                  {/* Arrow indicator */}
+                  <motion.div
+                    className="mt-6 inline-flex items-center gap-2 text-white/70 group-hover:text-white transition-colors duration-300"
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <span className="text-sm font-medium">Learn more</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </motion.div>
+                </div>
+              </div>
+            </motion.article>
+
+            {/* Small Cards - 1x1 */}
+            {services.slice(1).map((service, index) => (
               <motion.article
                 key={service.title}
                 role="listitem"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                transition={{ duration: 0.5, delay: 0.15 * (index + 1) }}
+                whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
                 className="group cursor-pointer"
               >
-                <div className="h-full p-6 bg-white border border-[#e8eaed] rounded-3xl transition-all duration-300 group-hover:shadow-[0_8px_30px_rgba(60,64,67,0.12)] group-hover:border-[#1a73e8]/30 relative overflow-hidden">
-                  {/* Hover gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#1a73e8]/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="h-full min-h-[240px] p-6 lg:p-8 bg-white border border-[#e8eaed] rounded-3xl transition-all duration-500 group-hover:bg-[#1a73e8] group-hover:border-[#1a73e8] group-hover:shadow-[0_20px_50px_rgba(26,115,232,0.25)] relative overflow-hidden">
+                  {/* Animated background gradient on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#1a73e8] to-[#1557b0] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  {/* Icon container with enhanced animation */}
-                  <motion.div
-                    className="relative w-12 h-12 rounded-full bg-[#e8f0fe] flex items-center justify-center mb-5 transition-all duration-300 group-hover:bg-[#1a73e8] group-hover:scale-110"
-                    aria-hidden="true"
-                  >
-                    <service.icon className="w-6 h-6 text-[#1a73e8] transition-colors duration-300 group-hover:text-white" />
-                  </motion.div>
+                  {/* Content */}
+                  <div className="relative z-10 h-full flex flex-col">
+                    {/* Icon with animation */}
+                    <div
+                      className="w-14 h-14 rounded-2xl bg-[#e8f0fe] flex items-center justify-center mb-6 transition-all duration-500 group-hover:bg-white/20 group-hover:backdrop-blur-sm group-hover:rotate-[-5deg] group-hover:scale-110"
+                      aria-hidden="true"
+                    >
+                      <service.icon className="w-7 h-7 text-[#1a73e8] transition-colors duration-500 group-hover:text-white" />
+                    </div>
 
-                  <h3 className="relative text-lg font-medium text-[#202124] mb-3 transition-colors duration-300 group-hover:text-[#1a73e8]">
-                    {service.title}
-                  </h3>
+                    <h3 className="text-xl font-medium text-[#202124] mb-3 transition-colors duration-500 group-hover:text-white">
+                      {service.title}
+                    </h3>
 
-                  <p className="relative text-sm text-[#5f6368] leading-relaxed">
-                    {service.description}
-                  </p>
+                    <p className="text-sm text-[#5f6368] leading-relaxed transition-colors duration-500 group-hover:text-white/80 flex-grow">
+                      {service.description}
+                    </p>
 
-                  {/* Bottom accent line */}
-                  <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#1a73e8] to-[#34a853] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                    {/* Arrow on hover */}
+                    <div className="mt-4 flex items-center gap-2 text-[#1a73e8] opacity-0 group-hover:opacity-100 group-hover:text-white transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
+                      <span className="text-sm font-medium">Explore</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </div>
                 </div>
               </motion.article>
             ))}

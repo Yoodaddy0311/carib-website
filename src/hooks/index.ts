@@ -19,3 +19,22 @@ export {
 } from './useSpeechSynthesis';
 export { useDocumentAnalyzer } from './useDocumentAnalyzer';
 export { useLocale } from './useLocale';
+export {
+  useScrollProgress,
+  useParallax,
+  useTextReveal,
+  useImageReveal,
+  useScrollDirection,
+  useScrollPosition,
+  useElementVisibility,
+  useStickyAnimation,
+  type ScrollProgressOptions,
+  type ParallaxOptions,
+  type TextRevealOptions,
+  type ImageRevealOptions,
+  type UseScrollProgressReturn,
+  type UseParallaxReturn,
+  type UseTextRevealReturn,
+  type UseImageRevealReturn,
+  type UseStickyAnimationReturn,
+} from './useScrollAnimation';
