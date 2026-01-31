@@ -1,0 +1,184 @@
+{
+  "common": {
+    "brand": "Carib",
+    "skipToContent": "本文へスキップ",
+    "email": "hello@carib.team",
+    "loading": "読み込み中...",
+    "error": "エラーが発生しました",
+    "retry": "再試行"
+  },
+  "nav": {
+    "services": "サービス",
+    "process": "プロセス",
+    "team": "チーム紹介",
+    "threads": "スレッド",
+    "faq": "FAQ",
+    "coffeeChatButton": "コーヒーチャット予約",
+    "coffeeChatButtonMobile": "コーヒーチャットを予約する",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "mainNavigation": "メインナビゲーション",
+    "mobileNavigation": "モバイルナビゲーションメニュー"
+  },
+  "hero": {
+    "badge": "AI業務自動化専門家グループ",
+    "keywords": {
+      "ai": "AIで",
+      "automation": "自動化で",
+      "efficiency": "効率で",
+      "innovation": "革新で",
+      "growth": "成長で"
+    },
+    "headlineSuffix": "業務を革新し、",
+    "headlineLine2": "創造的な仕事に集中しましょう",
+    "subheadline": "CaribはAI技術で業務効率を革新する専門家グループです。",
+    "subheadlineLine2": "あなたの時間をより価値ある仕事に使えるようお手伝いします。",
+    "ctaPrimary": "無料コーヒーチャット予約",
+    "ctaSecondary": "サービスを見る",
+    "scrollIndicator": "スクロール",
+    "trustMetrics": {
+      "projects": "完了実績",
+      "satisfaction": "満足度",
+      "efficiency": "効率向上",
+      "operation": "常時稼働"
+    }
+  },
+  "services": {
+    "sectionTitle": "提供サービス",
+    "sectionSubtitle": "AI技術を活用したカスタムソリューションでビジネス効率を最大化します",
+    "aiConsulting": {
+      "title": "AI自動化コンサルティング",
+      "description": "業務プロセス分析からAI導入戦略策定まで専門コンサルティングを提供します。"
+    },
+    "processOptimization": {
+      "title": "業務プロセス最適化",
+      "description": "繰り返しの業務をAIで自動化し、生産性を最大化します。"
+    },
+    "customSolution": {
+      "title": "カスタムAIソリューション",
+      "description": "ビジネスに最適化されたカスタムAIソリューションを開発します。"
+    },
+    "education": {
+      "title": "教育・ワークショップ",
+      "description": "AI活用能力を強化する実務中心の教育プログラムを運営しています。"
+    }
+  },
+  "process": {
+    "badge": "Our Process",
+    "sectionTitle": "体系的なAI導入プロセス",
+    "sectionSubtitle": "検証された4段階プロセスを通じて貴社に最適化されたAIソリューションを提供します",
+    "ariaLabel": "AI導入プロセスのステップ",
+    "steps": {
+      "discovery": {
+        "title": "Discovery",
+        "description": "業務プロセス分析と自動化機会の発掘"
+      },
+      "planning": {
+        "title": "Planning",
+        "description": "AI導入戦略策定とロードマップ設計"
+      },
+      "execution": {
+        "title": "Execution",
+        "description": "カスタムAIソリューション開発と実装"
+      },
+      "delivery": {
+        "title": "Delivery",
+        "description": "デプロイ、教育、継続的な最適化"
+      }
+    }
+  },
+  "team": {
+    "badge": "Our Team",
+    "sectionTitle": "最高の専門家と共に",
+    "sectionSubtitle": "AIと技術に対する深い理解と情熱を持ったチームが",
+    "sectionSubtitleLine2": "皆様のビジネス成長をお手伝いします。",
+    "members": {
+      "ceo": {
+        "name": "キム・サンオ",
+        "role": "CEO & AI Strategist",
+        "bio": "AI自動化戦略策定10年の経歴"
+      },
+      "cto": {
+        "name": "イ・ドルゴレ",
+        "role": "CTO & Lead Developer",
+        "bio": "フルスタック開発およびAIシステム設計"
+      },
+      "engineer": {
+        "name": "パク・ムノ",
+        "role": "AI Engineer",
+        "bio": "LLMファインチューニングおよびプロンプトエンジニアリング専門"
+      },
+      "designer": {
+        "name": "チェ・ヘパリ",
+        "role": "UX Designer",
+        "bio": "ユーザー中心AIインターフェース設計"
+      }
+    },
+    "socialLabel": "{name}の{platform}"
+  },
+  "faq": {
+    "sectionTitle": "よくある質問",
+    "sectionSubtitle": "AI自動化サービスについてご質問がありますか？",
+    "moreQuestions": "他にご質問がありますか？",
+    "contactUs": "お問い合わせ",
+    "items": {
+      "timeline": {
+        "question": "AI自動化導入にはどのくらい時間がかかりますか？",
+        "answer": "プロジェクトの規模によって2週間から2ヶ月程度かかります。簡単な業務自動化は2週間以内で可能で、複雑なシステム構築にはより長い時間がかかることがあります。"
+      },
+      "automation": {
+        "question": "どのような業務を自動化できますか？",
+        "answer": "繰り返しのデータ入力、レポート生成、顧客問い合わせ対応、スケジュール管理、メール分類などルールベースの繰り返し業務のほとんどを自動化できます。"
+      },
+      "pricing": {
+        "question": "費用はどのように決まりますか？",
+        "answer": "無料のコーヒーチャットで要件を把握した後、プロジェクト範囲に合わせたカスタム見積もりを提供します。固定費用と月額サブスクリプションモデルから選択可能です。"
+      },
+      "integration": {
+        "question": "既存システムとの連携は可能ですか？",
+        "answer": "はい、ほとんどのSaaSサービスや社内システムとのAPI連携が可能です。Slack、Notion、Google Workspace、Salesforceなど様々なツールと統合されます。"
+      },
+      "coffeeChat": {
+        "question": "コーヒーチャットはどのように進行されますか？",
+        "answer": "30分間のビデオミーティングで進行され、現在の業務プロセスと自動化ニーズを把握します。ミーティング後、カスタム提案書をお送りします。"
+      }
+    }
+  },
+  "cta": {
+    "title": "AI自動化、どこから始めればいいかわからない場合は？",
+    "subtitle": "30分間の無料コーヒーチャットでビジネスに合ったAI自動化戦略をご相談ください。",
+    "button": "無料コーヒーチャット予約"
+  },
+  "footer": {
+    "ariaLabel": "サイトフッター",
+    "tagline": "繰り返しの業務はAIに、",
+    "taglineLine2": "創造的な仕事は人に。",
+    "servicesTitle": "サービス",
+    "companyTitle": "会社",
+    "legalTitle": "法的事項",
+    "services": {
+      "aiConsulting": "AI自動化コンサルティング",
+      "processOptimization": "業務プロセス最適化",
+      "customSolution": "カスタムAIソリューション",
+      "education": "教育・ワークショップ"
+    },
+    "company": {
+      "team": "チーム紹介",
+      "coffeeChat": "コーヒーチャット",
+      "threads": "スレッド"
+    },
+    "legal": {
+      "terms": "利用規約",
+      "privacy": "プライバシーポリシー"
+    },
+    "socialLabel": "{platform}でCaribをフォロー",
+    "copyright": "Carib. All rights reserved.",
+    "description": "AI業務自動化専門家グループ"
+  },
+  "languageSwitcher": {
+    "label": "言語選択",
+    "ko": "韓国語",
+    "en": "英語",
+    "ja": "日本語"
+  }
+}

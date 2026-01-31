@@ -1,0 +1,112 @@
+// firestore.rules
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ========================================
+    // Helper Functions
+    // ========================================
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+             exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    function isValidEmail(email) {
+      return email.matches('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$');
+    }
+
+    function isValidString(field, minLen, maxLen) {
+      return field is string && field.size() >= minLen && field.size() <= maxLen;
+    }
+
+    // ========================================
+    // Collection Rules
+    // ========================================
+
+    // Threads - 읽기 공개 (published만), 쓰기 관리자만
+    match /threads/{threadId} {
+      allow read: if resource.data.published == true;
+      allow read, write: if isAdmin();
+    }
+
+    // Team Members - 읽기 공개 (active만), 쓰기 관리자만
+    match /team/{memberId} {
+      allow read: if resource.data.active == true;
+      allow read, write: if isAdmin();
+    }
+
+    // FAQ - 읽기 공개 (active만), 쓰기 관리자만
+    match /faq/{faqId} {
+      allow read: if resource.data.active == true;
+      allow read, write: if isAdmin();
+    }
+
+    // Inquiries - 생성 공개 (검증 포함), 읽기/수정/삭제 관리자만
+    match /inquiries/{inquiryId} {
+      allow create: if
+        // Type 검증
+        request.resource.data.type in ['coffee-chat', 'contact', 'newsletter'] &&
+        // 필수 필드 검증
+        isValidString(request.resource.data.data.name, 1, 100) &&
+        isValidEmail(request.resource.data.data.email) &&
+        // 메시지 길이 제한
+        (!('message' in request.resource.data.data) ||
+         isValidString(request.resource.data.data.message, 0, 2000));
+
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Chat Sessions - 생성/업데이트 공개, 읽기 관리자만
+    match /chatSessions/{sessionId} {
+      // 새 세션 생성 허용
+      allow create: if true;
+
+      // 메시지 추가만 허용 (기존 데이터 수정 불가)
+      allow update: if
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['messages', 'updatedAt']) &&
+        request.resource.data.messages.size() <= 100; // 최대 100개 메시지
+
+      // 읽기는 관리자만
+      allow read: if isAdmin();
+    }
+
+    // Analytics - 관리자만
+    match /analytics/{document=**} {
+      allow read, write: if isAdmin();
+    }
+
+    // Config - 읽기 공개, 쓰기 관리자만
+    match /config/{configId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Admins - 관리자만
+    match /admins/{adminId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Document Analysis (AI-004) - 저장된 분석 결과
+    match /savedAnalyses/{analysisId} {
+      // 생성은 공개 (인증 없이도 가능)
+      allow create: if true;
+      // 읽기/수정/삭제는 관리자만
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Shared Analyses (AI-004) - 공유된 분석 결과
+    match /sharedAnalyses/{shareId} {
+      // 읽기는 만료되지 않은 경우 공개
+      allow read: if resource.data.expiresAt > request.time;
+      // 생성은 공개
+      allow create: if true;
+      // 수정/삭제는 관리자만
+      allow update, delete: if isAdmin();
+    }
+  }
+}

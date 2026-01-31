@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a"/>
+      <stop offset="50%" style="stop-color:#2563eb"/>
+      <stop offset="100%" style="stop-color:#3b82f6"/>
+    </linearGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg-gradient)"/>
+
+  <!-- Grid overlay -->
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="66" cy="66" r="6" fill="rgba(255,255,255,0.4)"/>
+  <circle cx="1134" cy="66" r="6" fill="rgba(255,255,255,0.4)"/>
+
+  <!-- Decorative line -->
+  <rect x="60" y="528" width="80" height="4" rx="2" fill="rgba(255,255,255,0.3)"/>
+
+  <!-- Shark Icon -->
+  <g transform="translate(560, 140)">
+    <!-- Shark body -->
+    <path d="M12 40 C12 40 20 24 40 24 C60 24 72 36 72 40 C72 44 60 56 40 56 C20 56 12 40 12 40 Z" fill="rgba(255,255,255,0.95)"/>
+    <!-- Dorsal fin -->
+    <path d="M36 24 L44 8 L48 24 Z" fill="rgba(255,255,255,0.95)"/>
+    <!-- Tail -->
+    <path d="M12 40 L4 28 L8 40 L4 52 L12 40 Z" fill="rgba(255,255,255,0.95)"/>
+    <!-- Eye -->
+    <circle cx="60" cy="38" r="3.2" fill="#2563eb"/>
+    <!-- Gill lines -->
+    <path d="M52 36 L54.4 44" stroke="#2563eb" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M48 35.2 L50.4 44.8" stroke="#2563eb" stroke-width="1.6" stroke-linecap="round"/>
+  </g>
+
+  <!-- Logo text -->
+  <text x="600" y="320"
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="96"
+        font-weight="800"
+        fill="#ffffff"
+        text-anchor="middle"
+        style="text-shadow: 0 4px 24px rgba(0,0,0,0.2)">Carib</text>
+
+  <!-- Tagline -->
+  <text x="600" y="390"
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="36"
+        font-weight="500"
+        fill="rgba(255,255,255,0.95)"
+        text-anchor="middle">반복되는 업무는 AI에게,</text>
+  <text x="600" y="440"
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="36"
+        font-weight="500"
+        fill="rgba(255,255,255,0.95)"
+        text-anchor="middle">창의적인 일은 사람에게.</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="500"
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="24"
+        font-weight="400"
+        fill="rgba(255,255,255,0.75)"
+        text-anchor="middle">AI 업무 자동화 전문가 그룹</text>
+
+  <!-- URL -->
+  <text x="1140" y="590"
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="20"
+        font-weight="500"
+        fill="rgba(255,255,255,0.6)"
+        text-anchor="end">carib.team</text>
+</svg>

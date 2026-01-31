@@ -6,12 +6,38 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit",
+    "emulators": "firebase emulators:start",
+    "emulators:export": "firebase emulators:export ./emulator-data",
+    "emulators:import": "firebase emulators:start --import=./emulator-data",
+    "deploy": "npm run build && firebase deploy",
+    "deploy:hosting": "npm run build && firebase deploy --only hosting",
+    "deploy:rules": "firebase deploy --only firestore:rules,storage:rules",
+    "deploy:functions": "firebase deploy --only functions",
+    "seed": "tsx scripts/seed-firestore.ts",
+    "generate:pwa-icons": "tsx scripts/generate-pwa-icons.ts"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "@hookform/resolvers": "^5.2.2",
+    "@tanstack/react-query": "^5.90.20",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "firebase": "12.8.0",
+    "googleapis": "^171.0.0",
+    "lucide-react": "^0.563.0",
+    "motion": "12.27.0",
     "next": "16.1.6",
+    "next-intl": "^4.8.1",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "react-hook-form": "^7.71.1",
+    "recharts": "^3.7.0",
+    "tailwind-merge": "^3.4.0",
+    "zod": "^4.3.6",
+    "zustand": "^5.0.10"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -20,6 +46,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.8.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

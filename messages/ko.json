@@ -1,0 +1,184 @@
+{
+  "common": {
+    "brand": "Carib",
+    "skipToContent": "본문으로 건너뛰기",
+    "email": "hello@carib.team",
+    "loading": "로딩 중...",
+    "error": "오류가 발생했습니다",
+    "retry": "다시 시도"
+  },
+  "nav": {
+    "services": "서비스",
+    "process": "프로세스",
+    "team": "팀 소개",
+    "threads": "스레드",
+    "faq": "FAQ",
+    "coffeeChatButton": "커피챗 예약",
+    "coffeeChatButtonMobile": "커피챗 예약하기",
+    "openMenu": "메뉴 열기",
+    "closeMenu": "메뉴 닫기",
+    "mainNavigation": "주 내비게이션",
+    "mobileNavigation": "모바일 내비게이션 메뉴"
+  },
+  "hero": {
+    "badge": "AI 업무 자동화 전문가 그룹",
+    "keywords": {
+      "ai": "AI로",
+      "automation": "자동화로",
+      "efficiency": "효율로",
+      "innovation": "혁신으로",
+      "growth": "성장으로"
+    },
+    "headlineSuffix": " 업무를 혁신하고,",
+    "headlineLine2": "창의적인 일에 집중하세요",
+    "subheadline": "Carib은 AI 기술로 업무 효율을 혁신하는 전문가 그룹입니다.",
+    "subheadlineLine2": "당신의 시간을 더 가치 있는 일에 쓸 수 있도록 돕습니다.",
+    "ctaPrimary": "무료 커피챗 예약",
+    "ctaSecondary": "서비스 알아보기",
+    "scrollIndicator": "스크롤",
+    "trustMetrics": {
+      "projects": "프로젝트 완료",
+      "satisfaction": "고객 만족도",
+      "efficiency": "효율 향상",
+      "operation": "상시 운영"
+    }
+  },
+  "services": {
+    "sectionTitle": "우리가 제공하는 서비스",
+    "sectionSubtitle": "AI 기술을 활용한 맞춤형 솔루션으로 비즈니스 효율을 극대화합니다",
+    "aiConsulting": {
+      "title": "AI 자동화 컨설팅",
+      "description": "업무 프로세스 분석부터 AI 도입 전략 수립까지 전문 컨설팅을 제공합니다."
+    },
+    "processOptimization": {
+      "title": "업무 프로세스 최적화",
+      "description": "반복적인 업무를 AI로 자동화하여 생산성을 극대화합니다."
+    },
+    "customSolution": {
+      "title": "커스텀 AI 솔루션",
+      "description": "비즈니스에 최적화된 맞춤형 AI 솔루션을 개발합니다."
+    },
+    "education": {
+      "title": "교육 & 워크샵",
+      "description": "AI 활용 역량을 강화하는 실무 중심 교육 프로그램을 운영합니다."
+    }
+  },
+  "process": {
+    "badge": "Our Process",
+    "sectionTitle": "체계적인 AI 도입 프로세스",
+    "sectionSubtitle": "검증된 4단계 프로세스를 통해 귀사에 최적화된 AI 솔루션을 제공합니다",
+    "ariaLabel": "AI 도입 프로세스 단계",
+    "steps": {
+      "discovery": {
+        "title": "Discovery",
+        "description": "업무 프로세스 분석 및 자동화 기회 발굴"
+      },
+      "planning": {
+        "title": "Planning",
+        "description": "AI 도입 전략 수립 및 로드맵 설계"
+      },
+      "execution": {
+        "title": "Execution",
+        "description": "맞춤형 AI 솔루션 개발 및 구현"
+      },
+      "delivery": {
+        "title": "Delivery",
+        "description": "배포, 교육 및 지속적인 최적화"
+      }
+    }
+  },
+  "team": {
+    "badge": "Our Team",
+    "sectionTitle": "최고의 전문가들이 함께합니다",
+    "sectionSubtitle": "AI와 기술에 대한 깊은 이해와 열정을 가진 팀이",
+    "sectionSubtitleLine2": "여러분의 비즈니스 성장을 돕습니다.",
+    "members": {
+      "ceo": {
+        "name": "김상어",
+        "role": "CEO & AI Strategist",
+        "bio": "AI 자동화 전략 수립 10년 경력"
+      },
+      "cto": {
+        "name": "이돌고래",
+        "role": "CTO & Lead Developer",
+        "bio": "풀스택 개발 및 AI 시스템 설계"
+      },
+      "engineer": {
+        "name": "박문어",
+        "role": "AI Engineer",
+        "bio": "LLM 파인튜닝 및 프롬프트 엔지니어링 전문"
+      },
+      "designer": {
+        "name": "최해파리",
+        "role": "UX Designer",
+        "bio": "사용자 중심 AI 인터페이스 설계"
+      }
+    },
+    "socialLabel": "{name}의 {platform}"
+  },
+  "faq": {
+    "sectionTitle": "자주 묻는 질문",
+    "sectionSubtitle": "AI 자동화 서비스에 대해 궁금한 점이 있으신가요?",
+    "moreQuestions": "더 궁금한 점이 있으신가요?",
+    "contactUs": "문의하기",
+    "items": {
+      "timeline": {
+        "question": "AI 자동화 도입에 얼마나 걸리나요?",
+        "answer": "프로젝트 규모에 따라 2주에서 2개월 정도 소요됩니다. 간단한 업무 자동화는 2주 내로 가능하며, 복잡한 시스템 구축은 더 오래 걸릴 수 있습니다."
+      },
+      "automation": {
+        "question": "어떤 업무를 자동화할 수 있나요?",
+        "answer": "반복적인 데이터 입력, 보고서 생성, 고객 문의 응대, 일정 관리, 이메일 분류 등 규칙 기반의 반복 업무 대부분을 자동화할 수 있습니다."
+      },
+      "pricing": {
+        "question": "비용은 어떻게 책정되나요?",
+        "answer": "무료 커피챗을 통해 요구사항을 파악한 후, 프로젝트 범위에 맞는 맞춤 견적을 제공합니다. 고정 비용과 월 구독 모델 중 선택 가능합니다."
+      },
+      "integration": {
+        "question": "기존 시스템과 연동이 가능한가요?",
+        "answer": "네, 대부분의 SaaS 서비스 및 사내 시스템과 API 연동이 가능합니다. Slack, Notion, Google Workspace, Salesforce 등 다양한 도구와 통합됩니다."
+      },
+      "coffeeChat": {
+        "question": "커피챗은 어떻게 진행되나요?",
+        "answer": "30분간 화상 미팅으로 진행되며, 현재 업무 프로세스와 자동화 니즈를 파악합니다. 미팅 후 맞춤 제안서를 보내드립니다."
+      }
+    }
+  },
+  "cta": {
+    "title": "AI 자동화, 어디서부터 시작해야 할지 모르겠다면?",
+    "subtitle": "30분 무료 커피챗으로 비즈니스에 맞는 AI 자동화 전략을 상담받으세요.",
+    "button": "무료 커피챗 예약하기"
+  },
+  "footer": {
+    "ariaLabel": "사이트 푸터",
+    "tagline": "반복되는 업무는 AI에게,",
+    "taglineLine2": "창의적인 일은 사람에게.",
+    "servicesTitle": "서비스",
+    "companyTitle": "회사",
+    "legalTitle": "법적 고지",
+    "services": {
+      "aiConsulting": "AI 자동화 컨설팅",
+      "processOptimization": "업무 프로세스 최적화",
+      "customSolution": "커스텀 AI 솔루션",
+      "education": "교육 & 워크샵"
+    },
+    "company": {
+      "team": "팀 소개",
+      "coffeeChat": "커피챗",
+      "threads": "스레드"
+    },
+    "legal": {
+      "terms": "이용약관",
+      "privacy": "개인정보처리방침"
+    },
+    "socialLabel": "{platform}에서 Carib 팔로우하기",
+    "copyright": "Carib. All rights reserved.",
+    "description": "AI 업무 자동화 전문가 그룹"
+  },
+  "languageSwitcher": {
+    "label": "언어 선택",
+    "ko": "한국어",
+    "en": "English",
+    "ja": "日本語"
+  }
+}

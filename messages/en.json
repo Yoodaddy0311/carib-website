@@ -1,0 +1,184 @@
+{
+  "common": {
+    "brand": "Carib",
+    "skipToContent": "Skip to main content",
+    "email": "hello@carib.team",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry"
+  },
+  "nav": {
+    "services": "Services",
+    "process": "Process",
+    "team": "Team",
+    "threads": "Threads",
+    "faq": "FAQ",
+    "coffeeChatButton": "Book Coffee Chat",
+    "coffeeChatButtonMobile": "Book a Coffee Chat",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "mainNavigation": "Main navigation",
+    "mobileNavigation": "Mobile navigation menu"
+  },
+  "hero": {
+    "badge": "AI Workflow Automation Experts",
+    "keywords": {
+      "ai": "With AI,",
+      "automation": "With Automation,",
+      "efficiency": "With Efficiency,",
+      "innovation": "With Innovation,",
+      "growth": "With Growth,"
+    },
+    "headlineSuffix": " revolutionize your work,",
+    "headlineLine2": "Focus on what truly matters",
+    "subheadline": "Carib is an expert group that innovates work efficiency with AI technology.",
+    "subheadlineLine2": "We help you spend your time on more valuable work.",
+    "ctaPrimary": "Book Free Coffee Chat",
+    "ctaSecondary": "Explore Services",
+    "scrollIndicator": "Scroll",
+    "trustMetrics": {
+      "projects": "Projects Done",
+      "satisfaction": "Satisfaction",
+      "efficiency": "Efficiency Boost",
+      "operation": "Always On"
+    }
+  },
+  "services": {
+    "sectionTitle": "Our Services",
+    "sectionSubtitle": "Maximize business efficiency with customized solutions powered by AI technology",
+    "aiConsulting": {
+      "title": "AI Automation Consulting",
+      "description": "We provide expert consulting from business process analysis to AI adoption strategy development."
+    },
+    "processOptimization": {
+      "title": "Process Optimization",
+      "description": "Maximize productivity by automating repetitive tasks with AI."
+    },
+    "customSolution": {
+      "title": "Custom AI Solutions",
+      "description": "We develop tailored AI solutions optimized for your business."
+    },
+    "education": {
+      "title": "Training & Workshops",
+      "description": "We run practice-oriented training programs to enhance AI utilization capabilities."
+    }
+  },
+  "process": {
+    "badge": "Our Process",
+    "sectionTitle": "Systematic AI Implementation Process",
+    "sectionSubtitle": "We deliver AI solutions optimized for your company through our proven 4-step process",
+    "ariaLabel": "AI implementation process steps",
+    "steps": {
+      "discovery": {
+        "title": "Discovery",
+        "description": "Business process analysis and automation opportunity identification"
+      },
+      "planning": {
+        "title": "Planning",
+        "description": "AI adoption strategy development and roadmap design"
+      },
+      "execution": {
+        "title": "Execution",
+        "description": "Custom AI solution development and implementation"
+      },
+      "delivery": {
+        "title": "Delivery",
+        "description": "Deployment, training, and continuous optimization"
+      }
+    }
+  },
+  "team": {
+    "badge": "Our Team",
+    "sectionTitle": "Meet Our Expert Team",
+    "sectionSubtitle": "A team with deep understanding and passion for AI and technology",
+    "sectionSubtitleLine2": "is here to help your business grow.",
+    "members": {
+      "ceo": {
+        "name": "Shark Kim",
+        "role": "CEO & AI Strategist",
+        "bio": "10 years of experience in AI automation strategy"
+      },
+      "cto": {
+        "name": "Dolphin Lee",
+        "role": "CTO & Lead Developer",
+        "bio": "Full-stack development and AI system design"
+      },
+      "engineer": {
+        "name": "Octopus Park",
+        "role": "AI Engineer",
+        "bio": "Specialist in LLM fine-tuning and prompt engineering"
+      },
+      "designer": {
+        "name": "Jellyfish Choi",
+        "role": "UX Designer",
+        "bio": "User-centered AI interface design"
+      }
+    },
+    "socialLabel": "{name}'s {platform}"
+  },
+  "faq": {
+    "sectionTitle": "Frequently Asked Questions",
+    "sectionSubtitle": "Have questions about our AI automation services?",
+    "moreQuestions": "Have more questions?",
+    "contactUs": "Contact Us",
+    "items": {
+      "timeline": {
+        "question": "How long does AI automation implementation take?",
+        "answer": "Depending on project scope, it takes 2 weeks to 2 months. Simple task automation can be done within 2 weeks, while complex system builds may take longer."
+      },
+      "automation": {
+        "question": "What tasks can be automated?",
+        "answer": "Most rule-based repetitive tasks can be automated, including data entry, report generation, customer inquiry handling, schedule management, and email classification."
+      },
+      "pricing": {
+        "question": "How is pricing determined?",
+        "answer": "After understanding requirements through a free coffee chat, we provide custom quotes based on project scope. You can choose between fixed costs and monthly subscription models."
+      },
+      "integration": {
+        "question": "Is integration with existing systems possible?",
+        "answer": "Yes, API integration with most SaaS services and internal systems is possible. We integrate with various tools including Slack, Notion, Google Workspace, and Salesforce."
+      },
+      "coffeeChat": {
+        "question": "How does the coffee chat work?",
+        "answer": "It's a 30-minute video meeting where we understand your current workflow and automation needs. After the meeting, we send you a customized proposal."
+      }
+    }
+  },
+  "cta": {
+    "title": "Not sure where to start with AI automation?",
+    "subtitle": "Get AI automation strategy consulting tailored to your business with a free 30-minute coffee chat.",
+    "button": "Book Free Coffee Chat"
+  },
+  "footer": {
+    "ariaLabel": "Site footer",
+    "tagline": "Let AI handle repetitive tasks,",
+    "taglineLine2": "Focus on creative work.",
+    "servicesTitle": "Services",
+    "companyTitle": "Company",
+    "legalTitle": "Legal",
+    "services": {
+      "aiConsulting": "AI Automation Consulting",
+      "processOptimization": "Process Optimization",
+      "customSolution": "Custom AI Solutions",
+      "education": "Training & Workshops"
+    },
+    "company": {
+      "team": "Team",
+      "coffeeChat": "Coffee Chat",
+      "threads": "Threads"
+    },
+    "legal": {
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy"
+    },
+    "socialLabel": "Follow Carib on {platform}",
+    "copyright": "Carib. All rights reserved.",
+    "description": "AI Workflow Automation Experts"
+  },
+  "languageSwitcher": {
+    "label": "Select language",
+    "ko": "Korean",
+    "en": "English",
+    "ja": "Japanese"
+  }
+}

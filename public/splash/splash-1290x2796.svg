@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1290" height="2796" viewBox="0 0 1290 2796">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc"/>
+      <stop offset="100%" style="stop-color:#f1f5f9"/>
+    </linearGradient>
+    <linearGradient id="icon-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a"/>
+      <stop offset="50%" style="stop-color:#2563eb"/>
+      <stop offset="100%" style="stop-color:#3b82f6"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="20" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <rect width="1290" height="2796" fill="url(#bg-gradient)"/>
+  <rect x="516" y="1269" width="258" height="258" rx="32" ry="32" fill="url(#icon-gradient)" filter="url(#shadow)"/>
+  <text x="645" y="1439" font-family="system-ui, -apple-system, sans-serif" font-size="129" font-weight="800" fill="#ffffff" text-anchor="middle">C</text>
+  <text x="645" y="1617" font-family="system-ui, -apple-system, sans-serif" font-size="46" font-weight="700" fill="#1f2937" text-anchor="middle">Carib</text>
+  <text x="645" y="1669" font-family="system-ui, -apple-system, sans-serif" font-size="26" font-weight="400" fill="#6b7280" text-anchor="middle">AI 업무 자동화</text>
+</svg>

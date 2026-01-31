@@ -1,0 +1,50 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+             firestore.exists(/databases/(default)/documents/admins/$(request.auth.uid));
+    }
+
+    function isValidImage() {
+      return request.resource.contentType.matches('image/.*') &&
+             request.resource.size < 5 * 1024 * 1024; // 5MB 제한
+    }
+
+    // Public images - 읽기 공개
+    match /public/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Team avatars
+    match /team/{memberId}/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidImage();
+    }
+
+    // Thread images
+    match /threads/{threadId}/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidImage();
+    }
+
+    // User uploads (chat attachments etc.) - 더 제한적
+    match /uploads/{userId}/{fileName} {
+      allow read: if isAuthenticated();
+      allow write: if request.auth.uid == userId &&
+                      request.resource.size < 2 * 1024 * 1024; // 2MB 제한
+    }
+
+    // Backups - 관리자만
+    match /backups/{allPaths=**} {
+      allow read, write: if isAdmin();
+    }
+  }
+}

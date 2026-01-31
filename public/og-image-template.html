@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carib OG Image Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+        }
+
+        .og-container {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background pattern */
+        .og-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Grid pattern overlay */
+        .og-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 0 80px;
+        }
+
+        .shark-icon {
+            margin-bottom: 24px;
+        }
+
+        .logo {
+            font-size: 96px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -2px;
+            margin-bottom: 32px;
+            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            font-size: 36px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.4;
+            max-width: 900px;
+            margin-bottom: 24px;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .url {
+            position: absolute;
+            bottom: 40px;
+            right: 60px;
+            font-size: 20px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            z-index: 1;
+        }
+
+        /* Decorative elements */
+        .dot-top-left {
+            position: absolute;
+            top: 60px;
+            left: 60px;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .dot-top-right {
+            position: absolute;
+            top: 60px;
+            right: 60px;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .line-bottom {
+            position: absolute;
+            bottom: 100px;
+            left: 60px;
+            width: 80px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="og-container">
+        <div class="dot-top-left"></div>
+        <div class="dot-top-right"></div>
+        <div class="line-bottom"></div>
+
+        <div class="content">
+            <!-- Shark Icon -->
+            <div class="shark-icon">
+                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Shark body -->
+                    <path d="M15 50 C15 50 25 30 50 30 C75 30 90 45 90 50 C90 55 75 70 50 70 C25 70 15 50 15 50 Z" fill="rgba(255,255,255,0.95)"/>
+                    <!-- Dorsal fin -->
+                    <path d="M45 30 L55 10 L60 30 Z" fill="rgba(255,255,255,0.95)"/>
+                    <!-- Tail -->
+                    <path d="M15 50 L5 35 L10 50 L5 65 L15 50 Z" fill="rgba(255,255,255,0.95)"/>
+                    <!-- Eye -->
+                    <circle cx="75" cy="48" r="4" fill="#2563eb"/>
+                    <!-- Gill lines -->
+                    <path d="M65 45 L68 55" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M60 44 L63 56" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <div class="logo">Carib</div>
+            <div class="tagline">반복되는 업무는 AI에게,<br>창의적인 일은 사람에게.</div>
+            <div class="subtitle">AI 업무 자동화 전문가 그룹</div>
+        </div>
+
+        <div class="url">carib.team</div>
+    </div>
+</body>
+</html>
+
+<!--
+==============================================================================
+OG 이미지 생성 방법
+==============================================================================
+
+방법 1: 브라우저에서 직접 캡처
+1. 이 HTML 파일을 브라우저에서 엽니다.
+2. 개발자 도구(F12)를 열고 디바이스 에뮬레이션을 활성화합니다.
+3. 화면 크기를 1200x630으로 설정합니다.
+4. 스크린샷을 찍습니다 (DevTools에서 Ctrl+Shift+P > "Capture screenshot")
+5. 저장된 이미지를 public/images/og/og-image.png로 이동합니다.
+
+방법 2: 온라인 HTML to Image 서비스 사용
+1. https://htmlcsstoimage.com/ 등의 서비스를 이용합니다.
+2. 이 HTML 코드를 붙여넣습니다.
+3. 크기를 1200x630으로 설정합니다.
+4. PNG로 다운로드합니다.
+
+방법 3: Node.js + Puppeteer 사용
+1. npm install puppeteer
+2. node scripts/generate-og-image.js 실행
+
+방법 4: Next.js 동적 OG 이미지 (권장)
+- src/app/opengraph-image.tsx 파일이 자동으로 OG 이미지를 생성합니다.
+- 빌드 시 자동으로 생성되며, 별도의 PNG 파일이 필요하지 않습니다.
+
+==============================================================================
+-->

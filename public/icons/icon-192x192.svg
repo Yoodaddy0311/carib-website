@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a"/>
+      <stop offset="50%" style="stop-color:#2563eb"/>
+      <stop offset="100%" style="stop-color:#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="24" ry="24" fill="url(#bg-gradient)"/>
+  <ellipse cx="52" cy="150" rx="67" ry="44" fill="white" fill-opacity="0.08"/>
+  <ellipse cx="142" cy="38" rx="56" ry="38" fill="white" fill-opacity="0.06"/>
+  <text x="96" y="128" font-family="system-ui, -apple-system, sans-serif" font-size="106" font-weight="800" fill="#ffffff" text-anchor="middle">C</text>
+</svg>

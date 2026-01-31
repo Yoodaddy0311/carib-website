@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carib PWA Icon Templates</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+
+        h1 {
+            margin-bottom: 24px;
+            color: #1e3a8a;
+        }
+
+        .icons-container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .icon-wrapper {
+            text-align: center;
+        }
+
+        .icon-wrapper p {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* 192x192 Icon */
+        .icon-192 {
+            width: 192px;
+            height: 192px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 512x512 Icon */
+        .icon-512 {
+            width: 512px;
+            height: 512px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 64px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .icon-192::before,
+        .icon-512::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .icon-text {
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .icon-192 .icon-text {
+            font-size: 72px;
+            letter-spacing: -1px;
+        }
+
+        .icon-512 .icon-text {
+            font-size: 192px;
+            letter-spacing: -3px;
+        }
+
+        .instructions {
+            margin-top: 40px;
+            padding: 24px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+        }
+
+        .instructions h2 {
+            margin-bottom: 16px;
+            color: #1e3a8a;
+        }
+
+        .instructions ol {
+            padding-left: 24px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .instructions code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carib PWA Icon Templates</h1>
+
+    <div class="icons-container">
+        <div class="icon-wrapper">
+            <div class="icon-192">
+                <span class="icon-text">C</span>
+            </div>
+            <p>192x192px (icon-192x192.png)</p>
+        </div>
+
+        <div class="icon-wrapper">
+            <div class="icon-512">
+                <span class="icon-text">C</span>
+            </div>
+            <p>512x512px (icon-512x512.png)</p>
+        </div>
+    </div>
+
+    <div class="instructions">
+        <h2>아이콘 생성 방법</h2>
+        <ol>
+            <li>이 HTML 파일을 브라우저에서 엽니다.</li>
+            <li>개발자 도구(F12)를 열고 Elements 탭에서 아이콘 요소를 선택합니다.</li>
+            <li>요소를 우클릭하고 "Capture node screenshot"을 선택합니다.</li>
+            <li>또는 DevTools에서 <code>Ctrl+Shift+P</code> > "Capture node screenshot"</li>
+            <li>저장된 이미지를 해당 크기로 저장합니다:
+                <ul>
+                    <li><code>public/icons/icon-192x192.png</code></li>
+                    <li><code>public/icons/icon-512x512.png</code></li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+</body>
+</html>

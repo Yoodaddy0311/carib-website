@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="1334" viewBox="0 0 750 1334">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc"/>
+      <stop offset="100%" style="stop-color:#f1f5f9"/>
+    </linearGradient>
+    <linearGradient id="hero-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a"/>
+      <stop offset="50%" style="stop-color:#2563eb"/>
+      <stop offset="100%" style="stop-color:#3b82f6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="750" height="1334" fill="url(#bg-gradient)"/>
+
+  <!-- Status Bar -->
+  <rect width="750" height="44" fill="url(#hero-gradient)"/>
+
+  <!-- Header -->
+  <rect y="44" width="750" height="56" fill="#ffffff"/>
+  <rect x="24" y="60" width="60" height="24" rx="4" fill="url(#hero-gradient)"/>
+  <text x="54" y="76" font-family="system-ui" font-size="14" font-weight="800" fill="#ffffff" text-anchor="middle">C</text>
+
+  <!-- Hero Section -->
+  <rect x="24" y="140" width="702" height="300" rx="16" fill="url(#hero-gradient)"/>
+  <rect x="60" y="180" width="350" height="36" rx="4" fill="#ffffff" opacity="0.9"/>
+  <rect x="60" y="230" width="280" height="20" rx="4" fill="#ffffff" opacity="0.6"/>
+  <rect x="60" y="260" width="320" height="20" rx="4" fill="#ffffff" opacity="0.6"/>
+  <rect x="60" y="340" width="140" height="48" rx="8" fill="#ffffff"/>
+
+  <!-- Feature Cards -->
+  <rect x="24" y="480" width="340" height="180" rx="12" fill="#ffffff" stroke="#e5e7eb"/>
+  <rect x="386" y="480" width="340" height="180" rx="12" fill="#ffffff" stroke="#e5e7eb"/>
+
+  <rect x="48" y="504" width="60" height="60" rx="8" fill="url(#hero-gradient)" opacity="0.1"/>
+  <rect x="48" y="580" width="120" height="16" rx="4" fill="#374151"/>
+  <rect x="48" y="608" width="160" height="12" rx="4" fill="#9ca3af"/>
+  <rect x="48" y="628" width="140" height="12" rx="4" fill="#d1d5db"/>
+
+  <rect x="410" y="504" width="60" height="60" rx="8" fill="url(#hero-gradient)" opacity="0.1"/>
+  <rect x="410" y="580" width="120" height="16" rx="4" fill="#374151"/>
+  <rect x="410" y="608" width="160" height="12" rx="4" fill="#9ca3af"/>
+  <rect x="410" y="628" width="140" height="12" rx="4" fill="#d1d5db"/>
+
+  <!-- Stats Section -->
+  <rect x="24" y="700" width="702" height="120" rx="12" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="138" y="770" font-family="system-ui" font-size="32" font-weight="700" fill="url(#hero-gradient)" text-anchor="middle">98%</text>
+  <text x="375" y="770" font-family="system-ui" font-size="32" font-weight="700" fill="url(#hero-gradient)" text-anchor="middle">50+</text>
+  <text x="612" y="770" font-family="system-ui" font-size="32" font-weight="700" fill="url(#hero-gradient)" text-anchor="middle">24/7</text>
+
+  <!-- CTA Section -->
+  <rect x="24" y="860" width="702" height="200" rx="16" fill="url(#hero-gradient)" opacity="0.05"/>
+  <rect x="60" y="900" width="300" height="28" rx="4" fill="#1f2937"/>
+  <rect x="60" y="940" width="400" height="16" rx="4" fill="#6b7280"/>
+  <rect x="60" y="1000" width="180" height="44" rx="8" fill="url(#hero-gradient)"/>
+
+  <!-- Bottom Navigation -->
+  <rect y="1254" width="750" height="80" fill="#ffffff"/>
+  <line x1="0" y1="1254" x2="750" y2="1254" stroke="#e5e7eb"/>
+  <rect x="150" y="1270" width="40" height="40" rx="8" fill="url(#hero-gradient)" opacity="0.1"/>
+  <rect x="355" y="1270" width="40" height="40" rx="8" fill="url(#hero-gradient)"/>
+  <rect x="560" y="1270" width="40" height="40" rx="8" fill="url(#hero-gradient)" opacity="0.1"/>
+</svg>
