@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import dynamic from 'next/dynamic';
-import { motion } from 'motion/react';
+import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import { ArrowRight, Sparkles, Zap, Users, TrendingUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui';
@@ -118,21 +118,137 @@ function TypewriterText() {
   );
 }
 
-// Google Labs Style: Minimal Background with dot pattern
-function MinimalBackground() {
+// Mouse-following Glow Effect
+function MouseGlow() {
+  const [mounted, setMounted] = useState(false);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 30, stiffness: 200 };
+  const x = useSpring(mouseX, springConfig);
+  const y = useSpring(mouseY, springConfig);
+
+  useEffect(() => {
+    setMounted(true);
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
+
+  if (!mounted) return null;
+
+  return (
+    <motion.div
+      className="pointer-events-none fixed inset-0 z-0 opacity-50"
+      aria-hidden="true"
+    >
+      <motion.div
+        className="absolute w-[600px] h-[600px] rounded-full"
+        style={{
+          x,
+          y,
+          translateX: '-50%',
+          translateY: '-50%',
+          background: 'radial-gradient(circle, rgba(26, 115, 232, 0.08) 0%, transparent 70%)',
+        }}
+      />
+    </motion.div>
+  );
+}
+
+// Google Labs Style: Enhanced Background with subtle animations
+function EnhancedBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      {/* Clean white to subtle gray gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-[#f8f9fa]" />
+      {/* Base gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-[#fafbfc] to-[#f8f9fa]" />
+
+      {/* Animated gradient blobs - very subtle */}
+      <motion.div
+        className="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] rounded-full opacity-[0.35]"
+        style={{
+          background: 'radial-gradient(circle, rgba(26, 115, 232, 0.15) 0%, transparent 70%)',
+          filter: 'blur(60px)',
+        }}
+        animate={{
+          x: [0, 50, 0],
+          y: [0, 30, 0],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <motion.div
+        className="absolute -bottom-[10%] -right-[10%] w-[500px] h-[500px] rounded-full opacity-[0.3]"
+        style={{
+          background: 'radial-gradient(circle, rgba(52, 168, 83, 0.12) 0%, transparent 70%)',
+          filter: 'blur(60px)',
+        }}
+        animate={{
+          x: [0, -40, 0],
+          y: [0, -30, 0],
+          scale: [1.1, 1, 1.1],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <motion.div
+        className="absolute top-[30%] right-[20%] w-[400px] h-[400px] rounded-full opacity-[0.25]"
+        style={{
+          background: 'radial-gradient(circle, rgba(251, 188, 4, 0.1) 0%, transparent 70%)',
+          filter: 'blur(50px)',
+        }}
+        animate={{
+          x: [0, 30, 0],
+          y: [0, -20, 0],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
 
       {/* Subtle dot pattern - Google Labs style */}
       <div
-        className="absolute inset-0 opacity-40"
+        className="absolute inset-0 opacity-30"
         style={{
           backgroundImage: 'radial-gradient(circle, #dadce0 1px, transparent 1px)',
-          backgroundSize: '24px 24px',
+          backgroundSize: '32px 32px',
         }}
       />
+
+      {/* Floating particles */}
+      {[...Array(6)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-2 h-2 rounded-full bg-[#1a73e8]/20"
+          style={{
+            left: `${15 + i * 15}%`,
+            top: `${20 + (i % 3) * 25}%`,
+          }}
+          animate={{
+            y: [0, -20, 0],
+            opacity: [0.2, 0.5, 0.2],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 4 + i,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 0.5,
+          }}
+        />
+      ))}
     </div>
   );
 }
@@ -208,7 +324,7 @@ const trustMetricsData = [
   { value: '24/7', labelKey: 'operation', countTo: null, suffix: '', isStatic: true },
 ];
 
-// Animated Trust Metric Component - Google Labs Style
+// Animated Trust Metric Component - Enhanced with better interactions
 function AnimatedTrustMetric({
   metric,
   index,
@@ -224,33 +340,65 @@ function AnimatedTrustMetric({
     easing: 'ease-out-expo',
   });
 
+  // Google colors for each metric
+  const accentColors = ['#1a73e8', '#34a853', '#fbbc04', '#ea4335'];
+  const accentColor = accentColors[index % accentColors.length];
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+      initial={{ opacity: 0, y: 30, scale: 0.9 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
-      whileHover={{ y: -2 }}
-      className="text-center p-6 rounded-3xl bg-white border border-[#e8eaed] transition-all duration-200 hover:shadow-[0_2px_6px_rgba(60,64,67,0.15)] hover:border-[#dadce0]"
+      transition={{ duration: 0.5, delay: 0.5 + index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+      whileHover={{
+        y: -6,
+        scale: 1.02,
+        transition: { duration: 0.2 }
+      }}
+      className="group relative text-center p-6 rounded-3xl bg-white border border-[#e8eaed] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(60,64,67,0.15)] hover:border-transparent cursor-pointer overflow-hidden"
     >
+      {/* Colored top accent on hover */}
+      <motion.div
+        className="absolute top-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{ background: accentColor }}
+      />
+
+      {/* Background glow on hover */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(circle at 50% 0%, ${accentColor}08 0%, transparent 70%)`
+        }}
+      />
+
       <p
         ref={ref as React.RefObject<HTMLParagraphElement>}
-        className="text-3xl md:text-4xl font-medium text-[#202124] tabular-nums"
+        className="relative text-3xl md:text-4xl font-medium tabular-nums transition-colors duration-300"
+        style={{ color: hasStarted ? accentColor : '#202124' }}
         aria-live="polite"
       >
         {metric.isStatic ? (
-          <span className="tracking-tight">{metric.value}</span>
+          <motion.span
+            className="tracking-tight"
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            {metric.value}
+          </motion.span>
         ) : (
           <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: hasStarted ? 1 : 0, y: hasStarted ? 0 : 10 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{
+              opacity: hasStarted ? 1 : 0,
+              scale: hasStarted ? 1 : 0.5,
+            }}
+            transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
             className="inline-block"
           >
             {hasStarted ? `${formattedCount}${metric.suffix}` : `0${metric.suffix}`}
           </motion.span>
         )}
       </p>
-      <p className="text-sm text-[#5f6368] font-normal mt-2">
+      <p className="relative text-sm text-[#5f6368] font-normal mt-2 transition-colors duration-300 group-hover:text-[#202124]">
         {label}
       </p>
     </motion.div>
@@ -291,8 +439,11 @@ export default function Home() {
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
         aria-labelledby="hero-heading"
       >
-        {/* Google Labs Style: Minimal Background */}
-        <MinimalBackground />
+        {/* Enhanced Background with subtle animations */}
+        <EnhancedBackground />
+
+        {/* Mouse-following glow effect */}
+        <MouseGlow />
 
         <div className="container-custom relative z-10 pt-20">
           <div className="max-w-4xl mx-auto text-center">
@@ -429,28 +580,35 @@ export default function Home() {
               <motion.article
                 key={service.title}
                 role="listitem"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="group"
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                className="group cursor-pointer"
               >
-                <div className="h-full p-6 bg-white border border-[#e8eaed] rounded-3xl transition-all duration-200 hover:shadow-[0_2px_6px_rgba(60,64,67,0.15)] hover:border-[#dadce0]">
-                  {/* Icon container - Google style */}
-                  <div
-                    className="w-12 h-12 rounded-full bg-[#e8f0fe] flex items-center justify-center mb-5 transition-all duration-200 group-hover:bg-[#d2e3fc]"
+                <div className="h-full p-6 bg-white border border-[#e8eaed] rounded-3xl transition-all duration-300 group-hover:shadow-[0_8px_30px_rgba(60,64,67,0.12)] group-hover:border-[#1a73e8]/30 relative overflow-hidden">
+                  {/* Hover gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#1a73e8]/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                  {/* Icon container with enhanced animation */}
+                  <motion.div
+                    className="relative w-12 h-12 rounded-full bg-[#e8f0fe] flex items-center justify-center mb-5 transition-all duration-300 group-hover:bg-[#1a73e8] group-hover:scale-110"
                     aria-hidden="true"
                   >
-                    <service.icon className="w-6 h-6 text-[#1a73e8]" />
-                  </div>
+                    <service.icon className="w-6 h-6 text-[#1a73e8] transition-colors duration-300 group-hover:text-white" />
+                  </motion.div>
 
-                  <h3 className="text-lg font-medium text-[#202124] mb-3">
+                  <h3 className="relative text-lg font-medium text-[#202124] mb-3 transition-colors duration-300 group-hover:text-[#1a73e8]">
                     {service.title}
                   </h3>
 
-                  <p className="text-sm text-[#5f6368] leading-relaxed">
+                  <p className="relative text-sm text-[#5f6368] leading-relaxed">
                     {service.description}
                   </p>
+
+                  {/* Bottom accent line */}
+                  <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#1a73e8] to-[#34a853] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 </div>
               </motion.article>
             ))}
@@ -470,36 +628,97 @@ export default function Home() {
       {/* FAQ Section */}
       <FAQ />
 
-      {/* CTA Section - Google Labs Style: Black background */}
+      {/* CTA Section - Enhanced with animated background */}
       <section
-        className="section-padding bg-[#202124]"
+        className="section-padding bg-[#202124] relative overflow-hidden"
         aria-labelledby="cta-heading"
       >
-        <div className="container-custom">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            className="absolute top-0 left-1/4 w-[400px] h-[400px] rounded-full opacity-10"
+            style={{
+              background: 'radial-gradient(circle, #1a73e8 0%, transparent 70%)',
+              filter: 'blur(60px)',
+            }}
+            animate={{
+              x: [0, 30, 0],
+              y: [0, -20, 0],
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute bottom-0 right-1/4 w-[300px] h-[300px] rounded-full opacity-10"
+            style={{
+              background: 'radial-gradient(circle, #34a853 0%, transparent 70%)',
+              filter: 'blur(50px)',
+            }}
+            animate={{
+              x: [0, -20, 0],
+              y: [0, 20, 0],
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          {/* Subtle grid pattern */}
+          <div
+            className="absolute inset-0 opacity-5"
+            style={{
+              backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+              backgroundSize: '40px 40px',
+            }}
+          />
+        </div>
+
+        <div className="container-custom relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h2 id="cta-heading" className="text-3xl md:text-4xl font-medium text-white mb-4">
+            <motion.h2
+              id="cta-heading"
+              className="text-3xl md:text-4xl font-medium text-white mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
               {tCta('title')}
-            </h2>
-            <p className="text-lg text-[#9aa0a6] mb-8">
+            </motion.h2>
+            <motion.p
+              className="text-lg text-[#9aa0a6] mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               {tCta('subtitle')}
-            </p>
+            </motion.p>
             <motion.button
-              className="inline-flex items-center justify-center gap-2 h-12 px-6 text-base font-medium rounded-full bg-white text-[#202124] hover:bg-[#f1f3f4] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#202124] focus-visible:ring-white"
-              whileHover={{ scale: 1.02 }}
+              className="group relative inline-flex items-center justify-center gap-2 h-14 px-8 text-base font-medium rounded-full bg-white text-[#202124] overflow-hidden transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#202124] focus-visible:ring-white"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(255,255,255,0.2)' }}
               whileTap={{ scale: 0.98 }}
               onClick={() => {
                 trackCoffeeChatClick('cta_section');
                 window.location.href = '/coffee-chat';
               }}
             >
-              {tCta('button')}
-              <ArrowRight className="w-5 h-5" />
+              {/* Shine effect on hover */}
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+              <span className="relative">{tCta('button')}</span>
+              <motion.span
+                className="relative"
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <ArrowRight className="w-5 h-5" />
+              </motion.span>
             </motion.button>
           </motion.div>
         </div>
