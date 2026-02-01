@@ -97,14 +97,14 @@ function TypewriterText() {
   }, [displayText, isDeleting, currentWord, typingKeywords.length]);
 
   return (
-    <span className="inline-flex items-baseline text-[#1a73e8]" aria-live="polite" aria-atomic="true">
+    <span className="inline-flex items-baseline text-[#3B82F6]" aria-live="polite" aria-atomic="true">
       <span aria-label={`Current keyword: ${currentWord}`} className="relative">
         {displayText.split('').map((char, idx) => (
           <motion.span
             key={`${currentIndex}-${idx}`}
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.15, delay: idx * 0.03 }}
+            transition={{ duration: 0.2, delay: idx * 0.02 }}
             className="inline-block"
           >
             {char}
@@ -112,7 +112,7 @@ function TypewriterText() {
         ))}
       </span>
       <span
-        className="ml-1 w-[3px] h-[0.85em] inline-block align-baseline bg-[#1a73e8] animate-pulse"
+        className="ml-1 w-[2px] h-[0.85em] inline-block align-baseline bg-[#3B82F6] animate-pulse"
         aria-hidden="true"
       />
     </span>
@@ -160,101 +160,29 @@ function MouseGlow() {
   );
 }
 
-// Google Labs Style: Enhanced Background with subtle animations
+// Artience Style: Clean Background with Soft Blue
 function EnhancedBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      {/* Base gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-[#fafbfc] to-[#f8f9fa]" />
+      {/* Artience Soft Blue Background */}
+      <div className="absolute inset-0 bg-[#E8F4FD]" />
 
-      {/* Animated gradient blobs - very subtle */}
-      <motion.div
-        className="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] rounded-full opacity-[0.35]"
-        style={{
-          background: 'radial-gradient(circle, rgba(26, 115, 232, 0.15) 0%, transparent 70%)',
-          filter: 'blur(60px)',
-        }}
-        animate={{
-          x: [0, 50, 0],
-          y: [0, 30, 0],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div
-        className="absolute -bottom-[10%] -right-[10%] w-[500px] h-[500px] rounded-full opacity-[0.3]"
-        style={{
-          background: 'radial-gradient(circle, rgba(52, 168, 83, 0.12) 0%, transparent 70%)',
-          filter: 'blur(60px)',
-        }}
-        animate={{
-          x: [0, -40, 0],
-          y: [0, -30, 0],
-          scale: [1.1, 1, 1.1],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div
-        className="absolute top-[30%] right-[20%] w-[400px] h-[400px] rounded-full opacity-[0.25]"
-        style={{
-          background: 'radial-gradient(circle, rgba(251, 188, 4, 0.1) 0%, transparent 70%)',
-          filter: 'blur(50px)',
-        }}
-        animate={{
-          x: [0, 30, 0],
-          y: [0, -20, 0],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+      {/* Simple subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/50" />
 
-      {/* Subtle dot pattern - Google Labs style */}
+      {/* Clean dot pattern - Artience style */}
       <div
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-20"
         style={{
-          backgroundImage: 'radial-gradient(circle, #dadce0 1px, transparent 1px)',
-          backgroundSize: '32px 32px',
+          backgroundImage: 'radial-gradient(circle, #9CA3AF 1px, transparent 1px)',
+          backgroundSize: '24px 24px',
         }}
       />
-
-      {/* Floating particles */}
-      {[...Array(6)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 rounded-full bg-[#1a73e8]/20"
-          style={{
-            left: `${15 + i * 15}%`,
-            top: `${20 + (i % 3) * 25}%`,
-          }}
-          animate={{
-            y: [0, -20, 0],
-            opacity: [0.2, 0.5, 0.2],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 4 + i,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: i * 0.5,
-          }}
-        />
-      ))}
     </div>
   );
 }
 
-// Enhanced Button with Ripple Effect - Google Labs Style
+// Artience Style Button - Clean with subtle hover
 function HeroButton({
   children,
   variant = 'primary',
@@ -266,49 +194,21 @@ function HeroButton({
   onClick?: () => void;
   rightIcon?: React.ReactNode;
 }) {
-  const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([]);
-
-  const handleClick = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const id = Date.now();
-
-    setRipples((prev) => [...prev, { id, x, y }]);
-
-    // Remove ripple after animation
-    setTimeout(() => {
-      setRipples((prev) => prev.filter((ripple) => ripple.id !== id));
-    }, 600);
-
-    onClick?.();
-  }, [onClick]);
-
-  // Google Labs Style Buttons
-  const baseClasses = "relative overflow-hidden inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 h-12 px-6 text-base rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
+  // Artience Style Buttons - 14px, font-weight 600, rounded-lg (8px)
+  const baseClasses = "relative overflow-hidden inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 py-3 px-6 text-sm rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
 
   const variantClasses = variant === 'primary'
-    ? "bg-[#202124] text-white hover:bg-[#3c4043] focus-visible:ring-[#202124]"
-    : "bg-white border border-[#dadce0] text-[#202124] hover:bg-[#f8f9fa] hover:border-[#202124] focus-visible:ring-[#dadce0]";
+    ? "bg-[#1F2937] text-white hover:shadow-[0_4px_12px_rgba(31,41,55,0.3)] focus-visible:ring-[#1F2937]"
+    : "bg-white border border-[#E5E7EB] text-[#1F2937] hover:border-[#1F2937] focus-visible:ring-[#E5E7EB]";
 
   return (
     <motion.button
       className={`${baseClasses} ${variantClasses}`}
-      onClick={handleClick}
-      whileHover={{ scale: 1.02 }}
+      onClick={onClick}
+      whileHover={{ y: -2 }}
       whileTap={{ scale: 0.98 }}
-      transition={{ duration: 0.15 }}
+      transition={{ duration: 0.2 }}
     >
-      {ripples.map((ripple) => (
-        <span
-          key={ripple.id}
-          className="ripple-effect"
-          style={{
-            left: ripple.x,
-            top: ripple.y,
-          }}
-        />
-      ))}
       <span className="relative z-10 flex items-center gap-2">
         {children}
         {rightIcon && <span className="flex-shrink-0">{rightIcon}</span>}
@@ -325,7 +225,7 @@ const trustMetricsData = [
   { value: '24/7', labelKey: 'operation', countTo: null, suffix: '', isStatic: true },
 ];
 
-// Brandazine Editorial Style: Bold Trust Metric Component
+// Artience Style: Clean Trust Metric Component with simple hover
 function AnimatedTrustMetric({
   metric,
   index,
@@ -336,71 +236,42 @@ function AnimatedTrustMetric({
   label: string;
 }) {
   const { formattedCount, ref, hasStarted } = useCountUp(metric.countTo || 0, {
-    duration: 2500,
+    duration: 2000,
     startOnView: true,
     easing: 'ease-out-expo',
   });
 
-  // Brandazine editorial colors - more bold and editorial
-  const accentColors = ['#1a73e8', '#0d9488', '#7c3aed', '#f59e0b'];
-  const accentColor = accentColors[index % accentColors.length];
+  // Artience colors
+  const accentColor = '#3B82F6';
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40, scale: 0.85 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: 0.2 + index * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+      transition={{ duration: 0.3, delay: 0.1 + index * 0.1 }}
       whileHover={{
-        y: -8,
-        scale: 1.05,
-        transition: { duration: 0.25 }
+        y: -4,
+        transition: { duration: 0.2 }
       }}
-      className="group relative text-center p-8 rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-[#e8eaed] transition-all duration-300 hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] hover:border-transparent cursor-pointer overflow-hidden"
+      className="group relative text-center p-6 rounded-2xl bg-white border border-[#E5E7EB] transition-all duration-200 hover:shadow-[0_12px_24px_rgba(0,0,0,0.12)] cursor-pointer"
     >
-      {/* Bold left accent bar */}
-      <motion.div
-        className="absolute top-0 left-0 bottom-0 w-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        style={{ background: accentColor }}
-      />
-
-      {/* Editorial gradient overlay on hover */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        style={{
-          background: `linear-gradient(135deg, ${accentColor}08 0%, transparent 50%)`
-        }}
-      />
-
       <p
         ref={ref as React.RefObject<HTMLParagraphElement>}
-        className="relative text-4xl md:text-5xl lg:text-6xl font-bold tabular-nums transition-colors duration-300 tracking-tight"
-        style={{ color: hasStarted ? accentColor : '#202124' }}
+        className="relative text-2xl md:text-3xl font-bold tabular-nums transition-colors duration-200 tracking-tight text-[#111827]"
         aria-live="polite"
       >
         {metric.isStatic ? (
-          <motion.span
-            className="tracking-tight"
-            animate={{ scale: [1, 1.03, 1] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-          >
+          <span className="tracking-tight">
             {metric.value}
-          </motion.span>
+          </span>
         ) : (
-          <motion.span
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{
-              opacity: hasStarted ? 1 : 0,
-              scale: hasStarted ? 1 : 0.5,
-            }}
-            transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
-            className="inline-block"
-          >
+          <span className="inline-block">
             {hasStarted ? `${formattedCount}${metric.suffix}` : `0${metric.suffix}`}
-          </motion.span>
+          </span>
         )}
       </p>
-      <p className="relative text-sm md:text-base text-[#5f6368] font-medium uppercase tracking-wider mt-3 transition-colors duration-300 group-hover:text-[#202124]">
+      <p className="relative text-sm text-[#4B5563] font-medium uppercase tracking-wider mt-2 transition-colors duration-200 group-hover:text-[#111827]">
         {label}
       </p>
     </motion.div>
@@ -537,32 +408,31 @@ export default function Home() {
               className="lg:col-span-7 relative z-20"
               style={{ y: textY }}
             >
-              {/* Badge - Brandazine Editorial Style */}
+              {/* Badge - Artience Style */}
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#202124] text-white rounded-full text-sm font-semibold mb-8 tracking-wide uppercase"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-[#1F2937] text-white rounded-lg text-sm font-semibold mb-6"
               >
                 <Sparkles className="w-4 h-4" />
                 {tHero('badge')}
               </motion.div>
 
-              {/* Headline - Brandazine Style: Bold, Stagger Animation */}
+              {/* Headline - Artience Style: Reduced size, simple animation */}
               <h1
                 id="hero-heading"
-                className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-[#202124] mb-8 leading-[1.05] tracking-tight"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1F2937] mb-6 leading-tight tracking-tight"
               >
                 {headlineLines.map((line, index) => (
                   <motion.span
                     key={index}
                     className="block"
-                    initial={{ opacity: 0, y: 60, skewY: 3 }}
-                    animate={{ opacity: 1, y: 0, skewY: 0 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{
-                      duration: 0.7,
-                      delay: line.delay,
-                      ease: [0.25, 0.46, 0.45, 0.94]
+                      duration: 0.3,
+                      delay: line.delay
                     }}
                   >
                     {line.content}
@@ -570,28 +440,28 @@ export default function Home() {
                 ))}
               </h1>
 
-              {/* Subheadline - Brandazine Editorial */}
+              {/* Subheadline - Artience Style: 14-16px */}
               <motion.p
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="text-lg md:text-xl lg:text-2xl text-[#5f6368] mb-10 max-w-xl leading-relaxed"
+                transition={{ duration: 0.3, delay: 0.4 }}
+                className="text-base md:text-lg text-[#4B5563] mb-8 max-w-xl leading-relaxed"
               >
                 {tHero('subheadline')}
                 <br className="hidden md:block" />
                 {tHero('subheadlineLine2')}
               </motion.p>
 
-              {/* CTA Buttons - Editorial Style */}
+              {/* CTA Buttons - Artience Style */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
+                transition={{ duration: 0.3, delay: 0.5 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <HeroButton
                   variant="primary"
-                  rightIcon={<ArrowRight className="w-5 h-5" />}
+                  rightIcon={<ArrowRight className="w-4 h-4" />}
                   onClick={() => {
                     trackCoffeeChatClick('hero');
                     window.location.href = '/coffee-chat';
@@ -607,12 +477,12 @@ export default function Home() {
                 </HeroButton>
               </motion.div>
 
-              {/* Editorial accent line */}
+              {/* Artience accent line */}
               <motion.div
-                className="mt-12 w-24 h-1 bg-gradient-to-r from-[#1a73e8] to-[#34a853]"
+                className="mt-8 w-16 h-0.5 bg-[#3B82F6]"
                 initial={{ width: 0, opacity: 0 }}
-                animate={{ width: 96, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
+                animate={{ width: 64, opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.6 }}
               />
             </motion.div>
 
@@ -622,9 +492,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Trust Metrics - Brandazine Bold Style */}
+          {/* Trust Metrics - Artience Style */}
           <div
-            className="mt-16 lg:mt-24 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto"
+            className="mt-12 lg:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto"
             role="list"
             aria-label="Trust Metrics"
           >
@@ -660,131 +530,64 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Services Section - Brandazine Magazine Style */}
-      <section id="services" className="section-padding bg-[#fafbfc]" aria-labelledby="services-heading">
+      {/* Services Section - Artience Style */}
+      <section id="services" className="section-padding bg-[#F9FAFB]" aria-labelledby="services-heading">
         <div className="container-custom">
-          {/* Section Header - Enhanced Brandazine Style */}
+          {/* Section Header - Artience Style */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mb-16"
+            transition={{ duration: 0.3 }}
+            className="mb-12"
           >
             <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-              className="inline-block text-sm font-medium text-[#1a73e8] uppercase tracking-wider mb-4"
+              transition={{ duration: 0.2, delay: 0.1 }}
+              className="inline-block text-sm font-semibold text-[#3B82F6] uppercase tracking-wider mb-3"
             >
               {tServices('badge')}
             </motion.span>
-            <h2 id="services-heading" className="text-4xl md:text-5xl lg:text-6xl font-medium text-[#202124] mb-6 leading-tight">
+            <h2 id="services-heading" className="text-2xl md:text-3xl font-semibold text-[#1F2937] mb-4 leading-tight">
               {tServices('sectionTitle')}
             </h2>
-            <p className="text-xl text-[#5f6368] max-w-3xl leading-relaxed">
+            <p className="text-base text-[#4B5563] max-w-2xl leading-relaxed">
               {tServices('sectionSubtitle')}
             </p>
           </motion.div>
 
-          {/* Bento Grid Layout - Asymmetric */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" role="list">
-            {/* Featured Card - 2x2 Large */}
-            <motion.article
-              role="listitem"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0 }}
-              whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-              className="group cursor-pointer md:col-span-2 md:row-span-2 min-h-[400px] lg:min-h-[500px]"
-            >
-              <div className="relative h-full rounded-3xl overflow-hidden">
-                {/* Background Image with Zoom Effect */}
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-                  style={{
-                    backgroundImage: 'url(https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600)',
-                  }}
-                />
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#202124]/90 via-[#202124]/50 to-transparent" />
-
-                {/* Content */}
-                <div className="relative h-full flex flex-col justify-end p-8 lg:p-10">
-                  {/* Icon */}
-                  <div
-                    className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center mb-6 border border-white/20 transition-transform duration-300 group-hover:rotate-3 group-hover:scale-110"
-                    aria-hidden="true"
-                  >
-                    {services[0] && (() => {
-                      const IconComponent = services[0].icon;
-                      return <IconComponent className="w-8 h-8 text-white" />;
-                    })()}
-                  </div>
-
-                  <span className="text-[#1a73e8] text-sm font-medium uppercase tracking-wider mb-2">{tServices('featured')}</span>
-                  <h3 className="text-2xl lg:text-3xl font-medium text-white mb-4">
-                    {services[0]?.title}
-                  </h3>
-                  <p className="text-base lg:text-lg text-white/80 leading-relaxed max-w-lg">
-                    {services[0]?.description}
-                  </p>
-
-                  {/* Arrow indicator */}
-                  <motion.div
-                    className="mt-6 inline-flex items-center gap-2 text-white/70 group-hover:text-white transition-colors duration-300"
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                  >
-                    <span className="text-sm font-medium">{tServices('learnMore')}</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </motion.div>
-                </div>
-              </div>
-            </motion.article>
-
-            {/* Small Cards - 1x1 */}
-            {services.slice(1).map((service, index) => (
+          {/* Artience Card Grid - Clean and Simple */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" role="list">
+            {/* All service cards - Artience style */}
+            {services.map((service, index) => (
               <motion.article
                 key={service.title}
                 role="listitem"
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.15 * (index + 1) }}
-                whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
+                transition={{ duration: 0.3, delay: 0.1 * index }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 className="group cursor-pointer"
               >
-                <div className="h-full min-h-[240px] p-6 lg:p-8 bg-white border border-[#e8eaed] rounded-3xl transition-all duration-500 group-hover:bg-[#1a73e8] group-hover:border-[#1a73e8] group-hover:shadow-[0_20px_50px_rgba(26,115,232,0.25)] relative overflow-hidden">
-                  {/* Animated background gradient on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#1a73e8] to-[#1557b0] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  {/* Content */}
-                  <div className="relative z-10 h-full flex flex-col">
-                    {/* Icon with animation */}
-                    <div
-                      className="w-14 h-14 rounded-2xl bg-[#e8f0fe] flex items-center justify-center mb-6 transition-all duration-500 group-hover:bg-white/20 group-hover:backdrop-blur-sm group-hover:rotate-[-5deg] group-hover:scale-110"
-                      aria-hidden="true"
-                    >
-                      <service.icon className="w-7 h-7 text-[#1a73e8] transition-colors duration-500 group-hover:text-white" />
-                    </div>
-
-                    <h3 className="text-xl font-medium text-[#202124] mb-3 transition-colors duration-500 group-hover:text-white">
-                      {service.title}
-                    </h3>
-
-                    <p className="text-sm text-[#5f6368] leading-relaxed transition-colors duration-500 group-hover:text-white/80 flex-grow">
-                      {service.description}
-                    </p>
-
-                    {/* Arrow on hover */}
-                    <div className="mt-4 flex items-center gap-2 text-[#1a73e8] opacity-0 group-hover:opacity-100 group-hover:text-white transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
-                      <span className="text-sm font-medium">{tServices('explore')}</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </div>
+                <div className="h-full p-6 bg-white border border-[#E5E7EB] rounded-2xl transition-all duration-200 hover:shadow-[0_12px_24px_rgba(0,0,0,0.12)]">
+                  {/* Icon - Artience style */}
+                  <div
+                    className="w-12 h-12 rounded-lg bg-[#E8F4FD] flex items-center justify-center mb-4 transition-all duration-200 group-hover:bg-[#3B82F6]"
+                    aria-hidden="true"
+                  >
+                    <service.icon className="w-6 h-6 text-[#3B82F6] transition-colors duration-200 group-hover:text-white" />
                   </div>
+
+                  <h3 className="text-lg font-semibold text-[#1F2937] mb-2 transition-colors duration-200 group-hover:text-[#3B82F6]">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-sm text-[#4B5563] leading-relaxed">
+                    {service.description}
+                  </p>
                 </div>
               </motion.article>
             ))}
@@ -804,97 +607,53 @@ export default function Home() {
       {/* FAQ Section */}
       <FAQ />
 
-      {/* CTA Section - Enhanced with animated background */}
+      {/* CTA Section - Artience Style: Clean and simple */}
       <section
-        className="section-padding bg-[#202124] relative overflow-hidden"
+        className="section-padding bg-[#1F2937] relative overflow-hidden"
         aria-labelledby="cta-heading"
       >
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-          <motion.div
-            className="absolute top-0 left-1/4 w-[400px] h-[400px] rounded-full opacity-10"
-            style={{
-              background: 'radial-gradient(circle, #1a73e8 0%, transparent 70%)',
-              filter: 'blur(60px)',
-            }}
-            animate={{
-              x: [0, 30, 0],
-              y: [0, -20, 0],
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute bottom-0 right-1/4 w-[300px] h-[300px] rounded-full opacity-10"
-            style={{
-              background: 'radial-gradient(circle, #34a853 0%, transparent 70%)',
-              filter: 'blur(50px)',
-            }}
-            animate={{
-              x: [0, -20, 0],
-              y: [0, 20, 0],
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          />
-          {/* Subtle grid pattern */}
-          <div
-            className="absolute inset-0 opacity-5"
-            style={{
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-              backgroundSize: '40px 40px',
-            }}
-          />
-        </div>
-
         <div className="container-custom relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-center max-w-3xl mx-auto"
+            transition={{ duration: 0.3 }}
+            className="text-center max-w-2xl mx-auto"
           >
             <motion.h2
               id="cta-heading"
-              className="text-3xl md:text-4xl font-medium text-white mb-4"
-              initial={{ opacity: 0, y: 20 }}
+              className="text-2xl md:text-3xl font-semibold text-white mb-3"
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
             >
               {tCta('title')}
             </motion.h2>
             <motion.p
-              className="text-lg text-[#9aa0a6] mb-8"
-              initial={{ opacity: 0, y: 20 }}
+              className="text-base text-[#9CA3AF] mb-6"
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
             >
               {tCta('subtitle')}
             </motion.p>
             <motion.button
-              className="group relative inline-flex items-center justify-center gap-2 h-14 px-8 text-base font-medium rounded-full bg-white text-[#202124] overflow-hidden transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#202124] focus-visible:ring-white"
-              initial={{ opacity: 0, y: 20 }}
+              className="inline-flex items-center justify-center gap-2 py-3 px-6 text-sm font-semibold rounded-lg bg-white text-[#1F2937] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1F2937] focus-visible:ring-white"
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(255,255,255,0.2)' }}
+              transition={{ duration: 0.3, delay: 0.3 }}
+              whileHover={{ y: -2, boxShadow: '0 4px 12px rgba(255,255,255,0.2)' }}
               whileTap={{ scale: 0.98 }}
               onClick={() => {
                 trackCoffeeChatClick('cta_section');
                 window.location.href = '/coffee-chat';
               }}
             >
-              {/* Shine effect on hover */}
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-              <span className="relative">{tCta('button')}</span>
-              <motion.span
-                className="relative"
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <ArrowRight className="w-5 h-5" />
-              </motion.span>
+              <span>{tCta('button')}</span>
+              <ArrowRight className="w-4 h-4" />
             </motion.button>
           </motion.div>
         </div>

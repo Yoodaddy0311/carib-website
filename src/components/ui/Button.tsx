@@ -6,35 +6,35 @@ import { motion, type HTMLMotionProps } from 'motion/react';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  // Base styles - Google Labs Style
-  'inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  // Base styles - Artience Style
+  'inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
-        // Primary - Black with white text (Google Labs primary style)
+        // Primary - Artience Black with white text
         primary:
-          'bg-[#202124] text-white hover:bg-[#3c4043] focus-visible:ring-[#202124] rounded-full',
+          'bg-[#1F2937] text-white hover:shadow-[0_4px_12px_rgba(31,41,55,0.3)] focus-visible:ring-[#1F2937] rounded-lg',
         // Secondary - White with gray border
         secondary:
-          'bg-white text-[#202124] border border-[#dadce0] hover:bg-[#f8f9fa] hover:border-[#202124] focus-visible:ring-[#dadce0] rounded-full',
+          'bg-white text-[#1F2937] border border-[#E5E7EB] hover:border-[#1F2937] focus-visible:ring-[#E5E7EB] rounded-lg',
         // Outline - Transparent with border
         outline:
-          'border border-[#dadce0] text-[#202124] hover:bg-[#f8f9fa] hover:border-[#202124] focus-visible:ring-[#dadce0] rounded-full',
+          'border border-[#E5E7EB] text-[#1F2937] hover:border-[#1F2937] focus-visible:ring-[#E5E7EB] rounded-lg',
         // Ghost - Minimal, no background
         ghost:
-          'text-[#5f6368] hover:bg-[#f1f3f4] hover:text-[#202124] focus-visible:ring-[#dadce0] rounded-lg',
-        // Accent - Google Blue
+          'text-[#4B5563] hover:bg-[#F3F4F6] hover:text-[#1F2937] focus-visible:ring-[#E5E7EB] rounded-lg',
+        // Accent - Artience Blue
         accent:
-          'bg-[#1a73e8] text-white hover:bg-[#1557b0] focus-visible:ring-[#1a73e8] rounded-full',
+          'bg-[#3B82F6] text-white hover:bg-[#2563EB] hover:shadow-[0_4px_12px_rgba(59,130,246,0.3)] focus-visible:ring-[#3B82F6] rounded-lg',
         // Link - Text only
         link:
-          'text-[#1a73e8] underline-offset-4 hover:underline focus-visible:ring-[#1a73e8]',
+          'text-[#3B82F6] underline-offset-4 hover:underline focus-visible:ring-[#3B82F6]',
       },
       size: {
         sm: 'h-9 px-4 text-sm',
-        md: 'h-11 px-6 text-base',
-        lg: 'h-14 px-8 text-lg',
-        icon: 'h-10 w-10 rounded-full',
+        md: 'h-10 px-6 text-sm',
+        lg: 'h-12 px-8 text-sm',
+        icon: 'h-10 w-10 rounded-lg',
       },
       fullWidth: {
         true: 'w-full',
@@ -79,9 +79,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled || isLoading}
         aria-disabled={disabled || isLoading}
         aria-busy={isLoading}
-        whileHover={{ scale: disabled || isLoading ? 1 : 1.02 }}
+        whileHover={{ y: disabled || isLoading ? 0 : -2 }}
         whileTap={{ scale: disabled || isLoading ? 1 : 0.98 }}
-        transition={{ duration: 0.15 }}
+        transition={{ duration: 0.2 }}
         {...(props as HTMLMotionProps<'button'>)}
       >
         {isLoading ? (

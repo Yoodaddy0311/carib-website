@@ -1,90 +1,90 @@
 @import "tailwindcss";
 
 /* ==========================================================================
-   CARIB DESIGN SYSTEM - Google Labs Style
-   Minimal, Clean, Black & White with Google Blue Accent
+   CARIB DESIGN SYSTEM - Artience Style
+   Clean, Modern Design with Artience Color System
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   CSS Custom Properties (Design Tokens)
+   CSS Custom Properties (Design Tokens) - Artience Design Guide
    -------------------------------------------------------------------------- */
 :root {
-  /* Google Labs Color Palette */
-  --color-black: #000000;
+  /* Artience Color Palette */
+  --color-black: #1F2937;
   --color-white: #ffffff;
 
-  /* Google Blue - Primary Accent */
-  --color-google-blue: #1a73e8;
-  --color-google-blue-hover: #1557b0;
-  --color-google-blue-light: #e8f0fe;
-  --color-google-blue-lighter: #d2e3fc;
+  /* Artience Blue - Primary Accent */
+  --color-info-blue: #3B82F6;
+  --color-info-blue-hover: #2563EB;
+  --color-soft-blue: #E8F4FD;
+  --color-soft-blue-light: #F0F9FF;
 
-  /* Google Grays */
-  --color-gray-50: #f8f9fa;
-  --color-gray-100: #f1f3f4;
-  --color-gray-200: #e8eaed;
-  --color-gray-300: #dadce0;
-  --color-gray-400: #bdc1c6;
-  --color-gray-500: #9aa0a6;
-  --color-gray-600: #80868b;
-  --color-gray-700: #5f6368;
-  --color-gray-800: #3c4043;
-  --color-gray-900: #202124;
+  /* Artience Grays */
+  --color-gray-50: #F9FAFB;
+  --color-gray-100: #F3F4F6;
+  --color-gray-200: #E5E7EB;
+  --color-gray-300: #D1D5DB;
+  --color-gray-400: #9CA3AF;
+  --color-gray-500: #6B7280;
+  --color-gray-600: #4B5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1F2937;
+  --color-gray-900: #111827;
 
-  /* Text Colors */
-  --color-text-primary: #202124;
-  --color-text-secondary: #5f6368;
-  --color-text-tertiary: #9aa0a6;
+  /* Text Colors - Artience */
+  --color-text-primary: #111827;
+  --color-text-secondary: #4B5563;
+  --color-text-tertiary: #9CA3AF;
 
-  /* Semantic Colors */
-  --color-success: #34a853;
-  --color-warning: #fbbc04;
-  --color-error: #ea4335;
-  --color-info: #4285f4;
+  /* Semantic Colors - Artience */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
 
-  /* Background & Foreground */
+  /* Background & Foreground - Artience */
   --background: #ffffff;
-  --foreground: #202124;
+  --foreground: #111827;
 
-  /* Primary Colors (using Google Blue) */
-  --color-primary-50: #e8f0fe;
-  --color-primary-100: #d2e3fc;
-  --color-primary-200: #aecbfa;
-  --color-primary-300: #8ab4f8;
-  --color-primary-400: #669df6;
-  --color-primary-500: #4285f4;
-  --color-primary-600: #1a73e8;
-  --color-primary-700: #1557b0;
-  --color-primary-800: #174ea6;
-  --color-primary-900: #1967d2;
+  /* Primary Colors (using Artience Blue) */
+  --color-primary-50: #EFF6FF;
+  --color-primary-100: #DBEAFE;
+  --color-primary-200: #BFDBFE;
+  --color-primary-300: #93C5FD;
+  --color-primary-400: #60A5FA;
+  --color-primary-500: #3B82F6;
+  --color-primary-600: #2563EB;
+  --color-primary-700: #1D4ED8;
+  --color-primary-800: #1E40AF;
+  --color-primary-900: #1E3A8A;
 
-  /* Accent Colors (keeping for compatibility) */
-  --color-accent-50: #e8f0fe;
-  --color-accent-100: #d2e3fc;
-  --color-accent-200: #aecbfa;
-  --color-accent-300: #8ab4f8;
-  --color-accent-400: #669df6;
-  --color-accent-500: #1a73e8;
-  --color-accent-600: #1557b0;
-  --color-accent-700: #174ea6;
-  --color-accent-800: #1967d2;
-  --color-accent-900: #185abc;
+  /* Accent Colors (Artience compatible) */
+  --color-accent-50: #EFF6FF;
+  --color-accent-100: #DBEAFE;
+  --color-accent-200: #BFDBFE;
+  --color-accent-300: #93C5FD;
+  --color-accent-400: #60A5FA;
+  --color-accent-500: #3B82F6;
+  --color-accent-600: #2563EB;
+  --color-accent-700: #1D4ED8;
+  --color-accent-800: #1E40AF;
+  --color-accent-900: #1E3A8A;
 
-  /* Shadows - Google Labs Style (subtle) */
-  --shadow-1: 0 1px 2px rgba(60, 64, 67, 0.1);
-  --shadow-2: 0 1px 3px rgba(60, 64, 67, 0.15), 0 1px 2px rgba(60, 64, 67, 0.1);
-  --shadow-3: 0 2px 6px rgba(60, 64, 67, 0.15), 0 1px 2px rgba(60, 64, 67, 0.1);
-  --shadow-4: 0 4px 8px rgba(60, 64, 67, 0.15), 0 1px 3px rgba(60, 64, 67, 0.1);
-  --shadow-5: 0 8px 16px rgba(60, 64, 67, 0.15), 0 2px 4px rgba(60, 64, 67, 0.1);
+  /* Shadows - Artience Style */
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-2: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-3: 0 4px 12px rgba(31, 41, 55, 0.3);
+  --shadow-4: 0 12px 24px rgba(0, 0, 0, 0.12);
+  --shadow-5: 0 12px 24px rgba(0, 0, 0, 0.12);
 
-  /* Card colors */
+  /* Card colors - Artience */
   --card-background: #ffffff;
-  --card-border: #e8eaed;
+  --card-border: #E5E7EB;
 
-  /* Animation Timing */
-  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-  --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
-  --duration-fast: 150ms;
+  /* Animation Timing - Artience (Simplified) */
+  --ease-out-expo: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-out-expo: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 200ms;
   --duration-normal: 200ms;
   --duration-slow: 300ms;
 }
@@ -154,12 +154,12 @@
   --spacing-20: 5rem;     /* 80px */
   --spacing-24: 6rem;     /* 96px */
 
-  /* Border Radius - Google Labs Style */
-  --radius-sm: 0.25rem;   /* 4px */
-  --radius-md: 0.5rem;    /* 8px */
-  --radius-lg: 0.75rem;   /* 12px */
-  --radius-xl: 1rem;      /* 16px */
-  --radius-2xl: 1.5rem;   /* 24px */
+  /* Border Radius - Artience Style */
+  --radius-sm: 0.25rem;   /* 4px - Tags/Badges */
+  --radius-md: 0.5rem;    /* 8px - Buttons/Inputs */
+  --radius-lg: 1rem;      /* 16px - Cards */
+  --radius-xl: 1rem;      /* 16px - Cards */
+  --radius-2xl: 1.5rem;   /* 24px - Modals */
   --radius-full: 9999px;
 
   /* Shadows */
@@ -272,14 +272,14 @@ body {
 
 /* Focus Visible Styles (Accessibility) */
 :focus-visible {
-  outline: 2px solid var(--color-google-blue);
+  outline: 2px solid var(--color-info-blue);
   outline-offset: 2px;
 }
 
 /* Selection */
 ::selection {
-  background-color: var(--color-google-blue-light);
-  color: var(--color-google-blue);
+  background-color: var(--color-soft-blue);
+  color: var(--color-info-blue);
 }
 
 /* Scrollbar Styling - Google Labs Style */
@@ -435,105 +435,108 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   Google Labs Button Styles
+   Artience Button Styles
    -------------------------------------------------------------------------- */
 
-/* Primary Button - Black with white text, pill shape */
-.btn-google-primary {
+/* Primary Button - Artience Black with white text */
+.btn-artience-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.875rem 1.75rem;
+  padding: 12px 24px;
   background-color: var(--color-black);
   color: var(--color-white);
-  font-weight: 500;
-  font-size: 0.9375rem;
-  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
-  transition: all 200ms ease;
+  transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
 }
 
-.btn-google-primary:hover {
-  background-color: var(--color-gray-800);
-  transform: translateY(-1px);
+.btn-artience-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31, 41, 55, 0.3);
 }
 
-.btn-google-primary:active {
+.btn-artience-primary:active {
   transform: translateY(0);
 }
 
-/* Secondary Button - White with black border */
-.btn-google-secondary {
+/* Secondary Button - White with border */
+.btn-artience-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.875rem 1.75rem;
+  padding: 12px 24px;
   background-color: var(--color-white);
   color: var(--color-black);
-  font-weight: 500;
-  font-size: 0.9375rem;
-  border-radius: 9999px;
-  border: 1px solid var(--color-gray-300);
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid var(--color-gray-200);
   cursor: pointer;
-  transition: all 200ms ease;
+  transition: all 0.2s ease;
 }
 
-.btn-google-secondary:hover {
+.btn-artience-secondary:hover {
   border-color: var(--color-black);
-  background-color: var(--color-gray-50);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31, 41, 55, 0.1);
 }
 
-/* Blue Accent Button */
-.btn-google-blue {
+/* Blue Accent Button - Artience */
+.btn-artience-blue {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.875rem 1.75rem;
-  background-color: var(--color-google-blue);
+  padding: 12px 24px;
+  background-color: var(--color-info-blue);
   color: var(--color-white);
-  font-weight: 500;
-  font-size: 0.9375rem;
-  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
-  transition: all 200ms ease;
+  transition: all 0.2s ease;
 }
 
-.btn-google-blue:hover {
-  background-color: var(--color-google-blue-hover);
-  box-shadow: var(--shadow-2);
+.btn-artience-blue:hover {
+  background-color: var(--color-info-blue-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 /* --------------------------------------------------------------------------
-   Google Labs Card Styles
+   Artience Card Styles
    -------------------------------------------------------------------------- */
 
-.card-google {
+.card-artience {
   background: var(--color-white);
   border: 1px solid var(--color-gray-200);
-  border-radius: 1.5rem;
-  padding: 1.5rem;
-  transition: all 200ms ease;
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.card-google:hover {
-  border-color: var(--color-gray-300);
-  box-shadow: var(--shadow-2);
+.card-artience:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 
-.card-google-interactive {
+.card-artience-interactive {
   cursor: pointer;
 }
 
-.card-google-interactive:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-3);
+.card-artience-interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 
 /* --------------------------------------------------------------------------
@@ -624,7 +627,7 @@ body {
 }
 
 .focus-ring:focus-visible {
-  outline-color: var(--color-google-blue);
+  outline-color: var(--color-info-blue);
 }
 
 /* Reduced motion preference */
@@ -780,7 +783,7 @@ button, a[role="button"] {
 
 .group:hover .service-icon-container {
   transform: scale(1.05);
-  background-color: var(--color-google-blue-lighter);
+  background-color: var(--color-soft-blue);
 }
 
 /* Service card bottom accent */
@@ -790,10 +793,10 @@ button, a[role="button"] {
   left: 0;
   right: 0;
   height: 2px;
-  background: var(--color-google-blue);
+  background: var(--color-info-blue);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 200ms ease;
+  transition: transform 0.2s ease;
 }
 
 .group:hover .service-card-accent {
@@ -801,38 +804,38 @@ button, a[role="button"] {
 }
 
 /* ==========================================================================
-   BRANDAZINE STYLE - Editorial Typography & Animation System
+   ARTIENCE STYLE - Clean Typography & Simple Animation System
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   Editorial Typography Scale
+   Artience Typography Scale (Reduced sizes)
    -------------------------------------------------------------------------- */
 :root {
-  /* Display Typography - Extra Large for Hero Sections */
-  --text-display-xl: clamp(3.5rem, 8vw, 6rem);      /* 56px - 96px */
-  --text-display-2xl: clamp(4rem, 10vw, 8rem);      /* 64px - 128px */
-  --text-display-3xl: clamp(5rem, 12vw, 10rem);     /* 80px - 160px */
+  /* Display Typography - Artience (Reduced) */
+  --text-display-xl: clamp(1.875rem, 4vw, 2.25rem);   /* 30px - 36px (text-3xl to text-4xl) */
+  --text-display-2xl: clamp(2.25rem, 5vw, 3rem);      /* 36px - 48px (text-4xl to text-5xl max) */
+  --text-display-3xl: clamp(2.25rem, 5vw, 3rem);      /* 36px - 48px (capped) */
 
-  /* Editorial Line Heights */
-  --leading-display: 0.9;
-  --leading-editorial: 1.1;
-  --leading-tight: 1.2;
+  /* Artience Line Heights */
+  --leading-display: 1.1;
+  --leading-editorial: 1.2;
+  --leading-tight: 1.3;
 
-  /* Editorial Letter Spacing */
-  --tracking-editorial: -0.04em;
-  --tracking-tight: -0.02em;
-  --tracking-wide: 0.1em;
+  /* Artience Letter Spacing */
+  --tracking-editorial: -0.02em;
+  --tracking-tight: -0.01em;
+  --tracking-wide: 0.05em;
 
-  /* Brandazine Animation Easing */
-  --ease-editorial: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-reveal: cubic-bezier(0.77, 0, 0.175, 1);
+  /* Artience Animation Easing (Simplified) */
+  --ease-editorial: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-reveal: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce: cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Animation Durations */
-  --duration-reveal: 1.2s;
-  --duration-stagger: 0.1s;
-  --duration-parallax: 0.8s;
+  /* Animation Durations - Artience (Faster) */
+  --duration-reveal: 0.3s;
+  --duration-stagger: 0.05s;
+  --duration-parallax: 0.3s;
 }
 
 /* Display XL Typography */
@@ -1497,7 +1500,7 @@ button, a[role="button"] {
   top: 0;
   bottom: 0;
   width: 4px;
-  background: var(--color-google-blue);
+  background: var(--color-info-blue);
 }
 
 /* Drop Cap */

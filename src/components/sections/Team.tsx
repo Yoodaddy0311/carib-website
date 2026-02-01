@@ -46,39 +46,39 @@ const avatarImages: Record<string, string> = {
 };
 
 /**
- * Animation variants for container
+ * Animation variants for container - Artience Style
  */
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
     },
   },
 };
 
 /**
- * Animation variants for individual cards
+ * Animation variants for individual cards - Artience Style
  */
 const cardVariants = {
   hidden: {
     opacity: 0,
-    y: 40,
+    y: 20,
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
-      ease: [0.19, 1, 0.22, 1] as [number, number, number, number],
+      duration: 0.3,
+      ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
     },
   },
 };
 
 /**
- * Featured team member card (CEO - Large card)
+ * Featured team member card (CEO - Large card) - Artience Style
  */
 function FeaturedMemberCard({ member }: { member: TeamMember }) {
   const t = useTranslations('team');
@@ -92,9 +92,9 @@ function FeaturedMemberCard({ member }: { member: TeamMember }) {
       <div
         className={cn(
           'relative h-full overflow-hidden rounded-2xl',
-          'bg-[#fafafa] border border-[#e8eaed]',
-          'transition-all duration-500',
-          'group-hover:border-[#dadce0] group-hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]'
+          'bg-[#F9FAFB] border border-[#E5E7EB]',
+          'transition-all duration-200',
+          'group-hover:shadow-[0_12px_24px_rgba(0,0,0,0.12)]'
         )}
       >
         {/* Image Container */}
@@ -105,8 +105,8 @@ function FeaturedMemberCard({ member }: { member: TeamMember }) {
             fill
             className={cn(
               'object-cover',
-              'transition-transform duration-700 ease-out',
-              'group-hover:scale-105'
+              'transition-transform duration-200',
+              'group-hover:scale-102'
             )}
             sizes="(max-width: 768px) 100vw, 50vw"
           />
@@ -114,14 +114,14 @@ function FeaturedMemberCard({ member }: { member: TeamMember }) {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
           {/* Content Overlay */}
-          <div className="absolute bottom-0 left-0 right-0 p-8">
-            <span className="inline-block px-3 py-1 mb-4 text-xs font-medium tracking-wider uppercase text-white/90 bg-[#1a73e8] rounded-full">
+          <div className="absolute bottom-0 left-0 right-0 p-6">
+            <span className="inline-block px-3 py-1 mb-3 text-xs font-semibold tracking-wider uppercase text-white bg-[#3B82F6] rounded-lg">
               Featured
             </span>
-            <h3 className="text-3xl md:text-4xl font-medium text-white mb-2 tracking-tight">
+            <h3 className="text-2xl md:text-3xl font-semibold text-white mb-2 tracking-tight">
               {member.name}
             </h3>
-            <p className="text-lg font-medium text-[#8ab4f8] mb-4">
+            <p className="text-base font-medium text-[#93C5FD] mb-3">
               {member.role}
             </p>
             <p className="text-sm text-white/80 leading-relaxed max-w-md">
@@ -131,10 +131,10 @@ function FeaturedMemberCard({ member }: { member: TeamMember }) {
             {/* Social Links */}
             <div
               className={cn(
-                'flex items-center gap-3 mt-6 pt-6',
+                'flex items-center gap-2 mt-4 pt-4',
                 'border-t border-white/20',
-                'opacity-0 translate-y-4',
-                'transition-all duration-300',
+                'opacity-0 translate-y-2',
+                'transition-all duration-200',
                 'group-hover:opacity-100 group-hover:translate-y-0'
               )}
             >
@@ -144,118 +144,10 @@ function FeaturedMemberCard({ member }: { member: TeamMember }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(
-                    'p-2.5 rounded-full',
-                    'text-white/70 bg-white/10',
-                    'hover:text-white hover:bg-white/20',
-                    'transition-all duration-200'
-                  )}
-                  aria-label={t('socialLabel', { name: member.name, platform: 'Twitter' })}
-                >
-                  <Twitter className="w-5 h-5" />
-                </a>
-              )}
-              {member.socials.linkedin && (
-                <a
-                  href={member.socials.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    'p-2.5 rounded-full',
-                    'text-white/70 bg-white/10',
-                    'hover:text-white hover:bg-white/20',
-                    'transition-all duration-200'
-                  )}
-                  aria-label={t('socialLabel', { name: member.name, platform: 'LinkedIn' })}
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-              )}
-              {member.socials.github && (
-                <a
-                  href={member.socials.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    'p-2.5 rounded-full',
-                    'text-white/70 bg-white/10',
-                    'hover:text-white hover:bg-white/20',
-                    'transition-all duration-200'
-                  )}
-                  aria-label={t('socialLabel', { name: member.name, platform: 'GitHub' })}
-                >
-                  <Github className="w-5 h-5" />
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.article>
-  );
-}
-
-/**
- * Regular team member card (Small cards)
- */
-function TeamMemberCard({ member }: { member: TeamMember }) {
-  const t = useTranslations('team');
-
-  return (
-    <motion.article
-      variants={cardVariants}
-      className="group relative"
-      aria-label={`${member.name} - ${member.role}`}
-    >
-      <div
-        className={cn(
-          'relative overflow-hidden rounded-xl',
-          'bg-white border border-[#e8eaed]',
-          'transition-all duration-300',
-          'group-hover:border-[#dadce0] group-hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)]',
-          'group-hover:-translate-y-1'
-        )}
-      >
-        {/* Image Container */}
-        <div className="relative aspect-square overflow-hidden">
-          <Image
-            src={member.avatar}
-            alt={member.name}
-            fill
-            className={cn(
-              'object-cover',
-              'transition-transform duration-500 ease-out',
-              'group-hover:scale-110'
-            )}
-            sizes="(max-width: 768px) 50vw, 25vw"
-          />
-
-          {/* Hover Overlay - Slides up */}
-          <div
-            className={cn(
-              'absolute inset-0',
-              'bg-gradient-to-t from-[#202124]/95 via-[#202124]/70 to-transparent',
-              'flex flex-col justify-end p-5',
-              'translate-y-full opacity-0',
-              'transition-all duration-400 ease-out',
-              'group-hover:translate-y-0 group-hover:opacity-100'
-            )}
-          >
-            <p className="text-sm text-white/80 leading-relaxed mb-4">
-              {member.bio}
-            </p>
-
-            {/* Social Links */}
-            <div className="flex items-center gap-2">
-              {member.socials.twitter && (
-                <a
-                  href={member.socials.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
                     'p-2 rounded-lg',
-                    'text-white/60',
-                    'hover:text-white hover:bg-white/10',
-                    'transition-colors duration-200'
+                    'text-white/70 bg-white/10',
+                    'hover:text-white hover:bg-white/20',
+                    'transition-all duration-200'
                   )}
                   aria-label={t('socialLabel', { name: member.name, platform: 'Twitter' })}
                 >
@@ -269,9 +161,9 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
                   rel="noopener noreferrer"
                   className={cn(
                     'p-2 rounded-lg',
-                    'text-white/60',
-                    'hover:text-white hover:bg-white/10',
-                    'transition-colors duration-200'
+                    'text-white/70 bg-white/10',
+                    'hover:text-white hover:bg-white/20',
+                    'transition-all duration-200'
                   )}
                   aria-label={t('socialLabel', { name: member.name, platform: 'LinkedIn' })}
                 >
@@ -285,9 +177,9 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
                   rel="noopener noreferrer"
                   className={cn(
                     'p-2 rounded-lg',
-                    'text-white/60',
-                    'hover:text-white hover:bg-white/10',
-                    'transition-colors duration-200'
+                    'text-white/70 bg-white/10',
+                    'hover:text-white hover:bg-white/20',
+                    'transition-all duration-200'
                   )}
                   aria-label={t('socialLabel', { name: member.name, platform: 'GitHub' })}
                 >
@@ -297,13 +189,121 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
             </div>
           </div>
         </div>
+      </div>
+    </motion.article>
+  );
+}
+
+/**
+ * Regular team member card (Small cards) - Artience Style
+ */
+function TeamMemberCard({ member }: { member: TeamMember }) {
+  const t = useTranslations('team');
+
+  return (
+    <motion.article
+      variants={cardVariants}
+      className="group relative"
+      aria-label={`${member.name} - ${member.role}`}
+    >
+      <div
+        className={cn(
+          'relative overflow-hidden rounded-2xl',
+          'bg-white border border-[#E5E7EB]',
+          'transition-all duration-200',
+          'group-hover:shadow-[0_12px_24px_rgba(0,0,0,0.12)]',
+          'group-hover:-translate-y-1'
+        )}
+      >
+        {/* Image Container */}
+        <div className="relative aspect-square overflow-hidden">
+          <Image
+            src={member.avatar}
+            alt={member.name}
+            fill
+            className={cn(
+              'object-cover',
+              'transition-transform duration-200',
+              'group-hover:scale-102'
+            )}
+            sizes="(max-width: 768px) 50vw, 25vw"
+          />
+
+          {/* Hover Overlay - Slides up */}
+          <div
+            className={cn(
+              'absolute inset-0',
+              'bg-gradient-to-t from-[#1F2937]/95 via-[#1F2937]/70 to-transparent',
+              'flex flex-col justify-end p-4',
+              'translate-y-full opacity-0',
+              'transition-all duration-200',
+              'group-hover:translate-y-0 group-hover:opacity-100'
+            )}
+          >
+            <p className="text-sm text-white/80 leading-relaxed mb-3">
+              {member.bio}
+            </p>
+
+            {/* Social Links */}
+            <div className="flex items-center gap-1.5">
+              {member.socials.twitter && (
+                <a
+                  href={member.socials.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    'p-1.5 rounded-lg',
+                    'text-white/60',
+                    'hover:text-white hover:bg-white/10',
+                    'transition-colors duration-200'
+                  )}
+                  aria-label={t('socialLabel', { name: member.name, platform: 'Twitter' })}
+                >
+                  <Twitter className="w-3.5 h-3.5" />
+                </a>
+              )}
+              {member.socials.linkedin && (
+                <a
+                  href={member.socials.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    'p-1.5 rounded-lg',
+                    'text-white/60',
+                    'hover:text-white hover:bg-white/10',
+                    'transition-colors duration-200'
+                  )}
+                  aria-label={t('socialLabel', { name: member.name, platform: 'LinkedIn' })}
+                >
+                  <Linkedin className="w-3.5 h-3.5" />
+                </a>
+              )}
+              {member.socials.github && (
+                <a
+                  href={member.socials.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    'p-1.5 rounded-lg',
+                    'text-white/60',
+                    'hover:text-white hover:bg-white/10',
+                    'transition-colors duration-200'
+                  )}
+                  aria-label={t('socialLabel', { name: member.name, platform: 'GitHub' })}
+                >
+                  <Github className="w-3.5 h-3.5" />
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
 
         {/* Content Section */}
         <div className="p-4">
-          <h3 className="text-base font-medium text-[#202124] mb-0.5 group-hover:text-[#1a73e8] transition-colors">
+          <h3 className="text-base font-semibold text-[#1F2937] mb-0.5 group-hover:text-[#3B82F6] transition-colors duration-200">
             {member.name}
           </h3>
-          <p className="text-sm font-medium text-[#1a73e8]">
+          <p className="text-sm font-medium text-[#3B82F6]">
             {member.role}
           </p>
         </div>
@@ -313,9 +313,8 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
 }
 
 /**
- * Team Section Component
- * Brandazine editorial style with asymmetric layout
- * Featured member on left (2/3), other members on right (1/3)
+ * Team Section Component - Artience Style
+ * Clean design with simple hover effects
  */
 export function Team({ className }: TeamSectionProps) {
   const t = useTranslations('team');
@@ -345,29 +344,29 @@ export function Team({ className }: TeamSectionProps) {
       aria-labelledby="team-heading"
     >
       <div className="container-custom">
-        {/* Section Header - Editorial Style */}
+        {/* Section Header - Artience Style */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
-          className="mb-16 md:mb-20"
+          transition={{ duration: 0.3 }}
+          className="mb-12 md:mb-16"
         >
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-xs font-medium tracking-widest uppercase text-[#5f6368] bg-[#f8f9fa] rounded-full border border-[#e8eaed]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#1a73e8]" />
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <div className="max-w-xl">
+              <span className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-xs font-semibold tracking-widest uppercase text-[#3B82F6] bg-[#E8F4FD] rounded-lg">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6]" />
                 {t('badge')}
               </span>
               <h2
                 id="team-heading"
-                className="text-4xl md:text-5xl lg:text-6xl font-medium text-[#202124] tracking-tight leading-[1.1]"
+                className="text-2xl md:text-3xl font-semibold text-[#1F2937] tracking-tight leading-tight"
               >
                 {t('sectionTitle')}
               </h2>
             </div>
-            <div className="max-w-md">
-              <p className="text-lg text-[#5f6368] leading-relaxed">
+            <div className="max-w-sm">
+              <p className="text-base text-[#4B5563] leading-relaxed">
                 {t('sectionSubtitle')}
                 {' '}
                 {t('sectionSubtitleLine2')}
@@ -375,13 +374,13 @@ export function Team({ className }: TeamSectionProps) {
             </div>
           </div>
 
-          {/* Decorative Line */}
+          {/* Decorative Line - Artience Style */}
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="h-px bg-gradient-to-r from-[#e8eaed] via-[#dadce0] to-transparent mt-10 origin-left"
+            transition={{ duration: 0.3, delay: 0.15 }}
+            className="h-px bg-gradient-to-r from-[#E5E7EB] via-[#D1D5DB] to-transparent mt-8 origin-left"
           />
         </motion.div>
 
@@ -408,31 +407,31 @@ export function Team({ className }: TeamSectionProps) {
           </div>
         </motion.div>
 
-        {/* Bottom CTA - Editorial Style */}
+        {/* Bottom CTA - Artience Style */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-16 md:mt-20 pt-10 border-t border-[#e8eaed]"
+          transition={{ duration: 0.3, delay: 0.2 }}
+          className="mt-12 md:mt-16 pt-8 border-t border-[#E5E7EB]"
         >
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <p className="text-[#5f6368]">
+            <p className="text-[#4B5563]">
               {t('ctaQuestion')}
             </p>
             <a
               href="#contact"
               className={cn(
-                'inline-flex items-center gap-2 px-6 py-3',
-                'text-sm font-medium text-[#1a73e8]',
-                'border border-[#1a73e8] rounded-full',
-                'hover:bg-[#1a73e8] hover:text-white',
-                'transition-all duration-300',
+                'inline-flex items-center gap-2 px-5 py-2.5',
+                'text-sm font-semibold text-[#3B82F6]',
+                'border border-[#3B82F6] rounded-lg',
+                'hover:bg-[#3B82F6] hover:text-white',
+                'transition-all duration-200',
                 'group/link'
               )}
             >
               {t('ctaButton')}
-              <ArrowUpRight className="w-4 h-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+              <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
             </a>
           </div>
         </motion.div>

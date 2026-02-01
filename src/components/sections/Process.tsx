@@ -43,25 +43,26 @@ const processStepData = [
   },
 ];
 
+// Artience Animation Variants - Simplified
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.1,
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
+      duration: 0.3,
+      ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
     },
   },
 };
@@ -71,9 +72,9 @@ const lineVariants = {
   visible: {
     scaleX: 1,
     transition: {
-      duration: 0.8,
-      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
-      delay: 0.3,
+      duration: 0.3,
+      ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
+      delay: 0.15,
     },
   },
 };
@@ -92,16 +93,16 @@ function ProcessStepCard({ step, index, isLast, isActive, onHover }: ProcessStep
   return (
     <motion.div
       variants={itemVariants}
-      className="relative flex-shrink-0 w-[320px] md:w-[380px]"
+      className="relative flex-shrink-0 w-[280px] md:w-[320px]"
       onMouseEnter={() => onHover(index)}
       onMouseLeave={() => onHover(null)}
     >
-      {/* Large Step Number - Brandazine Style */}
-      <div className="relative mb-6">
+      {/* Step Number - Artience Style (smaller) */}
+      <div className="relative mb-4">
         <span
           className={cn(
-            "text-8xl md:text-9xl font-bold leading-none transition-colors duration-300",
-            isActive ? "text-[#1a73e8]/20" : "text-[#e8eaed]"
+            "text-4xl md:text-5xl font-bold leading-none transition-colors duration-200",
+            isActive ? "text-[#3B82F6]/30" : "text-[#E5E7EB]"
           )}
         >
           {String(step.number).padStart(2, '0')}
@@ -111,90 +112,90 @@ function ProcessStepCard({ step, index, isLast, isActive, onHover }: ProcessStep
         {!isLast && (
           <motion.div
             variants={lineVariants}
-            className="absolute top-1/2 left-[90%] w-[calc(100%-20px)] h-[2px] origin-left hidden md:block"
+            className="absolute top-1/2 left-[90%] w-[calc(100%-20px)] h-[1px] origin-left hidden md:block"
             style={{
               background: isActive
-                ? 'linear-gradient(90deg, #1a73e8 0%, #34a853 100%)'
-                : 'linear-gradient(90deg, #dadce0 0%, transparent 100%)',
+                ? '#3B82F6'
+                : '#E5E7EB',
             }}
           />
         )}
       </div>
 
-      {/* Card */}
+      {/* Card - Artience Style */}
       <motion.div
         className={cn(
-          "relative bg-white rounded-2xl overflow-hidden transition-all duration-300",
+          "relative bg-white rounded-2xl overflow-hidden border border-[#E5E7EB] transition-all duration-200",
           isActive
-            ? "shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
-            : "shadow-[0_2px_10px_rgba(0,0,0,0.06)]"
+            ? "shadow-[0_12px_24px_rgba(0,0,0,0.12)]"
+            : "shadow-[0_1px_3px_rgba(0,0,0,0.1)]"
         )}
-        whileHover={{ y: -8 }}
-        transition={{ duration: 0.3 }}
+        whileHover={{ y: -4 }}
+        transition={{ duration: 0.2 }}
       >
         {/* Image */}
-        <div className="relative w-full h-48 overflow-hidden">
+        <div className="relative w-full h-40 overflow-hidden">
           <Image
             src={step.image}
             alt={step.title}
             fill
             className={cn(
-              "object-cover transition-transform duration-500",
-              isActive ? "scale-105" : "scale-100"
+              "object-cover transition-transform duration-200",
+              isActive ? "scale-102" : "scale-100"
             )}
-            sizes="(max-width: 768px) 320px, 380px"
+            sizes="(max-width: 768px) 280px, 320px"
           />
           <div
             className={cn(
-              "absolute inset-0 transition-opacity duration-300",
+              "absolute inset-0 transition-opacity duration-200",
               isActive
-                ? "bg-gradient-to-t from-[#1a73e8]/30 to-transparent"
-                : "bg-gradient-to-t from-black/20 to-transparent"
+                ? "bg-gradient-to-t from-[#3B82F6]/20 to-transparent"
+                : "bg-gradient-to-t from-black/10 to-transparent"
             )}
           />
 
-          {/* Icon Badge */}
+          {/* Icon Badge - Artience Style */}
           <div
             className={cn(
-              "absolute bottom-4 right-4 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300",
-              isActive ? "bg-[#1a73e8]" : "bg-white/90 backdrop-blur-sm"
+              "absolute bottom-3 right-3 w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200",
+              isActive ? "bg-[#3B82F6]" : "bg-white/90"
             )}
           >
             <Icon
               className={cn(
-                "w-5 h-5 transition-colors duration-300",
-                isActive ? "text-white" : "text-[#202124]"
+                "w-4 h-4 transition-colors duration-200",
+                isActive ? "text-white" : "text-[#1F2937]"
               )}
             />
           </div>
         </div>
 
-        {/* Content */}
-        <div className="p-6">
+        {/* Content - Artience Style */}
+        <div className="p-5">
           <h3
             className={cn(
-              "text-xl font-semibold mb-3 transition-colors duration-300",
-              isActive ? "text-[#1a73e8]" : "text-[#202124]"
+              "text-lg font-semibold mb-2 transition-colors duration-200",
+              isActive ? "text-[#3B82F6]" : "text-[#1F2937]"
             )}
           >
             {step.title}
           </h3>
-          <p className="text-[#5f6368] leading-relaxed text-sm">
+          <p className="text-[#4B5563] leading-relaxed text-sm">
             {step.description}
           </p>
 
-          {/* Progress Indicator */}
-          <div className="mt-4 flex items-center gap-2">
+          {/* Progress Indicator - Artience Style */}
+          <div className="mt-3 flex items-center gap-1.5">
             {processStepData.map((_, i) => (
               <div
                 key={i}
                 className={cn(
-                  "h-1 rounded-full transition-all duration-300",
+                  "h-1 rounded-full transition-all duration-200",
                   i === index
-                    ? "w-8 bg-[#1a73e8]"
+                    ? "w-6 bg-[#3B82F6]"
                     : i < index
-                      ? "w-4 bg-[#34a853]"
-                      : "w-4 bg-[#e8eaed]"
+                      ? "w-3 bg-[#10B981]"
+                      : "w-3 bg-[#E5E7EB]"
                 )}
               />
             ))}
@@ -229,57 +230,57 @@ export function Process() {
   return (
     <section
       id="process"
-      className="py-20 md:py-32 bg-[#fafafa] relative overflow-hidden"
+      className="py-16 md:py-24 bg-[#F9FAFB] relative overflow-hidden"
       aria-labelledby="process-heading"
       ref={containerRef}
     >
-      {/* Subtle Background Pattern */}
+      {/* Subtle Background Pattern - Artience */}
       <div
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-20"
         style={{
           backgroundImage: `
-            linear-gradient(90deg, #e8eaed 1px, transparent 1px),
-            linear-gradient(180deg, #e8eaed 1px, transparent 1px)
+            linear-gradient(90deg, #E5E7EB 1px, transparent 1px),
+            linear-gradient(180deg, #E5E7EB 1px, transparent 1px)
           `,
-          backgroundSize: '60px 60px',
+          backgroundSize: '48px 48px',
         }}
         aria-hidden="true"
       />
 
       <div className="relative z-10">
-        {/* Section Header */}
+        {/* Section Header - Artience Style */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
-          className="container-custom text-center mb-16"
+          transition={{ duration: 0.3 }}
+          className="container-custom text-center mb-12"
         >
           <motion.span
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="inline-block px-5 py-2 mb-6 rounded-full text-sm font-medium bg-[#1a73e8]/10 text-[#1a73e8]"
+            transition={{ duration: 0.2, delay: 0.1 }}
+            className="inline-block px-4 py-1.5 mb-4 rounded-lg text-sm font-semibold bg-[#E8F4FD] text-[#3B82F6]"
           >
             {t('badge')}
           </motion.span>
           <h2
             id="process-heading"
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#202124] mb-6 tracking-tight"
+            className="text-2xl md:text-3xl font-semibold text-[#1F2937] mb-4 tracking-tight"
           >
             {t('sectionTitle')}
           </h2>
-          <p className="text-lg md:text-xl text-[#5f6368] max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base text-[#4B5563] max-w-xl mx-auto leading-relaxed">
             {t('sectionSubtitle')}
           </p>
         </motion.div>
 
-        {/* Scroll Progress Bar */}
-        <div className="container-custom mb-8">
-          <div className="h-1 bg-[#e8eaed] rounded-full overflow-hidden">
+        {/* Scroll Progress Bar - Artience Style */}
+        <div className="container-custom mb-6">
+          <div className="h-0.5 bg-[#E5E7EB] rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-gradient-to-r from-[#1a73e8] to-[#34a853] rounded-full"
+              className="h-full bg-[#3B82F6] rounded-full"
               style={{ width: progressWidth }}
             />
           </div>
@@ -333,25 +334,25 @@ export function Process() {
           <span>{t('scrollHint')}</span>
         </motion.div>
 
-        {/* Bottom Connector Dots */}
-        <div className="container-custom mt-12">
-          <div className="flex justify-center gap-3">
+        {/* Bottom Connector Dots - Artience Style */}
+        <div className="container-custom mt-8">
+          <div className="flex justify-center gap-2">
             {processSteps.map((_, index) => (
               <motion.button
                 key={index}
                 className={cn(
-                  "w-3 h-3 rounded-full transition-all duration-300 cursor-pointer",
+                  "w-2.5 h-2.5 rounded-full transition-all duration-200 cursor-pointer",
                   activeIndex === index
-                    ? "bg-[#1a73e8] scale-125"
-                    : "bg-[#dadce0] hover:bg-[#bdc1c6]"
+                    ? "bg-[#3B82F6] scale-110"
+                    : "bg-[#E5E7EB] hover:bg-[#9CA3AF]"
                 )}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => {
                   const scrollContainer = scrollRef.current;
                   if (scrollContainer) {
-                    const cardWidth = window.innerWidth < 768 ? 320 : 380;
-                    const gap = window.innerWidth < 768 ? 32 : 48;
+                    const cardWidth = window.innerWidth < 768 ? 280 : 320;
+                    const gap = window.innerWidth < 768 ? 24 : 32;
                     scrollContainer.scrollTo({
                       left: index * (cardWidth + gap),
                       behavior: 'smooth',
