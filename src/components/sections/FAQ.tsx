@@ -60,11 +60,11 @@ export function FAQ({ className }: FAQProps) {
 
       <div className="container-custom relative z-10">
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={containerVariants}
-          className="mx-auto max-w-3xl"
+           initial="hidden"
+           whileInView="visible"
+           viewport={{ once: true, margin: '-100px' }}
+           variants={containerVariants}
+           className="mx-auto max-w-4xl"
         >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="mb-12 text-center">

@@ -175,7 +175,7 @@ function FeaturedCard({ thread, index }: { thread: Thread; index: number }) {
           </div>
 
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
 
           {/* Category Badge - Artience Style */}
           <div className="absolute top-4 left-4 z-10">
@@ -250,7 +250,7 @@ function RegularCard({ thread, index, size = 'medium' }: { thread: Thread; index
           {/* Image Container */}
           <div className={cn(
             'relative overflow-hidden',
-            size === 'large' ? 'aspect-[4/5]' : 'aspect-[16/9]'
+            size === 'large' ? 'aspect-4/5' : 'aspect-video'
           )}>
             <Image
               src={imageUrl}
@@ -347,23 +347,23 @@ export function ThreadFeed({
   return (
     <section className={cn('py-16 md:py-24 bg-[#F9FAFB]', className)}>
       <div className="container-custom">
-        {/* Section Header - Artience Style */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 md:mb-12">
-          <div>
+        {/* Section Header - Artience Style (Matching Services) */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12 md:mb-16">
+          <div className="max-w-3xl">
             <motion.div
-              className="flex items-center gap-2 mb-3"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3 }}
+              className="mb-2"
             >
-              <div className="w-8 h-[2px] bg-[#3B82F6]" />
-              <span className="text-sm font-semibold text-[#3B82F6] uppercase tracking-widest">
+              <span className="text-[13px] font-semibold text-[#1F2937] uppercase tracking-wider">
                 Featured Stories
               </span>
             </motion.div>
+            
             <motion.h2
-              className="text-2xl md:text-3xl font-semibold text-[#1F2937] tracking-tight"
+              className="text-[22px] sm:text-2xl md:text-[28px] font-semibold text-[#1F2937] mb-3 leading-tight tracking-tight"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -371,8 +371,9 @@ export function ThreadFeed({
             >
               Latest Insights
             </motion.h2>
+            
             <motion.p
-              className="text-base text-[#4B5563] mt-3 max-w-xl leading-relaxed"
+              className="text-[15px] text-[#4B5563] max-w-2xl leading-relaxed"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -387,6 +388,7 @@ export function ThreadFeed({
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.3 }}
+            className="pb-1"
           >
             <Link
               href="/threads"
