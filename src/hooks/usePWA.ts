@@ -35,6 +35,7 @@ interface UsePWAReturn extends PWAState {
  */
 export function usePWA(): UsePWAReturn {
   const [state, setState] = useState<PWAState>({
+    isInstalled: false,
     isInstallable: false,
     isOnline: true, // Hydration mismatch 방지를 위해 항상 true로 초기화 (클라이언트 마운트 후 실제 상태 확인)
     isStandalone: false,

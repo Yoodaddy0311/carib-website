@@ -126,7 +126,7 @@ function CultureAccordionItem({ item, defaultOpen = false }: { item: typeof cult
   const [isOpen, setIsOpen] = useState(defaultOpen);
   
   return (
-    <div className="py-8">
+    <div className="py-6 md:py-8">
       {/* Accordion Header - Always Visible */}
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -190,7 +190,7 @@ const RoleChip = ({ children }: { children: React.ReactNode }) => (
 function JobCard({ job }: { job: typeof jobs[0] }) {
   return (
     <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden">
-      <div className="p-8 md:p-12 lg:p-16">
+      <div className="p-6 md:p-10 lg:p-16">
         
         {/* Header: Badge + Title */}
         <div className="flex flex-col gap-4 mb-8 pb-8 border-b border-gray-100">
@@ -338,10 +338,10 @@ export function Team() {
           <div className="w-full">
             
             {/* Black Box Container */}
-            <div className="bg-[#000000] rounded-[40px] p-10 md:p-16 lg:p-20">
+            <div className="bg-[#000000] rounded-[24px] md:rounded-[40px] p-6 md:p-12 lg:p-20">
               
               {/* Section Header */}
-              <div className="mb-16 max-w-7xl mx-auto">
+              <div className="mb-10 md:mb-16 max-w-7xl mx-auto">
                 <span className="inline-block text-[13px] font-semibold text-gray-500 uppercase tracking-wider mb-4">
                   How We Work
                 </span>

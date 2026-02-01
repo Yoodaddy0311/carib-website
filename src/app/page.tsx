@@ -278,7 +278,7 @@ function HeroButton({
   onClick?: () => void;
   rightIcon?: React.ReactNode;
 }) {
-  const baseClasses = "relative overflow-hidden inline-flex items-center justify-center gap-2 font-semibold py-3 px-6 text-[15px] rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all duration-200";
+  const baseClasses = "relative overflow-hidden inline-flex items-center justify-center gap-2 font-semibold min-h-[48px] py-3 px-6 text-[15px] rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all duration-200";
 
   const variantClasses = variant === 'primary'
     ? "bg-white text-black hover:bg-zinc-100 shadow-[0_0_30px_rgba(255,255,255,0.1)] focus-visible:ring-white"
@@ -334,7 +334,7 @@ function AnimatedTrustMetric({
         y: -4,
         transition: { duration: 0.2 },
       }}
-      className="group relative text-center p-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-200 hover:bg-white/15 hover:border-white/40"
+      className="group relative text-center p-4 min-h-[72px] rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-200 hover:bg-white/15 hover:border-white/40"
     >
       <p
         ref={ref as React.RefObject<HTMLParagraphElement>}

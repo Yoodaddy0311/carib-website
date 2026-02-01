@@ -45,7 +45,7 @@ export function FAQ({ className }: FAQProps) {
   return (
     <section
       id="faq"
-      className={`py-20 md:py-28 bg-[#f8f9fa] relative ${className || ''}`}
+      className={`py-16 md:py-20 lg:py-28 bg-[#f8f9fa] relative ${className || ''}`}
       aria-labelledby="faq-heading"
     >
       {/* Subtle dot pattern background */}

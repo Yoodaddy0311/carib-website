@@ -161,7 +161,7 @@ function FeaturedCard({ thread, index }: { thread: Thread; index: number }) {
       transition={{ duration: 0.3 }}
     >
       <Link href={`/threads/${thread.id}`} className="block h-full">
-        <div className="relative h-full min-h-[350px] md:min-h-[400px] rounded-2xl overflow-hidden border border-[#E5E7EB] transition-all duration-200 hover:shadow-[0_12px_24px_rgba(0,0,0,0.12)]">
+        <div className="relative h-full min-h-[280px] md:min-h-[400px] rounded-2xl overflow-hidden border border-[#E5E7EB] transition-all duration-200 hover:shadow-[0_12px_24px_rgba(0,0,0,0.12)]">
           {/* Background Image */}
           <div className="absolute inset-0 overflow-hidden">
             <Image
