@@ -102,7 +102,7 @@ function ProcessStepCard({ step, index, isLast, isActive, onHover }: ProcessStep
         <span
           className={cn(
             "text-4xl md:text-5xl font-bold leading-none transition-colors duration-200",
-            isActive ? "text-[#3B82F6]/30" : "text-[#E5E7EB]"
+            isActive ? "text-[#1F2937]/30" : "text-[#E5E7EB]"
           )}
         >
           {String(step.number).padStart(2, '0')}
@@ -115,7 +115,7 @@ function ProcessStepCard({ step, index, isLast, isActive, onHover }: ProcessStep
             className="absolute top-1/2 left-[90%] w-[calc(100%-20px)] h-[1px] origin-left hidden md:block"
             style={{
               background: isActive
-                ? '#3B82F6'
+                ? '#1F2937'
                 : '#E5E7EB',
             }}
           />
@@ -149,7 +149,7 @@ function ProcessStepCard({ step, index, isLast, isActive, onHover }: ProcessStep
             className={cn(
               "absolute inset-0 transition-opacity duration-200",
               isActive
-                ? "bg-gradient-to-t from-[#3B82F6]/20 to-transparent"
+                ? "bg-gradient-to-t from-[#1F2937]/20 to-transparent"
                 : "bg-gradient-to-t from-black/10 to-transparent"
             )}
           />
@@ -158,7 +158,7 @@ function ProcessStepCard({ step, index, isLast, isActive, onHover }: ProcessStep
           <div
             className={cn(
               "absolute bottom-3 right-3 w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200",
-              isActive ? "bg-[#3B82F6]" : "bg-white/90"
+              isActive ? "bg-[#1F2937]" : "bg-white/90"
             )}
           >
             <Icon
@@ -175,7 +175,7 @@ function ProcessStepCard({ step, index, isLast, isActive, onHover }: ProcessStep
           <h3
             className={cn(
               "text-lg font-semibold mb-2 transition-colors duration-200",
-              isActive ? "text-[#3B82F6]" : "text-[#1F2937]"
+              isActive ? "text-[#1F2937]" : "text-[#1F2937]"
             )}
           >
             {step.title}
@@ -192,9 +192,9 @@ function ProcessStepCard({ step, index, isLast, isActive, onHover }: ProcessStep
                 className={cn(
                   "h-1 rounded-full transition-all duration-200",
                   i === index
-                    ? "w-6 bg-[#3B82F6]"
+                    ? "w-6 bg-[#1F2937]"
                     : i < index
-                      ? "w-3 bg-[#10B981]"
+                      ? "w-3 bg-[#4B5563]"
                       : "w-3 bg-[#E5E7EB]"
                 )}
               />
@@ -261,7 +261,7 @@ export function Process() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.2, delay: 0.1 }}
-            className="inline-block px-4 py-1.5 mb-4 rounded-lg text-sm font-semibold bg-[#E8F4FD] text-[#3B82F6]"
+            className="inline-block px-4 py-1.5 mb-4 rounded-lg text-sm font-semibold bg-[#F3F4F6] text-[#1F2937]"
           >
             {t('badge')}
           </motion.span>
@@ -280,7 +280,7 @@ export function Process() {
         <div className="container-custom mb-6">
           <div className="h-0.5 bg-[#E5E7EB] rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-[#3B82F6] rounded-full"
+              className="h-full bg-[#1F2937] rounded-full"
               style={{ width: progressWidth }}
             />
           </div>
@@ -343,7 +343,7 @@ export function Process() {
                 className={cn(
                   "w-2.5 h-2.5 rounded-full transition-all duration-200 cursor-pointer",
                   activeIndex === index
-                    ? "bg-[#3B82F6] scale-110"
+                    ? "bg-[#1F2937] scale-110"
                     : "bg-[#E5E7EB] hover:bg-[#9CA3AF]"
                 )}
                 whileHover={{ scale: 1.1 }}

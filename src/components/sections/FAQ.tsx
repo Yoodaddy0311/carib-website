@@ -87,7 +87,7 @@ export function FAQ({ className }: FAQProps) {
               {t('moreQuestions')}{' '}
               <a
                 href="/coffee-chat"
-                className="text-[#1a73e8] hover:underline font-medium transition-colors"
+                className="text-[#1F2937] hover:underline font-medium transition-colors"
               >
                 {t('contactUs')}
               </a>

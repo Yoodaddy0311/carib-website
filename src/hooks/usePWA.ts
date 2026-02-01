@@ -35,9 +35,8 @@ interface UsePWAReturn extends PWAState {
  */
 export function usePWA(): UsePWAReturn {
   const [state, setState] = useState<PWAState>({
-    isInstalled: false,
     isInstallable: false,
-    isOnline: typeof navigator !== 'undefined' ? navigator.onLine : true,
+    isOnline: true, // Hydration mismatch 방지를 위해 항상 true로 초기화 (클라이언트 마운트 후 실제 상태 확인)
     isStandalone: false,
     swRegistration: null,
     swUpdateAvailable: false,
@@ -152,6 +151,9 @@ export function usePWA(): UsePWAReturn {
   // 온라인/오프라인 상태 감지
   useEffect(() => {
     if (typeof window === 'undefined') return;
+
+    // 초기 마운트 시 실제 상태 확인
+    setState((prev) => ({ ...prev, isOnline: navigator.onLine }));
 
     const handleOnline = () => {
       setState((prev) => ({ ...prev, isOnline: true }));

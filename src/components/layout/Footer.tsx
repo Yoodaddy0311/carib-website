@@ -114,7 +114,7 @@ export function Footer() {
               <span className="text-2xl">
                 🦈
               </span>
-              <span className="text-lg font-semibold tracking-tight group-hover:text-[#3B82F6] transition-colors duration-200">
+              <span className="text-lg font-semibold tracking-tight group-hover:text-[#9CA3AF] transition-colors duration-200">
                 {tCommon('brand')}
               </span>
             </Link>
@@ -123,7 +123,7 @@ export function Footer() {
               <br />
               {t('taglineLine2')}
             </p>
-            <p className="text-sm text-[#6B7280] hover:text-[#3B82F6] transition-colors duration-200 cursor-pointer">
+            <p className="text-sm text-[#6B7280] hover:text-white transition-colors duration-200 cursor-pointer">
               {tCommon('email')}
             </p>
           </motion.div>
@@ -217,12 +217,12 @@ export function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-lg bg-[#374151] flex items-center justify-center text-[#9CA3AF] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B82F6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1F2937]"
+                    className="w-10 h-10 rounded-lg bg-[#374151] flex items-center justify-center text-[#9CA3AF] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4B5563] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1F2937]"
                     aria-label={t('socialLabel', { platform: link.label })}
                     role="listitem"
                     whileHover={{
                       y: -2,
-                      backgroundColor: '#3B82F6',
+                      backgroundColor: '#4B5563',
                       color: '#ffffff',
                     }}
                     whileTap={{ scale: 0.95 }}
@@ -253,14 +253,14 @@ export function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t('newsletterPlaceholder') || 'Enter your email'}
-                  className="w-full px-4 py-2.5 bg-[#374151] rounded-lg text-sm text-white placeholder-[#9CA3AF] border border-transparent focus:border-[#3B82F6] focus:ring-2 focus:ring-[#3B82F6]/20 focus:outline-none transition-all duration-200"
+                  className="w-full px-4 py-2.5 bg-[#374151] rounded-lg text-sm text-white placeholder-[#9CA3AF] border border-transparent focus:border-[#4B5563] focus:ring-2 focus:ring-[#4B5563]/20 focus:outline-none transition-all duration-200"
                   required
                 />
               </div>
 
               <motion.button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[#3B82F6] hover:bg-[#2563EB] rounded-lg text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_4px_12px_rgba(59,130,246,0.3)]"
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[#4B5563] hover:bg-[#374151] rounded-lg text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_4px_12px_rgba(75,85,99,0.3)]"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >

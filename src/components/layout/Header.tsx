@@ -88,7 +88,10 @@ export function Header() {
                 🦈
               </motion.span>
               <motion.span
-                className="text-[#1F2937] font-semibold tracking-tight"
+                className={cn(
+                  'font-semibold tracking-tight transition-colors duration-200',
+                  isScrolled ? 'text-[#1F2937]' : 'text-white'
+                )}
                 animate={{
                   fontSize: isScrolled ? '1rem' : '1.125rem',
                 }}
@@ -104,11 +107,16 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="relative text-sm font-medium text-[#4B5563] hover:text-[#1F2937] transition-colors duration-200 py-2 group"
+                  className={cn(
+                    'relative text-sm font-medium transition-colors duration-200 py-2 group',
+                    isScrolled
+                      ? 'text-[#4B5563] hover:text-[#1F2937]'
+                      : 'text-white/80 hover:text-white'
+                  )}
                 >
                   {item.label}
                   {/* Animated underline - Artience Style */}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#3B82F6] transition-all duration-200 ease-out group-hover:w-full" />
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#1F2937] transition-all duration-200 ease-out group-hover:w-full" />
                 </Link>
               ))}
             </div>
@@ -155,7 +163,7 @@ export function Header() {
                       exit={{ rotate: 90, opacity: 0 }}
                       transition={{ duration: 0.15 }}
                     >
-                      <X className="w-5 h-5 text-[#1F2937]" aria-hidden="true" />
+                      <X className={cn('w-5 h-5', isScrolled ? 'text-[#1F2937]' : 'text-white')} aria-hidden="true" />
                     </motion.div>
                   ) : (
                     <motion.div
@@ -165,7 +173,7 @@ export function Header() {
                       exit={{ rotate: -90, opacity: 0 }}
                       transition={{ duration: 0.15 }}
                     >
-                      <Menu className="w-5 h-5 text-[#1F2937]" aria-hidden="true" />
+                      <Menu className={cn('w-5 h-5', isScrolled ? 'text-[#1F2937]' : 'text-white')} aria-hidden="true" />
                     </motion.div>
                   )}
                 </AnimatePresence>

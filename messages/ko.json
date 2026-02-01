@@ -37,6 +37,7 @@
     "ctaSecondary": "서비스 알아보기",
     "scrollIndicator": "스크롤",
     "trustMetrics": {
+      "title": "신뢰할 수 있는 파트너",
       "projects": "프로젝트 완료",
       "satisfaction": "고객 만족도",
       "efficiency": "효율 향상",

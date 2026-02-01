@@ -197,6 +197,36 @@
   }
 }
 
+/* Hero Shimmer Text Animation - saas-scalable-hero-page (2) */
+@keyframes shimmer-text {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-shimmer-text {
+  background-size: 200% auto;
+  animation: shimmer-text 6s linear infinite;
+}
+
+/* Hero Fade Up with Blur */
+@keyframes fade-up-blur {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.animate-fade-up-blur {
+  animation: fade-up-blur 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 @keyframes fade-down {
   from {
     opacity: 0;
@@ -391,23 +421,23 @@ body {
   }
 }
 
-/* Section Spacing - Google Labs Style (generous) */
+/* Section Spacing - Artience Style (4pt grid based) */
 .section-padding {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 3rem;    /* 48px - mobile */
+  padding-bottom: 3rem;
 }
 
 @media (min-width: 768px) {
   .section-padding {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
+    padding-top: 4rem;  /* 64px - tablet */
+    padding-bottom: 4rem;
   }
 }
 
 @media (min-width: 1024px) {
   .section-padding {
-    padding-top: 9rem;
-    padding-bottom: 9rem;
+    padding-top: 5rem;  /* 80px - desktop */
+    padding-bottom: 5rem;
   }
 }
 

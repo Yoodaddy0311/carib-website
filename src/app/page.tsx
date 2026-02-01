@@ -1,12 +1,10 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
-import { motion, useMotionValue, useSpring, useTransform, useScroll } from 'motion/react';
+import { motion } from 'motion/react';
 import { ArrowRight, Sparkles, Zap, Users, TrendingUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { Button } from '@/components/ui';
 import { useCountUp } from '@/hooks/useCountUp';
 import { useAnalytics } from '@/hooks/useAnalytics';
 
@@ -59,7 +57,9 @@ const ChatWidget = dynamic(() => import('@/components/sections/ChatWidget').then
 // Typing effect keywords - will be replaced with translated versions at runtime
 const typingKeywordKeys = ['ai', 'automation', 'efficiency', 'innovation', 'growth'] as const;
 
-// Enhanced Typing Effect Component with character-by-character animation - Brandazine Style (Larger)
+
+
+// Enhanced Typing Effect Component with shimmer gradient - saas-scalable-hero-page (2) style
 function TypewriterText() {
   const t = useTranslations('hero.keywords');
   const typingKeywords = useMemo(() => typingKeywordKeys.map((key) => t(key)), [t]);
@@ -80,9 +80,11 @@ function TypewriterText() {
     }
 
     if (isDeleting && displayText === '') {
-      setIsDeleting(false);
-      setCurrentIndex((prev) => (prev + 1) % typingKeywords.length);
-      return;
+      const timeout = setTimeout(() => {
+        setIsDeleting(false);
+        setCurrentIndex((prev) => (prev + 1) % typingKeywords.length);
+      }, 0);
+      return () => clearTimeout(timeout);
     }
 
     const timeout = setTimeout(() => {
@@ -97,92 +99,174 @@ function TypewriterText() {
   }, [displayText, isDeleting, currentWord, typingKeywords.length]);
 
   return (
-    <span className="inline-flex items-baseline text-[#3B82F6]" aria-live="polite" aria-atomic="true">
-      <span aria-label={`Current keyword: ${currentWord}`} className="relative">
-        {displayText.split('').map((char, idx) => (
-          <motion.span
-            key={`${currentIndex}-${idx}`}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2, delay: idx * 0.02 }}
-            className="inline-block"
-          >
-            {char}
-          </motion.span>
-        ))}
+    <span className="inline-flex items-baseline" aria-live="polite" aria-atomic="true">
+      <span
+        aria-label={`Current keyword: ${currentWord}`}
+        className="relative bg-clip-text text-transparent bg-linear-to-r from-indigo-300 via-white to-cyan-300 animate-shimmer-text"
+      >
+        {displayText}
       </span>
       <span
-        className="ml-1 w-[2px] h-[0.85em] inline-block align-baseline bg-[#3B82F6] animate-pulse"
+        className="ml-1 w-[3px] h-[0.85em] inline-block align-baseline animate-pulse bg-linear-to-b from-indigo-300 to-cyan-300"
         aria-hidden="true"
       />
     </span>
   );
 }
 
-// Mouse-following Glow Effect
-function MouseGlow() {
-  const [mounted, setMounted] = useState(false);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
 
-  const springConfig = { damping: 30, stiffness: 200 };
-  const x = useSpring(mouseX, springConfig);
-  const y = useSpring(mouseY, springConfig);
-
-  useEffect(() => {
-    setMounted(true);
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY]);
-
-  if (!mounted) return null;
-
+// Hero Background - Advanced version with Parallax & Light Trails
+function HeroBackground({ mousePos }: { mousePos: { x: number; y: number } }) {
   return (
-    <motion.div
-      className="pointer-events-none fixed inset-0 z-0 opacity-50"
-      aria-hidden="true"
-    >
-      <motion.div
-        className="absolute w-[600px] h-[600px] rounded-full"
-        style={{
-          x,
-          y,
-          translateX: '-50%',
-          translateY: '-50%',
-          background: 'radial-gradient(circle, rgba(26, 115, 232, 0.08) 0%, transparent 70%)',
-        }}
-      />
-    </motion.div>
-  );
-}
+    <div className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden" aria-hidden="true">
+      {/* Pure black base */}
+      <div className="absolute inset-0 bg-[#000000]" />
 
-// Artience Style: Clean Background with Soft Blue
-function EnhancedBackground() {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      {/* Artience Soft Blue Background */}
-      <div className="absolute inset-0 bg-[#E8F4FD]" />
-
-      {/* Simple subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/50" />
-
-      {/* Clean dot pattern - Artience style */}
+      {/* Wave container - Full screen with Parallax */}
       <div
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 h-full transition-transform duration-700 ease-out"
+        style={{ transform: `translate(${mousePos.x / 60}px, ${mousePos.y / 60}px)` }}
+      >
+        <svg
+          viewBox="0 0 1440 900"
+          className="absolute bottom-[-15%] right-[-10%] w-[125%] h-[125%] object-cover scale-110 opacity-70"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMax slice"
+        >
+          <defs>
+            <linearGradient id="purple-primary" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#4f46e5" stopOpacity="0" />
+              <stop offset="15%" stopColor="#7c3aed" stopOpacity="0.8" />
+              <stop offset="45%" stopColor="#8b5cf6" stopOpacity="0.9" />
+              <stop offset="75%" stopColor="#a855f7" stopOpacity="0.7" />
+              <stop offset="100%" stopColor="#000" stopOpacity="0" />
+            </linearGradient>
+
+            <linearGradient id="violet-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="5%" stopColor="#d946ef" stopOpacity="0" />
+              <stop offset="40%" stopColor="#a855f7" stopOpacity="0.7" />
+              <stop offset="85%" stopColor="#7c3aed" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#000" stopOpacity="0" />
+            </linearGradient>
+
+            <linearGradient id="cyan-accent" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#06b6d4" stopOpacity="0" />
+              <stop offset="30%" stopColor="#00f2ff" stopOpacity="0.6" />
+              <stop offset="60%" stopColor="#0ea5e9" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#000" stopOpacity="0" />
+            </linearGradient>
+
+            <linearGradient id="amber-sharp" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="10%" stopColor="#f59e0b" stopOpacity="0" />
+              <stop offset="40%" stopColor="#fbbf24" stopOpacity="0.7" />
+              <stop offset="70%" stopColor="#f97316" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#000" stopOpacity="0" />
+            </linearGradient>
+
+            <filter id="crispGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
+            </filter>
+          </defs>
+
+          <path
+            d="M0 740 C 400 610 1000 860 1440 660 L 1440 900 L 0 900 Z"
+            fill="url(#purple-primary)"
+            filter="url(#crispGlow)"
+          >
+            <animate
+              attributeName="d"
+              dur="14s"
+              repeatCount="indefinite"
+              values="
+                M0 740 C 400 610 1000 860 1440 660 L 1440 900 L 0 900 Z;
+                M0 700 C 500 760 900 610 1440 740 L 1440 900 L 0 900 Z;
+                M0 740 C 400 610 1000 860 1440 660 L 1440 900 L 0 900 Z
+              "
+            />
+          </path>
+
+          <path
+            d="M0 810 C 350 710 900 510 1440 760 L 1440 900 L 0 900 Z"
+            fill="url(#violet-glow)"
+          >
+            <animate
+              attributeName="d"
+              dur="10s"
+              repeatCount="indefinite"
+              values="
+                M0 810 C 350 710 900 510 1440 760 L 1440 900 L 0 900 Z;
+                M0 770 C 450 660 950 810 1440 690 L 1440 900 L 0 900 Z;
+                M0 810 C 350 710 900 510 1440 760 L 1440 900 L 0 900 Z
+              "
+            />
+          </path>
+
+          <path
+            d="M0 710 C 400 610 800 910 1440 600 L 1440 900 L 0 900 Z"
+            fill="url(#cyan-accent)"
+          >
+            <animate
+              attributeName="d"
+              dur="8s"
+              repeatCount="indefinite"
+              values="
+                M0 710 C 400 610 800 910 1440 600 L 1440 900 L 0 900 Z;
+                M0 670 C 500 710 900 810 1440 540 L 1440 900 L 0 900 Z;
+                M0 710 C 400 610 800 910 1440 600 L 1440 900 L 0 900 Z
+              "
+            />
+          </path>
+
+          <path
+            d="M0 840 C 450 810 950 480 1440 780 L 1440 900 L 0 900 Z"
+            fill="url(#amber-sharp)"
+          >
+            <animate
+              attributeName="d"
+              dur="12s"
+              repeatCount="indefinite"
+              values="
+                M0 840 C 450 810 950 480 1440 780 L 1440 900 L 0 900 Z;
+                M0 810 C 550 710 850 610 1440 710 L 1440 900 L 0 900 Z;
+                M0 840 C 450 810 950 480 1440 780 L 1440 900 L 0 900 Z
+              "
+            />
+          </path>
+
+          {/* Light Trail Animation */}
+          <path
+            d="M0 700 C 400 590 800 890 1440 590"
+            stroke="white"
+            strokeWidth="1.5"
+            fill="none"
+            opacity="0.1"
+            strokeDasharray="400 1200"
+          >
+            <animate
+              attributeName="stroke-dashoffset"
+              dur="7s"
+              repeatCount="indefinite"
+              from="1600"
+              to="0"
+            />
+          </path>
+        </svg>
+      </div>
+
+      {/* 3. Floating Light Glows - Parallax Effect */}
+      <div
+        className="absolute w-[800px] h-[800px] bg-indigo-500/10 rounded-full blur-[160px] pointer-events-none z-10 transition-transform duration-1000 ease-out"
         style={{
-          backgroundImage: 'radial-gradient(circle, #9CA3AF 1px, transparent 1px)',
-          backgroundSize: '24px 24px',
+          transform: `translate(${mousePos.x / 20}px, ${mousePos.y / 20}px)`,
+          top: '10%',
+          left: '5%'
         }}
       />
     </div>
   );
 }
 
-// Artience Style Button - Clean with subtle hover
+// Hero Button - Artience Guide (12px 24px padding, 8px radius)
 function HeroButton({
   children,
   variant = 'primary',
@@ -194,12 +278,11 @@ function HeroButton({
   onClick?: () => void;
   rightIcon?: React.ReactNode;
 }) {
-  // Artience Style Buttons - 14px, font-weight 600, rounded-lg (8px)
-  const baseClasses = "relative overflow-hidden inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 py-3 px-6 text-sm rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
+  const baseClasses = "relative overflow-hidden inline-flex items-center justify-center gap-2 font-semibold py-3 px-6 text-[15px] rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all duration-200";
 
   const variantClasses = variant === 'primary'
-    ? "bg-[#1F2937] text-white hover:shadow-[0_4px_12px_rgba(31,41,55,0.3)] focus-visible:ring-[#1F2937]"
-    : "bg-white border border-[#E5E7EB] text-[#1F2937] hover:border-[#1F2937] focus-visible:ring-[#E5E7EB]";
+    ? "bg-white text-black hover:bg-zinc-100 shadow-[0_0_30px_rgba(255,255,255,0.1)] focus-visible:ring-white"
+    : "bg-transparent border border-white/20 text-white hover:border-white/40 hover:bg-white/5 focus-visible:ring-white/20";
 
   return (
     <motion.button
@@ -207,11 +290,11 @@ function HeroButton({
       onClick={onClick}
       whileHover={{ y: -2 }}
       whileTap={{ scale: 0.98 }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.15 }}
     >
       <span className="relative z-10 flex items-center gap-2">
         {children}
-        {rightIcon && <span className="flex-shrink-0">{rightIcon}</span>}
+        {rightIcon && <span className="shrink-0">{rightIcon}</span>}
       </span>
     </motion.button>
   );
@@ -225,7 +308,7 @@ const trustMetricsData = [
   { value: '24/7', labelKey: 'operation', countTo: null, suffix: '', isStatic: true },
 ];
 
-// Artience Style: Clean Trust Metric Component with simple hover
+// Artience Style: Clean Trust Metric Component - 16px radius, 16px padding
 function AnimatedTrustMetric({
   metric,
   index,
@@ -241,24 +324,21 @@ function AnimatedTrustMetric({
     easing: 'ease-out-expo',
   });
 
-  // Artience colors
-  const accentColor = '#3B82F6';
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.3, delay: 0.1 + index * 0.1 }}
+      transition={{ duration: 0.3, delay: 0.05 + index * 0.05 }}
       whileHover={{
         y: -4,
-        transition: { duration: 0.2 }
+        transition: { duration: 0.2 },
       }}
-      className="group relative text-center p-6 rounded-2xl bg-white border border-[#E5E7EB] transition-all duration-200 hover:shadow-[0_12px_24px_rgba(0,0,0,0.12)] cursor-pointer"
+      className="group relative text-center p-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-200 hover:bg-white/15 hover:border-white/40"
     >
       <p
         ref={ref as React.RefObject<HTMLParagraphElement>}
-        className="relative text-2xl md:text-3xl font-bold tabular-nums transition-colors duration-200 tracking-tight text-[#111827]"
+        className="relative text-xl sm:text-2xl font-bold tabular-nums transition-colors duration-200 tracking-tight text-white"
         aria-live="polite"
       >
         {metric.isStatic ? (
@@ -271,7 +351,7 @@ function AnimatedTrustMetric({
           </span>
         )}
       </p>
-      <p className="relative text-sm text-[#4B5563] font-medium uppercase tracking-wider mt-2 transition-colors duration-200 group-hover:text-[#111827]">
+      <p className="relative text-xs sm:text-[13px] text-white/70 font-medium uppercase tracking-wider mt-1 transition-colors duration-200 group-hover:text-white">
         {label}
       </p>
     </motion.div>
@@ -286,85 +366,23 @@ const servicesData = [
   { icon: TrendingUp, key: 'education' },
 ];
 
-// Brandazine Hero Image Component with Parallax and Reveal Animation
-function HeroImage({ scrollYProgress }: { scrollYProgress: any }) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  // Parallax: Image moves slower than scroll
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
-  const imageScale = useTransform(scrollYProgress, [0, 0.5], [1.05, 1]);
-  const imageBlur = useTransform(scrollYProgress, [0, 0.2], [8, 0]);
-
-  return (
-    <motion.div
-      className="relative w-full h-full"
-      style={{ y: imageY }}
-    >
-      {/* Diagonal clip-path container */}
-      <motion.div
-        className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden"
-        style={{
-          clipPath: 'polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%)',
-          scale: imageScale,
-        }}
-        initial={{ opacity: 0, x: 100 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-      >
-        {/* Blur overlay that fades out */}
-        <motion.div
-          className="absolute inset-0 z-10 bg-white/30 backdrop-blur-md"
-          initial={{ opacity: 1 }}
-          animate={{ opacity: imageLoaded ? 0 : 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-        />
-
-        <Image
-          src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80"
-          alt="Team collaboration"
-          fill
-          className="object-cover"
-          priority
-          onLoad={() => setImageLoaded(true)}
-          sizes="(max-width: 768px) 100vw, 40vw"
-        />
-
-        {/* Gradient overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-transparent to-transparent" />
-      </motion.div>
-
-      {/* Floating accent shapes */}
-      <motion.div
-        className="absolute -bottom-4 -left-4 w-24 h-24 md:w-32 md:h-32 rounded-full bg-[#1a73e8]/10 backdrop-blur-sm"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
-      />
-      <motion.div
-        className="absolute top-1/4 -left-8 w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-[#34a853]/30"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1 }}
-      />
-    </motion.div>
-  );
-}
 
 export default function Home() {
-  const { trackCoffeeChatClick, trackServiceClick } = useAnalytics();
+  const { trackCoffeeChatClick } = useAnalytics();
   const tHero = useTranslations('hero');
   const tServices = useTranslations('services');
   const tCta = useTranslations('cta');
 
-  // Scroll progress for parallax effects
-  const heroRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
+  // Mouse Parallax State
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // Text parallax: moves faster than image
-  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '40%']);
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   // Generate services with translations
   const services = servicesData.map((service) => ({
@@ -379,89 +397,74 @@ export default function Home() {
     label: tHero(`trustMetrics.${metric.labelKey}`),
   }));
 
-  // Headline lines for stagger animation
-  const headlineLines = [
-    { content: <><TypewriterText />{tHero('headlineSuffix')}</>, delay: 0.2 },
-    { content: tHero('headlineLine2'), delay: 0.35 },
-  ];
+
 
   return (
     <div className="relative">
-      {/* Hero Section - Brandazine Editorial Style */}
+      {/* Hero Section - Clean Professional Design relative to mouse movement */}
       <section
-        ref={heroRef}
-        className="relative min-h-screen overflow-hidden"
+        className="relative overflow-hidden"
         aria-labelledby="hero-heading"
       >
-        {/* Enhanced Background with subtle animations */}
-        <EnhancedBackground />
+        <HeroBackground mousePos={mousePos} />
 
-        {/* Mouse-following glow effect */}
-        <MouseGlow />
+        <div className="container-custom relative z-30 px-6 sm:px-8 lg:px-12">
+          {/* Left-aligned Text Layout */}
+          <div className="flex flex-col justify-center pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-20">
 
-        <div className="container-custom relative z-10 pt-24 md:pt-32 lg:pt-40">
-          {/* Asymmetric 2-Column Layout: 60% Text + 40% Image */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[80vh]">
-
-            {/* Left Column - Text Content (60%) */}
-            <motion.div
-              className="lg:col-span-7 relative z-20"
-              style={{ y: textY }}
-            >
-              {/* Badge - Artience Style */}
+            {/* Text Content - Left aligned */}
+            <div className="relative z-20 max-w-4xl">
+              {/* Announcement Badge with Glass Effect */}
               <motion.div
-                initial={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-[#1F2937] text-white rounded-lg text-sm font-semibold mb-6"
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="group relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl mb-6 sm:mb-8 hover:border-white/30 transition-all cursor-pointer overflow-hidden"
               >
-                <Sparkles className="w-4 h-4" />
-                {tHero('badge')}
+                <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                <span className="flex h-2 w-2 rounded-full bg-indigo-400 shadow-[0_0_12px_rgba(129,140,248,0.8)] animate-pulse" />
+                <span className="text-[11px] font-bold text-zinc-300 tracking-widest uppercase">
+                  {tHero('badge')}
+                </span>
               </motion.div>
 
-              {/* Headline - Artience Style: Reduced size, simple animation */}
-              <h1
+              {/* Main Headline - Artience Typography */}
+              <motion.h1
                 id="hero-heading"
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1F2937] mb-6 leading-tight tracking-tight"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-[28px] sm:text-[32px] md:text-[36px] lg:text-[42px] xl:text-[48px] font-bold leading-[1.2] tracking-[-0.02em] mb-4 sm:mb-6 text-white"
               >
-                {headlineLines.map((line, index) => (
-                  <motion.span
-                    key={index}
-                    className="block"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.3,
-                      delay: line.delay
-                    }}
-                  >
-                    {line.content}
-                  </motion.span>
-                ))}
-              </h1>
+                <TypewriterText />
+                {tHero('headlineSuffix')}
+                <br />
+                <span className="text-white">{tHero('headlineLine2')}</span>
+              </motion.h1>
 
-              {/* Subheadline - Artience Style: 14-16px */}
+              {/* Subheadline - Artience Body */}
               <motion.p
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.4 }}
-                className="text-base md:text-lg text-[#4B5563] mb-8 max-w-xl leading-relaxed"
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="text-[15px] sm:text-base md:text-lg text-zinc-400 max-w-xl mb-6 leading-relaxed font-medium"
               >
                 {tHero('subheadline')}
-                <br className="hidden md:block" />
+                <span className="hidden sm:inline"> </span>
+                <span className="sm:hidden"><br /></span>
                 {tHero('subheadlineLine2')}
               </motion.p>
 
-              {/* CTA Buttons - Artience Style */}
+              {/* CTA Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.5 }}
-                className="flex flex-col sm:flex-row gap-4"
+                transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4"
               >
                 <HeroButton
                   variant="primary"
-                  rightIcon={<ArrowRight className="w-4 h-4" />}
+                  rightIcon={<ArrowRight className="w-[18px] h-[18px]" />}
                   onClick={() => {
                     trackCoffeeChatClick('hero');
                     window.location.href = '/coffee-chat';
@@ -476,91 +479,67 @@ export default function Home() {
                   {tHero('ctaSecondary')}
                 </HeroButton>
               </motion.div>
-
-              {/* Artience accent line */}
-              <motion.div
-                className="mt-8 w-16 h-0.5 bg-[#3B82F6]"
-                initial={{ width: 0, opacity: 0 }}
-                animate={{ width: 64, opacity: 1 }}
-                transition={{ duration: 0.3, delay: 0.6 }}
-              />
-            </motion.div>
-
-            {/* Right Column - Hero Image (40%) */}
-            <div className="lg:col-span-5 relative">
-              <HeroImage scrollYProgress={scrollYProgress} />
             </div>
-          </div>
-
-          {/* Trust Metrics - Artience Style */}
-          <div
-            className="mt-12 lg:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto"
-            role="list"
-            aria-label="Trust Metrics"
-          >
-            {trustMetrics.map((metric, index) => (
-              <AnimatedTrustMetric
-                key={metric.labelKey}
-                metric={metric}
-                index={index}
-                label={metric.label}
-              />
-            ))}
           </div>
         </div>
 
-        {/* Editorial Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="absolute bottom-8 left-8 lg:left-12"
-          aria-hidden="true"
-        >
+        {/* Trust Metrics - Social Proof Section */}
+        <div className="container-custom relative z-30 pb-12 sm:pb-16 lg:pb-20 px-6 sm:px-8 lg:px-12">
           <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            className="flex items-center gap-3"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col gap-6 pt-8 sm:pt-10"
           >
-            <div className="w-[1px] h-16 bg-gradient-to-b from-[#202124] to-transparent" />
-            <p className="text-xs text-[#5f6368] uppercase tracking-widest font-medium writing-vertical-lr rotate-180" style={{ writingMode: 'vertical-lr' }}>
-              {tHero('scrollIndicator')}
-            </p>
+            <div
+              className="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-5xl mx-auto"
+              role="list"
+              aria-label="Trust Metrics"
+            >
+              {trustMetrics.map((metric, index) => (
+                <AnimatedTrustMetric
+                  key={metric.labelKey}
+                  metric={metric}
+                  index={index}
+                  label={metric.label}
+                />
+              ))}
+            </div>
           </motion.div>
-        </motion.div>
+        </div>
+
       </section>
 
-      {/* Services Section - Artience Style */}
+      {/* Services Section - Artience: 16px card radius, compact spacing */}
       <section id="services" className="section-padding bg-[#F9FAFB]" aria-labelledby="services-heading">
         <div className="container-custom">
-          {/* Section Header - Artience Style */}
+          {/* Section Header - Heading 2: 24px */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.3 }}
-            className="mb-12"
+            className="mb-8 sm:mb-10"
           >
             <motion.span
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.2, delay: 0.1 }}
-              className="inline-block text-sm font-semibold text-[#3B82F6] uppercase tracking-wider mb-3"
+              className="inline-block text-[13px] font-semibold text-[#1F2937] uppercase tracking-wider mb-2"
             >
               {tServices('badge')}
             </motion.span>
-            <h2 id="services-heading" className="text-2xl md:text-3xl font-semibold text-[#1F2937] mb-4 leading-tight">
+            <h2 id="services-heading" className="text-[22px] sm:text-2xl md:text-[28px] font-semibold text-[#1F2937] mb-3 leading-tight">
               {tServices('sectionTitle')}
             </h2>
-            <p className="text-base text-[#4B5563] max-w-2xl leading-relaxed">
+            <p className="text-[15px] text-[#4B5563] max-w-2xl leading-relaxed">
               {tServices('sectionSubtitle')}
             </p>
           </motion.div>
 
-          {/* Artience Card Grid - Clean and Simple */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" role="list">
-            {/* All service cards - Artience style */}
+          {/* Card Grid - 16px radius, 24px padding */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" role="list">
             {services.map((service, index) => (
               <motion.article
                 key={service.title}
@@ -568,24 +547,24 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.1 * index }}
+                transition={{ duration: 0.3, delay: 0.05 * index }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 className="group cursor-pointer"
               >
-                <div className="h-full p-6 bg-white border border-[#E5E7EB] rounded-2xl transition-all duration-200 hover:shadow-[0_12px_24px_rgba(0,0,0,0.12)]">
-                  {/* Icon - Artience style */}
+                <div className="h-full p-5 sm:p-6 bg-white border border-[#E5E7EB] rounded-xl transition-all duration-200 hover:shadow-[0_12px_24px_rgba(0,0,0,0.08)]">
+                  {/* Icon - 8px radius */}
                   <div
-                    className="w-12 h-12 rounded-lg bg-[#E8F4FD] flex items-center justify-center mb-4 transition-all duration-200 group-hover:bg-[#3B82F6]"
+                    className="w-11 h-11 rounded-lg bg-[#F3F4F6] flex items-center justify-center mb-4 transition-all duration-200 group-hover:bg-[#1F2937]"
                     aria-hidden="true"
                   >
-                    <service.icon className="w-6 h-6 text-[#3B82F6] transition-colors duration-200 group-hover:text-white" />
+                    <service.icon className="w-5 h-5 text-[#1F2937] transition-colors duration-200 group-hover:text-white" />
                   </div>
 
-                  <h3 className="text-lg font-semibold text-[#1F2937] mb-2 transition-colors duration-200 group-hover:text-[#3B82F6]">
+                  <h3 className="text-base sm:text-lg font-semibold text-[#1F2937] mb-2 transition-colors duration-200 group-hover:text-[#111827]">
                     {service.title}
                   </h3>
 
-                  <p className="text-sm text-[#4B5563] leading-relaxed">
+                  <p className="text-[14px] text-[#4B5563] leading-relaxed">
                     {service.description}
                   </p>
                 </div>
@@ -607,7 +586,7 @@ export default function Home() {
       {/* FAQ Section */}
       <FAQ />
 
-      {/* CTA Section - Artience Style: Clean and simple */}
+      {/* CTA Section - Artience Style: Heading 2, Body 2, 8px button radius */}
       <section
         className="section-padding bg-[#1F2937] relative overflow-hidden"
         aria-labelledby="cta-heading"
@@ -622,7 +601,7 @@ export default function Home() {
           >
             <motion.h2
               id="cta-heading"
-              className="text-2xl md:text-3xl font-semibold text-white mb-3"
+              className="text-[22px] sm:text-2xl md:text-[28px] font-semibold text-white mb-3"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -631,7 +610,7 @@ export default function Home() {
               {tCta('title')}
             </motion.h2>
             <motion.p
-              className="text-base text-[#9CA3AF] mb-6"
+              className="text-[15px] sm:text-base text-[#9CA3AF] mb-6"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -640,7 +619,7 @@ export default function Home() {
               {tCta('subtitle')}
             </motion.p>
             <motion.button
-              className="inline-flex items-center justify-center gap-2 py-3 px-6 text-sm font-semibold rounded-lg bg-white text-[#1F2937] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1F2937] focus-visible:ring-white"
+              className="inline-flex items-center justify-center gap-2 py-3 px-6 text-[15px] font-semibold rounded-lg bg-white text-[#1F2937] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1F2937] focus-visible:ring-white"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

@@ -115,13 +115,13 @@ function FeaturedMemberCard({ member }: { member: TeamMember }) {
 
           {/* Content Overlay */}
           <div className="absolute bottom-0 left-0 right-0 p-6">
-            <span className="inline-block px-3 py-1 mb-3 text-xs font-semibold tracking-wider uppercase text-white bg-[#3B82F6] rounded-lg">
+            <span className="inline-block px-3 py-1 mb-3 text-xs font-semibold tracking-wider uppercase text-white bg-[#1F2937] rounded-lg">
               Featured
             </span>
             <h3 className="text-2xl md:text-3xl font-semibold text-white mb-2 tracking-tight">
               {member.name}
             </h3>
-            <p className="text-base font-medium text-[#93C5FD] mb-3">
+            <p className="text-base font-medium text-[#9CA3AF] mb-3">
               {member.role}
             </p>
             <p className="text-sm text-white/80 leading-relaxed max-w-md">
@@ -300,10 +300,10 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
 
         {/* Content Section */}
         <div className="p-4">
-          <h3 className="text-base font-semibold text-[#1F2937] mb-0.5 group-hover:text-[#3B82F6] transition-colors duration-200">
+          <h3 className="text-base font-semibold text-[#1F2937] mb-0.5 group-hover:text-[#4B5563] transition-colors duration-200">
             {member.name}
           </h3>
-          <p className="text-sm font-medium text-[#3B82F6]">
+          <p className="text-sm font-medium text-[#4B5563]">
             {member.role}
           </p>
         </div>
@@ -354,8 +354,8 @@ export function Team({ className }: TeamSectionProps) {
         >
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div className="max-w-xl">
-              <span className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-xs font-semibold tracking-widest uppercase text-[#3B82F6] bg-[#E8F4FD] rounded-lg">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6]" />
+              <span className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-xs font-semibold tracking-widest uppercase text-[#1F2937] bg-[#F3F4F6] rounded-lg">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#1F2937]" />
                 {t('badge')}
               </span>
               <h2
@@ -423,9 +423,9 @@ export function Team({ className }: TeamSectionProps) {
               href="#contact"
               className={cn(
                 'inline-flex items-center gap-2 px-5 py-2.5',
-                'text-sm font-semibold text-[#3B82F6]',
-                'border border-[#3B82F6] rounded-lg',
-                'hover:bg-[#3B82F6] hover:text-white',
+                'text-sm font-semibold text-[#1F2937]',
+                'border border-[#1F2937] rounded-lg',
+                'hover:bg-[#1F2937] hover:text-white',
                 'transition-all duration-200',
                 'group/link'
               )}
