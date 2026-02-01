@@ -153,7 +153,7 @@ function FeaturedCard({ thread, index }: { thread: Thread; index: number }) {
 
   return (
     <motion.div
-      className="col-span-2 row-span-2 relative group cursor-pointer"
+      className="col-span-1 md:col-span-2 md:row-span-2 relative group cursor-pointer"
       variants={{
         hidden: { opacity: 0, y: 30 },
         visible: { opacity: 1, y: 0 },
@@ -255,7 +255,7 @@ function RegularCard({ thread, index, size = 'medium' }: { thread: Thread; index
       whileHover={{ y: -8 }}
     >
       <Link href={`/threads/${thread.id}`} className="block h-full">
-        <div className="h-full bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100">
+        <div className="h-full bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#e8eaed]">
           {/* Image Container */}
           <div className={cn(
             'relative overflow-hidden',
@@ -294,20 +294,20 @@ function RegularCard({ thread, index, size = 'medium' }: { thread: Thread; index
                 />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 truncate">{thread.authorName}</p>
+                <p className="text-sm font-medium text-[#202124] truncate">{thread.authorName}</p>
               </div>
             </div>
 
             {/* Title */}
             <h3 className={cn(
-              'font-bold text-gray-900 mb-3 leading-snug group-hover:text-blue-600 transition-colors',
+              'font-bold text-[#202124] mb-3 leading-snug group-hover:text-[#1a73e8] transition-colors',
               size === 'large' ? 'text-xl line-clamp-3' : 'text-lg line-clamp-2'
             )}>
               {thread.summary || thread.content.slice(0, 80)}
             </h3>
 
             {/* Meta Info */}
-            <div className="flex items-center justify-between text-xs text-gray-500">
+            <div className="flex items-center justify-between text-xs text-[#5f6368]">
               <span>{formatRelativeTime(thread.publishedAt)}</span>
               <span className="flex items-center gap-1">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -354,8 +354,8 @@ export function ThreadFeed({
   const regularThreads = filteredThreads.slice(1);
 
   return (
-    <section className={cn('py-20 md:py-32 bg-gray-50', className)}>
-      <div className="container mx-auto px-4 md:px-6">
+    <section className={cn('py-20 md:py-32 bg-[#f8f9fa]', className)}>
+      <div className="container-custom">
         {/* Section Header - Magazine Style */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16">
           <div>
@@ -365,13 +365,13 @@ export function ThreadFeed({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div className="w-12 h-[2px] bg-blue-600" />
-              <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">
+              <div className="w-12 h-[2px] bg-[#1a73e8]" />
+              <span className="text-sm font-semibold text-[#1a73e8] uppercase tracking-widest">
                 Featured Stories
               </span>
             </motion.div>
             <motion.h2
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#202124] tracking-tight"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -380,7 +380,7 @@ export function ThreadFeed({
               Latest Insights
             </motion.h2>
             <motion.p
-              className="text-lg md:text-xl text-gray-600 mt-4 max-w-2xl leading-relaxed"
+              className="text-lg md:text-xl text-[#5f6368] mt-4 max-w-2xl leading-relaxed"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -398,7 +398,7 @@ export function ThreadFeed({
           >
             <Link
               href="/threads"
-              className="inline-flex items-center gap-3 px-6 py-3 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-colors group"
+              className="inline-flex items-center gap-3 px-6 py-3 bg-[#202124] text-white font-medium rounded-full hover:bg-[#3c4043] transition-colors group"
             >
               View All
               <svg
@@ -434,8 +434,8 @@ export function ThreadFeed({
                 className={cn(
                   'px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200',
                   selectedCategory === category
-                    ? 'bg-gray-900 text-white shadow-lg'
-                    : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                    ? 'bg-[#202124] text-white shadow-lg'
+                    : 'bg-white text-[#5f6368] hover:bg-[#f8f9fa] border border-[#e8eaed]'
                 )}
               >
                 {category === 'all' ? '전체' : categoryLabels[category]}
@@ -492,9 +492,9 @@ export function ThreadFeed({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <div className="w-20 h-20 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
+            <div className="w-20 h-20 mx-auto mb-6 bg-[#f1f3f4] rounded-full flex items-center justify-center">
               <svg
-                className="w-10 h-10 text-gray-400"
+                className="w-10 h-10 text-[#9aa0a6]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -507,7 +507,7 @@ export function ThreadFeed({
                 />
               </svg>
             </div>
-            <p className="text-gray-500 text-lg">
+            <p className="text-[#5f6368] text-lg">
               해당 카테고리의 스레드가 없습니다.
             </p>
           </motion.div>

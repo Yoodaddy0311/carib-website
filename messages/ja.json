@@ -44,8 +44,12 @@
     }
   },
   "services": {
+    "badge": "What We Do",
     "sectionTitle": "提供サービス",
     "sectionSubtitle": "AI技術を活用したカスタムソリューションでビジネス効率を最大化します",
+    "featured": "Featured",
+    "learnMore": "詳しく見る",
+    "explore": "探索する",
     "aiConsulting": {
       "title": "AI自動化コンサルティング",
       "description": "業務プロセス分析からAI導入戦略策定まで専門コンサルティングを提供します。"
@@ -85,7 +89,8 @@
         "title": "Delivery",
         "description": "デプロイ、教育、継続的な最適化"
       }
-    }
+    },
+    "scrollHint": "スクロールして探索"
   },
   "team": {
     "badge": "Our Team",
@@ -114,7 +119,9 @@
         "bio": "ユーザー中心AIインターフェース設計"
       }
     },
-    "socialLabel": "{name}の{platform}"
+    "socialLabel": "{name}の{platform}",
+    "ctaQuestion": "チームに参加しませんか？",
+    "ctaButton": "お問い合わせ"
   },
   "faq": {
     "sectionTitle": "よくある質問",

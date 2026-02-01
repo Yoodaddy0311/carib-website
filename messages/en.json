@@ -44,8 +44,12 @@
     }
   },
   "services": {
+    "badge": "What We Do",
     "sectionTitle": "Our Services",
     "sectionSubtitle": "Maximize business efficiency with customized solutions powered by AI technology",
+    "featured": "Featured",
+    "learnMore": "Learn more",
+    "explore": "Explore",
     "aiConsulting": {
       "title": "AI Automation Consulting",
       "description": "We provide expert consulting from business process analysis to AI adoption strategy development."
@@ -85,7 +89,8 @@
         "title": "Delivery",
         "description": "Deployment, training, and continuous optimization"
       }
-    }
+    },
+    "scrollHint": "Scroll to explore"
   },
   "team": {
     "badge": "Our Team",
@@ -114,7 +119,9 @@
         "bio": "User-centered AI interface design"
       }
     },
-    "socialLabel": "{name}'s {platform}"
+    "socialLabel": "{name}'s {platform}",
+    "ctaQuestion": "Interested in joining our team?",
+    "ctaButton": "Get in touch"
   },
   "faq": {
     "sectionTitle": "Frequently Asked Questions",

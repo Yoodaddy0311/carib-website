@@ -330,7 +330,7 @@ export function Process() {
           >
             &rarr;
           </motion.span>
-          <span>Scroll to explore</span>
+          <span>{t('scrollHint')}</span>
         </motion.div>
 
         {/* Bottom Connector Dots */}

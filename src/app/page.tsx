@@ -678,7 +678,7 @@ export default function Home() {
               transition={{ duration: 0.4, delay: 0.1 }}
               className="inline-block text-sm font-medium text-[#1a73e8] uppercase tracking-wider mb-4"
             >
-              What We Do
+              {tServices('badge')}
             </motion.span>
             <h2 id="services-heading" className="text-4xl md:text-5xl lg:text-6xl font-medium text-[#202124] mb-6 leading-tight">
               {tServices('sectionTitle')}
@@ -724,7 +724,7 @@ export default function Home() {
                     })()}
                   </div>
 
-                  <span className="text-[#1a73e8] text-sm font-medium uppercase tracking-wider mb-2">Featured</span>
+                  <span className="text-[#1a73e8] text-sm font-medium uppercase tracking-wider mb-2">{tServices('featured')}</span>
                   <h3 className="text-2xl lg:text-3xl font-medium text-white mb-4">
                     {services[0]?.title}
                   </h3>
@@ -738,7 +738,7 @@ export default function Home() {
                     animate={{ x: [0, 5, 0] }}
                     transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                   >
-                    <span className="text-sm font-medium">Learn more</span>
+                    <span className="text-sm font-medium">{tServices('learnMore')}</span>
                     <ArrowRight className="w-4 h-4" />
                   </motion.div>
                 </div>
@@ -781,7 +781,7 @@ export default function Home() {
 
                     {/* Arrow on hover */}
                     <div className="mt-4 flex items-center gap-2 text-[#1a73e8] opacity-0 group-hover:opacity-100 group-hover:text-white transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
-                      <span className="text-sm font-medium">Explore</span>
+                      <span className="text-sm font-medium">{tServices('explore')}</span>
                       <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>

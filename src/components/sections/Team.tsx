@@ -418,7 +418,7 @@ export function Team({ className }: TeamSectionProps) {
         >
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <p className="text-[#5f6368]">
-              Interested in joining our team?
+              {t('ctaQuestion')}
             </p>
             <a
               href="#contact"
@@ -431,7 +431,7 @@ export function Team({ className }: TeamSectionProps) {
                 'group/link'
               )}
             >
-              Get in touch
+              {t('ctaButton')}
               <ArrowUpRight className="w-4 h-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
             </a>
           </div>

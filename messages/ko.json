@@ -44,8 +44,12 @@
     }
   },
   "services": {
+    "badge": "What We Do",
     "sectionTitle": "우리가 제공하는 서비스",
     "sectionSubtitle": "AI 기술을 활용한 맞춤형 솔루션으로 비즈니스 효율을 극대화합니다",
+    "featured": "Featured",
+    "learnMore": "자세히 보기",
+    "explore": "살펴보기",
     "aiConsulting": {
       "title": "AI 자동화 컨설팅",
       "description": "업무 프로세스 분석부터 AI 도입 전략 수립까지 전문 컨설팅을 제공합니다."
@@ -85,7 +89,8 @@
         "title": "Delivery",
         "description": "배포, 교육 및 지속적인 최적화"
       }
-    }
+    },
+    "scrollHint": "스크롤하여 탐색"
   },
   "team": {
     "badge": "Our Team",
@@ -114,7 +119,9 @@
         "bio": "사용자 중심 AI 인터페이스 설계"
       }
     },
-    "socialLabel": "{name}의 {platform}"
+    "socialLabel": "{name}의 {platform}",
+    "ctaQuestion": "우리 팀에 합류하고 싶으신가요?",
+    "ctaButton": "연락하기"
   },
   "faq": {
     "sectionTitle": "자주 묻는 질문",
